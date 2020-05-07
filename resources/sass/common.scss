@@ -21,12 +21,20 @@
     color: $light-green-color;
 }
 
+.icon-light-green-active {
+    color: $light-green-color-active;
+}
+
 .icon-light-green:hover {
     color: $dark-green-color;
 }
 
 .icon-red {
     color: $red-color;
+}
+
+.icon-red-active {
+    color: $red-color-active;
 }
 
 .icon-red:hover {
@@ -52,4 +60,14 @@
     height: 150px;
     background-color: $dark-green-color;
     z-index: -1;
+}
+
+
+//INPUTS
+.validation-error-border {
+    border: 1px solid $red-color !important;
+}
+
+.validation-error-text {
+    color: $red-color !important;
 }

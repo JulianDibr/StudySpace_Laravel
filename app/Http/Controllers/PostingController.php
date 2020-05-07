@@ -37,7 +37,12 @@ class PostingController extends Controller
      */
     public function store(Request $request)
     {
-        $posting = new Posting($request->all());
+
+        $validatedData = $request->validate([
+            'content' => ['required', 'max:1000'],
+        ]);
+
+        $posting = new Posting($validatedData);
 
         $posting->user_id = Auth::user()->id;
         $posting->location_type = 1;
@@ -95,10 +100,11 @@ class PostingController extends Controller
 
     public function voting(Request $request) {
         $user = Auth::user()->id;
+        $existingVoting = Voting::where([['posting_id', $request->postingId], ['user_id', $user]])->first();
 
-        $existingVoting = Voting::where([['posting_id', $request->posting_id], ['user_id', $user]])->first();
-
+        //Für den Post und User existiert noch kein voting
         if($existingVoting === null){
+            //Neues Voting anlegen
             $voting = new Voting();
 
             $voting->user_id = $user;
@@ -106,6 +112,14 @@ class PostingController extends Controller
             $voting->is_upvote = $request->isUpvote;
 
             $voting->save();
+        }
+        //Wenn Vote bereits gleicher Vote existiert-> entferne diesen
+        elseif($existingVoting->is_upvote == $request->isUpvote){
+            $existingVoting->delete();
+        }
+        //Sonst is_upvote Feld Anpassen
+        else{
+            $existingVoting->update(['is_upvote' => $request->isUpvote]);
         }
     }
 }

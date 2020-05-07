@@ -19,6 +19,7 @@
 <nav class="navbar navbar-expand-md navbar-studyspace">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="{{asset('/img/logo.png')}}" alt="" height="40px">
             {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

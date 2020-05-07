@@ -35,7 +35,7 @@ function upvotePosting(postingId, isUpvote) {
             'isUpvote': isUpvote,
         },
         success: function () {
-
+            window.location.reload();
         }
     });
 }
@@ -55,7 +55,7 @@ function downvotePosting(postingId, isUpvote) {
             'isUpvote': isUpvote,
         },
         success: function () {
-
+            window.location.reload();
         }
     });
 }

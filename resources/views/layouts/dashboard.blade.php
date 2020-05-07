@@ -19,6 +19,7 @@
 <nav class="navbar navbar-expand-md navbar-studyspace sticky-top">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="{{asset('/img/logo.png')}}" alt="" height="40px">
             {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -65,11 +66,12 @@
 
 <main>
     <div class="sidebar-wrapper d-none d-md-block pl-0">
+        {{--TODO: In row: col teilen -> lineup icons--}}
         <ul id="sidebar">
-            <li><a href="/home">Feed</a></li>
-            <li><a href="/profile">Mein Profil</a></li>
-            <li><a href="/school">Hochschule Hamm-Lippstadt</a></li>
-            <li><a href="/courses/overview">Meine Kurse</a></li>
+            <li><a href="/home"><i class="fas fa-house-user mr-2"></i>Feed</a></li>
+            <li><a href="/profile"><i class="fas fa-user mr-2"></i>Mein Profil</a></li>
+            <li><a href="/school"><i class="fas fa-school mr-2"></i>Hochschule Hamm-Lippstadt</a></li>
+            <li><a href="/courses/overview"><i class="fas fa-chalkboard-teacher mr-2"></i>Meine Kurse</a></li>
             <li class="tab-1"><a href="/courses/overview">Meine Kurse</a></li>
         </ul>
     </div>

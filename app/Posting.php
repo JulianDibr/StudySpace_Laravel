@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Posting extends Model
 {
@@ -26,12 +27,16 @@ class Posting extends Model
 
     public function getIsUpvoted()
     {
-
+        return $this->votings->where('is_upvote', true)->contains('user_id', Auth::user()->id);
     }
 
     public function getIsDownvoted()
     {
+        return $this->votings->where('is_upvote', false)->contains('user_id', Auth::user()->id);
+    }
 
+    public function ownPosting(){
+        return $this->user_id === Auth::user()->id;
     }
 
     public function getCreatedAtAttribute($date)

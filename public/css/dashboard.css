@@ -16955,12 +16955,20 @@ a.text-dark:focus {
   color: #77a691;
 }
 
+.icon-light-green-active {
+  color: #97d5ba;
+}
+
 .icon-light-green:hover {
   color: #5C806F;
 }
 
 .icon-red {
   color: #B34A39;
+}
+
+.icon-red-active {
+  color: #de5943;
 }
 
 .icon-red:hover {
@@ -16985,6 +16993,14 @@ a.text-dark:focus {
   height: 150px;
   background-color: #5C806F;
   z-index: -1;
+}
+
+.validation-error-border {
+  border: 1px solid #B34A39 !important;
+}
+
+.validation-error-text {
+  color: #B34A39 !important;
 }
 
 .posting-container {
@@ -17019,6 +17035,7 @@ a.text-dark:focus {
 #sidebar {
   list-style: none;
   background-color: #77a691;
+  padding-left: 20px;
 }
 
 #sidebar > li {
