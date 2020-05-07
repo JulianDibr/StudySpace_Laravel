@@ -1,1 +1,41 @@
-//
+// Common
+@import 'common';
+
+//MAIN
+.index-border{
+    border-top: 1px solid $dark-green-color;
+}
+
+#forgot-password {
+    color: #000000;
+    font-size: 12px;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.index-btn {
+    padding: 15px;
+    width: 100%;
+    color: $white-color;
+    background-color: $light-green-color;
+    margin-top: 20px;
+}
+
+.index-btn:active, .index-btn.active, .index-btn:hover {
+    background-color: $dark-green-color;
+    color: $white-color;
+}
+
+.index-input {
+    height: 50px;
+    width: 100%;
+    background-color: #fcfcfc;
+    border: $border;
+    border-radius: $border-radius;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.form-group{
+
+}

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //If logged in redirect to dashboard
+    if (Auth::check()) {
+        return redirect()->route('home');
+    } else {
+        return view('welcome');
+    }
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('postings', 'PostingController');
+Route::post('postings/voting', 'PostingController@voting')->name('posting.voting');

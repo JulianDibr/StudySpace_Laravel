@@ -1,0 +1,65 @@
+// Common
+@import 'common';
+@import 'postings';
+
+#sidebar {
+    list-style: none;
+    background-color: $light-green-color;
+}
+
+#sidebar>li{
+    margin-bottom: 10px;
+}
+
+#sidebar>li>a{
+    color: $white-color;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#sidebar>li>a:hover{
+    color: $white-hover-color;
+    text-decoration: none;
+}
+
+#sidebar>.tab-1
+{
+    padding-left: 20px;
+}
+
+.sidebar-wrapper {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: 100%;
+    background-color: $light-green-color;
+    padding: 25px 20px;
+}
+
+.home-content {
+    width: 100%;
+    background-color: #f6f6f6;
+    min-height: calc(100vh - 210px)
+}
+
+@media (min-width: 768px) {
+    .sidebar-wrapper {
+        width: 25%;
+    }
+
+    .home-content {
+        width: 75%;
+        margin-left: 25%;
+    }
+}
+
+@media (min-width: 1201px) {
+    .sidebar-wrapper {
+        width: 15%;
+    }
+
+    .home-content {
+        width: 85%;
+        margin-left: 15%;
+    }
+}

@@ -1,0 +1,55 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+/*===Icons===*/
+/*=====Colors==*/
+.icon-white {
+    color: $white-color;
+}
+
+.icon-light-green {
+    color: $light-green-color;
+}
+
+.icon-light-green:hover {
+    color: $dark-green-color;
+}
+
+.icon-red {
+    color: $red-color;
+}
+
+.icon-red:hover {
+    color: $red-hover-color;
+}
+
+/*=====/Colors==*/
+/*===/Icons===*/
+
+//NAV
+.navbar-studyspace {
+    background-color: $dark-green-color;
+    height: 60px;
+
+    a {
+        color: $white-color;
+    }
+}
+
+//FOOTER
+.footer {
+    width: 100%;
+    height: 150px;
+    background-color: $dark-green-color;
+    z-index: -1;
+}

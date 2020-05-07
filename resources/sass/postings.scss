@@ -1,0 +1,30 @@
+.posting-container {
+    border: $border;
+    border-radius: $border-radius;
+    min-height: 275px;
+    background-color: $white-color;
+}
+
+
+.profile-picture {
+    /*border: var(--border);*/
+    /*border-radius: var(--border-radius);*/
+}
+
+.posting-content {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    border: $border;
+    border: none;
+    border-radius: $border-radius;
+
+}
+
+.posting-location-name{
+    font-size: 14px;
+}
+
+.posting-time{
+    font-size: 12px;
+}
