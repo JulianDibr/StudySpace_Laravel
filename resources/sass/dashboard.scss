@@ -5,27 +5,34 @@
 #sidebar {
     list-style: none;
     background-color: $light-green-color;
-    padding-left: 20px
-}
-
-#sidebar>li{
-    margin-bottom: 10px;
-}
-
-#sidebar>li>a{
-    color: $white-color;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-#sidebar>li>a:hover{
-    color: $white-hover-color;
-    text-decoration: none;
-}
-
-#sidebar>.tab-1
-{
     padding-left: 20px;
+
+    li {
+        margin-bottom: 10px;
+
+        a {
+            color: $white-active-color;
+            text-decoration: none;
+            font-size: 18px;
+
+            i{
+                color: $white-color;
+            }
+
+            &:hover {
+                color: $white-color;
+                text-decoration: none;
+            }
+        }
+    }
+
+    i {
+        width: 25px;
+    }
+
+    .nav-active>a {
+        color: $white-color;
+    }
 }
 
 .sidebar-wrapper {

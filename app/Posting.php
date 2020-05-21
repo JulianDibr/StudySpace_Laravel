@@ -20,6 +20,11 @@ class Posting extends Model
         return $this->hasMany('App\Voting');
     }
 
+    public function getByUser($id)
+    {
+        return Posting::where('user_id', $id)->get();
+    }
+
     public function getVoting()
     {
         return count($this->votings->where('is_upvote', true)) - count($this->votings->where('is_upvote', false));
@@ -35,7 +40,8 @@ class Posting extends Model
         return $this->votings->where('is_upvote', false)->contains('user_id', Auth::user()->id);
     }
 
-    public function ownPosting(){
+    public function ownPosting()
+    {
         return $this->user_id === Auth::user()->id;
     }
 

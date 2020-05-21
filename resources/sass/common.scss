@@ -71,3 +71,7 @@
 .validation-error-text {
     color: $red-color !important;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: $light-green-color;
+}

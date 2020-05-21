@@ -3,49 +3,19 @@
 @inject('postings','App\Posting')
 
 @section('content')
+    {{--Get $profile from controller--}}
+    {{--Profile data--}}
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="posting-container mb-2 mt-2 p-3">
-                <div class="row h-100">
-                    <div class="col-3 my-auto">
-                        <div class="profile-picture">
-                            <img src="{{asset('/img/user_default.png')}}" width="100%" alt="user profile picture"/>
-                        </div>
-                    </div>
-                    <div class="col-9 my-auto">
-                    </div>
-                </div>
+        <div class="col-9">
 
-                <form method="post" action="{{ route('postings.store') }}">
-                    @csrf
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            <textarea name="content"
-                                      class="p-2 posting-content {{$errors->has('content') ?'validation-error-border' : 'border'}}"
-                                      placeholder="Was möchtest du posten?"></textarea>
-                            @error('content')
-                            <span class="validation-error-text">Ein Post darf nicht leer sein</span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row mt-1">
-                        <div class="col-6 text-center">
-                            <button class="new-posting-reset btn" type="button">
-                                <i class="fa-lg far fa-times-circle"></i>
-                            </button>
-                        </div>
-                        <div class="col-6 text-center">
-                            <button class="btn">
-                                <i class="fa-lg far fa-check-circle icon-light-green"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
-
-        @forelse($postings::all()->sortByDesc('updated_at') as $posting)
+        <div class="col-3">
+            <img src="{{asset('/img/user_default.png')}}" alt="profile picture" width="100%" class="rounded-circle">
+        </div>
+    </div>
+    {{--Postings--}}
+    <div class="row">
+        @forelse($postings->getByUser($profile->id) as $posting)
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="posting-container mb-2 mt-2 p-3" data-posting-id="{{$posting->id}}">
                     <div class="row h-100">

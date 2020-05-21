@@ -17,7 +17,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-studyspace">
-    <div class="container">
+    <div style="max-width: 100%" class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{asset('/img/logo.png')}}" alt="" height="40px">
             {{ config('app.name', 'Laravel') }}

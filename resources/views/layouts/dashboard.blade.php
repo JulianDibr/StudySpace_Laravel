@@ -17,7 +17,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-studyspace sticky-top">
-    <div class="container">
+    <div style="max-width: 100%" class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{asset('/img/logo.png')}}" alt="" height="40px">
             {{ config('app.name', 'Laravel') }}
@@ -42,7 +42,7 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            {{ Auth::user()->first_name }}  {{ Auth::user()->last_name }}<span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -66,18 +66,21 @@
 
 <main>
     <div class="sidebar-wrapper d-none d-md-block pl-0">
-        {{--TODO: In row: col teilen -> lineup icons--}}
         <ul id="sidebar">
-            <li><a href="/home"><i class="fas fa-house-user mr-2"></i>Feed</a></li>
-            <li><a href="/profile"><i class="fas fa-user mr-2"></i>Mein Profil</a></li>
-            <li><a href="/school"><i class="fas fa-school mr-2"></i>Hochschule Hamm-Lippstadt</a></li>
-            <li><a href="/courses/overview"><i class="fas fa-chalkboard-teacher mr-2"></i>Meine Kurse</a></li>
-            <li class="tab-1"><a href="/courses/overview">Meine Kurse</a></li>
+            <li class="{{Route::is('home') ? 'nav-active' : ''}}"><a href="/home"><i class="fas fa-house-user mr-2"></i>Feed</a>
+            </li>
+            <li class="{{Route::is('profile.show') ? 'nav-active' : ''}}"><a href="{{ route('profile.show', Auth::user()->id) }}"><i
+                        class="fas fa-user mr-2"></i>Mein Profil</a></li>
+            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="/school"><i class="fas fa-school mr-2"></i>Hochschule
+                    Hamm-Lippstadt</a></li>
+            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="/courses/overview"><i
+                        class="fas fa-chalkboard-teacher mr-2"></i>Meine Kurse</a></li>
+            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="/courses/overview">Meine Kurse</a></li>
         </ul>
     </div>
 
     <div class="home-content overflow-auto">
-        <div class="container">
+        <div class="container mt-4">
             @yield('content')
         </div>
     </div>

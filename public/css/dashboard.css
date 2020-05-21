@@ -17003,6 +17003,11 @@ a.text-dark:focus {
   color: #B34A39 !important;
 }
 
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #77a691;
+}
+
 .posting-container {
   border: 1px solid #cccccc;
   border-radius: 5px;
@@ -17038,23 +17043,31 @@ a.text-dark:focus {
   padding-left: 20px;
 }
 
-#sidebar > li {
+#sidebar li {
   margin-bottom: 10px;
 }
 
-#sidebar > li > a {
-  color: #ffffff;
+#sidebar li a {
+  color: #e1e1e1;
   text-decoration: none;
   font-size: 18px;
 }
 
-#sidebar > li > a:hover {
-  color: #e1fff0;
+#sidebar li a i {
+  color: #ffffff;
+}
+
+#sidebar li a:hover {
+  color: #ffffff;
   text-decoration: none;
 }
 
-#sidebar > .tab-1 {
-  padding-left: 20px;
+#sidebar i {
+  width: 25px;
+}
+
+#sidebar .nav-active > a {
+  color: #ffffff;
 }
 
 .sidebar-wrapper {
