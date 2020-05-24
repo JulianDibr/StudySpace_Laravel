@@ -16943,6 +16943,11 @@ a.text-dark:focus {
   }
 }
 
+* {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /*===Icons===*/
 
 /*=====Colors==*/

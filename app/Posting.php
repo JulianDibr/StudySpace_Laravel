@@ -22,7 +22,7 @@ class Posting extends Model
 
     public function getByUser($id)
     {
-        return Posting::where('user_id', $id)->get();
+        return Posting::with('user')->where('user_id', $id)->get()->sortByDesc('updated_at');
     }
 
     public function getVoting()

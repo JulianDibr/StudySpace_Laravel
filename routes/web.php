@@ -27,10 +27,12 @@ Auth::routes();
 
 Route::get('home', 'HomeController@index')->name('home');
 
-//Profiles
-Route::resource('profile', 'ProfileController');
-Route::get('profile/{id}', 'ProfileController@show')->name('profile.show');
-
 //Postings
 Route::resource('postings', 'PostingController');
 Route::post('postings/voting', 'PostingController@voting')->name('posting.voting');
+
+//Profiles
+Route::resource('profile', 'ProfileController');
+
+//School
+Route::resource('school', 'SchoolController');

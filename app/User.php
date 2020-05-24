@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function school()
     {
-        return $this->hasOne('App\School');
+        return $this->belongsTo('App\School');
     }
 
     public function courses()
@@ -55,5 +55,9 @@ class User extends Authenticatable
     public function groups()
     {
         return $this->hasMany('App\Group');
+    }
+
+    public function getUserImage() {
+        return asset('storage/profile_pictures/'. $this->profile_picture);
     }
 }

@@ -22,9 +22,16 @@ class SchoolController extends Controller
         //
     }
 
-    public function show(school $school)
+    public function show($id)
     {
-        //
+        $school = School::find($id);
+        if ($school !== null) {
+            //If profile for this id exist -> show profile
+            return view('school.index', compact('school', $school));
+        } else {
+            //Else redirect to home screen
+            return redirect()->route('home');
+        }
     }
 
     public function edit(school $school)

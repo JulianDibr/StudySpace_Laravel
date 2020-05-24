@@ -6,16 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePostingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('postings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->integer('user_type');
             $table->string('content');
             $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('location_type');
@@ -25,11 +21,6 @@ class CreatePostingsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('postings');

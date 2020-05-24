@@ -2,18 +2,20 @@
 
 @inject('postings','App\Posting')
 
+@php
+    $postingArr = $postings::with('user')->get()->sortByDesc('updated_at');
+@endphp
+
 @section('content')
-    @php
-        $postingsArr = $postings->getByUser($profile->id);
-    @endphp
-    {{--Get $profile from controller--}}
+
+    {{--Get $school from controller--}}
     {{--Profile data--}}
-    <div class="row">
+    <div class="row test">
         <div class="col-9">
 
         </div>
         <div class="col-3">
-            <img src="{{$profile->getUserImage()}}" alt="profile picture" width="100%" class="rounded-circle">
+            <img src="{{asset('/img/user_default.png')}}" alt="profile picture" width="100%" class="rounded-circle">
         </div>
     </div>
     {{--Postings--}}

@@ -12,6 +12,7 @@ class PostingsTableSeeder extends Seeder
         DB::table('postings')->insert([
             [
                 'user_id' => 1,
+                'user_type' => 1,
                 'content' => 'Dies ist ein Testpost',
                 'location_id' => 1,
                 'location_type' => 1,
@@ -20,6 +21,7 @@ class PostingsTableSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
+                'user_type' => 1,
                 'content' => 'Dies ist ein weiterer Testpost',
                 'location_id' => 1,
                 'location_type' => 1,
@@ -28,6 +30,7 @@ class PostingsTableSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
+                'user_type' => 1,
                 'content' => 'Dies ist ein weiterer Testpost',
                 'location_id' => 1,
                 'location_type' => 1,
@@ -36,7 +39,17 @@ class PostingsTableSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
+                'user_type' => 1,
                 'content' => 'Dies ist ein weiterer Testpost',
+                'location_id' => 1,
+                'location_type' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'user_id' => 2,
+                'user_type' => 1,
+                'content' => 'Dies ist ein weiterer Testpost von wem anders',
                 'location_id' => 1,
                 'location_type' => 1,
                 'created_at' => Carbon::now(),

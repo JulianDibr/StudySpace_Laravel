@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->time('birthday')->nullable()->default(null);
             $table->timestamps();
 
-            $table->foreign('school_id')->references('id')->on('school');
+            $table->foreign('school_id')->references('id')->on('schools');
         });
     }
 
