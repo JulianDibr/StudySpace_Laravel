@@ -6,6 +6,7 @@ use App\Posting;
 use App\Voting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class PostingController extends Controller
 {
@@ -19,22 +20,24 @@ class PostingController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $location_type, $location_id)
     {
-
         $validatedData = $request->validate([
             'content' => ['required', 'max:1000'],
         ]);
 
-        $posting = new Posting($validatedData);
+        if ($this->userAuthForLocation($location_id, $location_type)) {
+            $posting = new Posting($validatedData);
 
-        $posting->user_id = Auth::user()->id;
-        $posting->location_type = 1;
-        $posting->location_id = 1;
+            $posting->user_id = Auth::user()->id;
+            $posting->location_type = $location_type;
+            $posting->location_id = $location_id;
+            $posting->user_type = 0; //TODO: Wofür?
 
-        $posting->save();
+            $posting->save();
+        }
 
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     public function show(Posting $posting)
@@ -60,7 +63,7 @@ class PostingController extends Controller
                 $posting->delete();
             }
         }
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     public function voting(Request $request)
@@ -84,6 +87,32 @@ class PostingController extends Controller
         } //Sonst is_upvote Feld Anpassen
         else {
             $existingVoting->update(['is_upvote' => $request->isUpvote]);
+        }
+    }
+
+    private function userAuthForLocation($location_id, $location_type)
+    {
+        $user = Auth::user();
+
+        if ($location_type == 0 && $location_id == 0){
+            return true;
+        }
+
+        switch ($location_type) {
+            case 0:
+                return false;
+            case 1:
+                return true;
+            case 2:
+                if($user->school->id == $location_id){
+                    return true;
+                }
+                return false;
+            case 3: //TODO: Check if course ids include this id
+                if($user->courses()->pluck('id') == $location_id){
+                    return true;
+                }
+                return false;
         }
     }
 }

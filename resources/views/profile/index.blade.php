@@ -4,7 +4,9 @@
 
 @section('content')
     @php
-        $postingsArr = $postings->getByUser($profile->id);
+        $location_id = $profile->id;
+        $location_type = 1;
+        $postingArr = $postings::with('user')->where([['location_type', '=', $location_type], ['location_id', '=', $location_id]])->get()->sortByDesc('updated_at');
     @endphp
     {{--Get $profile from controller--}}
     {{--Profile data--}}

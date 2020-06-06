@@ -3,7 +3,9 @@
 @inject('postings','App\Posting')
 
 @php
-    $postingArr = $postings::with('user')->get()->sortByDesc('updated_at');
+    $location_id = $school->id;
+    $location_type = 2;
+    $postingArr = $postings::with('user')->where([['location_type', '=', $location_type], ['location_id', '=', $location_id]])->get()->sortByDesc('updated_at');
 @endphp
 
 @section('content')

@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class Posting extends Model
 {
@@ -53,5 +54,31 @@ class Posting extends Model
     public function getUpdatedAtAttribute($date)
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y, H:i');
+    }
+
+    public function getFeed()
+    {
+        $user = Auth::user();
+
+        return Posting::with('user')->get()->sortByDesc('updated_at');
+    }
+
+    public function getLocationRoute()
+    {
+        switch ($this->location_type) {
+            case 0:
+                return route('home');
+            case 1:
+                return url('profile/'.$this->location_id);
+            case 2:
+                return url('school/'.$this->location_id);
+            case 3: //TODO: Check if course ids include this id
+                return url('course/'.$this->location_id);
+        }
+    }
+
+    public function getLocationName()
+    {
+        return "tst";
     }
 }

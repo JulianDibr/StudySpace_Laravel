@@ -49,15 +49,21 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->hasMany('App\Course');
+        return $this->belongsToMany('App\Course');
     }
 
     public function groups()
     {
-        return $this->hasMany('App\Group');
+        return $this->belongsToMany('App\Group');
     }
 
-    public function getUserImage() {
-        return asset('storage/profile_pictures/'. $this->profile_picture);
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'user_1', 'user_2');
+    }
+
+    public function getUserImage()
+    {
+        return asset('storage/profile_pictures/' . $this->profile_picture);
     }
 }

@@ -14,6 +14,6 @@ return [
     */
 
     'failed' => 'Leider konnte kein Nutzer zu diesen Angaben gefunden werden.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Zu viele Loginversiche. Bitte versuchen Sie es in :seconds Sekunden nochmal.',
 
 ];

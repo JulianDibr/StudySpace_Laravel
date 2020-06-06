@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-            <form method="post" action="{{ route('postings.store') }}">
+            <form method="post" action="{{ route('postings.store', [$location_type, $location_id]) }}">
                 @csrf
                 <div class="row mt-3">
                     <div class="col-12">
@@ -40,18 +40,14 @@
         </div>
     </div>
 
-    @php
-        $postings = $postings::with('user')->get()->sortByDesc('updated_at');
-    @endphp
-    @forelse($postings as $posting)
+    @forelse($postingArr as $posting)
         <div class="col-12 col-md-6 col-lg-4">
             <div class="posting-container mb-2 mt-2 p-3" data-posting-id="{{$posting->id}}">
                 <div class="row h-100">
                     <div class="col-3 my-auto">
                         <div class="profile-picture">
                             <a href="{{ route('profile.show', $posting->user->id) }}">
-                                <img src="{{$posting->user->getUserImage()}}" width="100%"
-                                     alt="user profile picture"/>
+                                <img src="{{$posting->user->getUserImage()}}" width="100%" alt="user profile picture"/>
                             </a>
                         </div>
                     </div>
@@ -61,7 +57,12 @@
                                 <a href="{{ route('profile.show', $posting->user->id) }}">
                                     {{$posting->user->first_name}} {{$posting->user->last_name}}
                                 </a>
-                                postete in {{$posting->location_id}}
+                                @if($posting->location_type !== 0)
+                                postete in
+                                <a href="{{$posting->getLocationRoute()}}">{{$posting->getLocationName()}}</a>
+                                @else
+                                postete
+                                @endif
                             </span>
                         </div>
                         <div class="row">
@@ -74,10 +75,8 @@
                                 <i class="fas fa-ellipsis-v"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="{{ route('postings.edit', $posting->id) }}">Beitrag
-                                    editieren</a>
-                                <a class="dropdown-item" onclick="$(this).next('.destroy-posting').submit()">Beitrag
-                                    löschen</a>
+                                <a class="dropdown-item" href="{{ route('postings.edit', $posting->id) }}">Beitrag editieren</a>
+                                <a class="dropdown-item" onclick="$(this).next('.destroy-posting').submit()">Beitrag löschen</a>
                                 <form class="destroy-posting d-none"
                                       action="{{ route('postings.destroy', $posting->id) }}" method="post">
                                     @method('DELETE')
@@ -91,8 +90,7 @@
                 <div>
                     <div class="row mt-3">
                         <div class="col-12">
-                                <textarea name="content" class="p-2 posting-content"
-                                          readonly>{{$posting->content}}</textarea>
+                            <textarea name="content" class="p-2 posting-content" readonly>{{$posting->content}}</textarea>
                         </div>
                     </div>
 

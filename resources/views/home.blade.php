@@ -4,7 +4,9 @@
 
 @section('content')
     @php
-        $postingArr = $postings::with('user')->get()->sortByDesc('updated_at');
+        $location_id = 0;
+        $location_type = 0;
+        $postingArr = $postings->getFeed();
     @endphp
 
     @include('components.postings')

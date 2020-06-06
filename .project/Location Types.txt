@@ -1,0 +1,6 @@
+0 = general
+1 = profile
+2 = schools
+3 = courses
+4 = groups
+5 = projects

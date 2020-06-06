@@ -29,6 +29,7 @@ Route::get('home', 'HomeController@index')->name('home');
 
 //Postings
 Route::resource('postings', 'PostingController');
+Route::post('postings/{location_type}/{location_id}', 'PostingController@store')->name('postings.store');
 Route::post('postings/voting', 'PostingController@voting')->name('posting.voting');
 
 //Profiles

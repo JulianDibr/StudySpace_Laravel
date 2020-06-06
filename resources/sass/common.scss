@@ -57,6 +57,20 @@
     a {
         color: $white-color;
     }
+
+    .custom-dropdown-item {
+        color: $black !important;
+
+        &:hover {
+            background-color: $light-green-color !important;
+            color: $white-color !important;
+        }
+
+        &:active {
+            background-color: $dark-green-color !important;
+            color: $white-color !important;
+        }
+    }
 }
 
 //FOOTER
