@@ -16,6 +16,11 @@ class Posting extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
     public function votings()
     {
         return $this->hasMany('App\Voting');
@@ -69,11 +74,11 @@ class Posting extends Model
             case 0:
                 return route('home');
             case 1:
-                return url('profile/'.$this->location_id);
+                return url('profile/' . $this->location_id);
             case 2:
-                return url('school/'.$this->location_id);
+                return url('school/' . $this->location_id);
             case 3: //TODO: Check if course ids include this id
-                return url('course/'.$this->location_id);
+                return url('course/' . $this->location_id);
         }
     }
 
@@ -82,7 +87,7 @@ class Posting extends Model
         switch ($this->location_type) {
             case 1:
                 $user = User::find($this->location_id);
-                return "auf " . $user->first_name . " " . $user->last_name."s";
+                return "auf " . $user->first_name . " " . $user->last_name . "s";
             case 2:
                 $school = School::find($this->location_id);
                 return "in " . $school->name;
