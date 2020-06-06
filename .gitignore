@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
+/public/webfonts
+/public/fonts
 /storage/*.key
 /vendor
 .env
