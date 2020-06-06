@@ -12,7 +12,10 @@ const mix = require('laravel-mix');
  */
 mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts');
 
-mix.js('resources/js/app.js', 'public/js').sourceMaps();
+mix.js([
+    'resources/js/app.js',
+    'resources/js/posting.js',
+], 'public/js').sourceMaps();
 
 mix.sass('resources/sass/app.scss', 'public/css');
 mix.sass('resources/sass/dashboard.scss', 'public/css')

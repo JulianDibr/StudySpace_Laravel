@@ -58,8 +58,9 @@
                                     {{$posting->user->first_name}} {{$posting->user->last_name}}
                                 </a>
                                 @if($posting->location_type !== 0)
-                                postete in
+                                postete
                                 <a href="{{$posting->getLocationRoute()}}">{{$posting->getLocationName()}}</a>
+                                    {{$posting->location_type == 1 ? " Profil" : ""}}
                                 @else
                                 postete
                                 @endif
@@ -109,7 +110,7 @@
                             </button>
                         </div>
                         <div class="col-3 text-center">
-                            <button class="btn">
+                            <button class="btn open-posting">
                                 <i class="fa-lg far fa-comments posting-open-modal"></i>
                             </button>
                         </div>
@@ -119,4 +120,8 @@
         </div>
     @empty
     @endforelse
+</div>
+
+<div id="posting-modal-wrapper">
+
 </div>

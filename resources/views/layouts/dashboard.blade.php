@@ -80,7 +80,7 @@
     </div>
 
     <div class="home-content overflow-auto">
-        <div class="container mt-4">
+        <div class="container my-4">
             @yield('content')
         </div>
     </div>

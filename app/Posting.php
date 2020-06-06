@@ -79,6 +79,16 @@ class Posting extends Model
 
     public function getLocationName()
     {
-        return "tst";
+        switch ($this->location_type) {
+            case 1:
+                $user = User::find($this->location_id);
+                return "auf " . $user->first_name . " " . $user->last_name."s";
+            case 2:
+                $school = School::find($this->location_id);
+                return "in " . $school->name;
+            case 3: //TODO: Check if course ids include this id
+                $course = Course::find($this->location_id);
+                return "in " . $course->name;
+        }
     }
 }

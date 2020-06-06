@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\generateViewHelper;
 use App\Posting;
 use App\Voting;
 use Illuminate\Http\Request;
@@ -40,9 +41,16 @@ class PostingController extends Controller
         return redirect()->back();
     }
 
-    public function show(Posting $posting)
+    public function show($id)
     {
-        //
+        $posting = Posting::find($id);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'modal' => generateViewHelper::generatePostingModal($posting),
+            ]
+        ]);
     }
 
     public function edit(Posting $posting)
