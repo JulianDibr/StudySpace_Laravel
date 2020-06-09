@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-12">
                         @forelse($posting->comments->where('comment_id', null) as $comment)
-                            <div class="row">
+                            <div class="row mb-2">
                                 <div class="profile-picture col-1 pr-0">
                                     <a href="{{ route('profile.show', $posting->user->id) }}">
                                         <img src="{{$posting->user->getUserImage()}}" width="100%" alt="user profile picture"/>
@@ -72,18 +72,24 @@
                                             {{$posting->user->first_name ." " .$posting->user->last_name." am ".$posting->updated_at}}
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div class="row">
                                         <span class="col-12">{{$comment->content}}</span>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-2">
+                                            <button class="btn">Upvote</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button class="btn">Downvote</button>
+                                        </div>
+                                        <div class="col-2">
                                             <button class="btn">Kommentieren</button>
                                         </div>
                                     </div>
                                 </span>
                             </div>
                             @forelse($comment->comments as $subcomment)
-                                <div class="row ml-2">
+                                <div class="row ml-2 mb-2">
                                     <div class="profile-picture col-1 pr-0">
                                         <a href="{{ route('profile.show', $subcomment->user->id) }}">
                                             <img src="{{$subcomment->user->getUserImage()}}" width="100%" alt="user profile picture"/>
@@ -95,11 +101,17 @@
                                                 {{$subcomment->user->first_name ." " .$subcomment->user->last_name." am ".$subcomment->updated_at}}
                                             </div>
                                         </div>
-                                        <div class="row mb-3">
+                                        <div class="row">
                                             <span class="col-12">{{$subcomment->content}}</span>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-2">
+                                                <button class="btn">Upvote</button>
+                                            </div>
+                                            <div class="col-2">
+                                                <button class="btn">Downvote</button>
+                                            </div>
+                                            <div class="col-2">
                                                 <button class="btn">Kommentieren</button>
                                             </div>
                                         </div>
