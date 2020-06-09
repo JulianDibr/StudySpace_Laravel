@@ -8,12 +8,12 @@ function bindButtons() {
         $(this).closest('form').trigger("reset");
     });
     //Upvote this post
-    $('.posting-vote-up').on('click', function () {
+    $('body').on('click', '.posting-vote-up', function () {
         let postingId = $(this).closest('.posting-container').attr('data-posting-id');
         upvotePosting(postingId, 1);
     });
     //Downvote this post
-    $('.posting-vote-down').on('click', function () {
+    $('body').on('click', '.posting-vote-down', function () {
         let postingId = $(this).closest('.posting-container').attr('data-posting-id');
         downvotePosting(postingId, 0);
     });

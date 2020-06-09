@@ -33,6 +33,9 @@ Route::post('postings/{location_type}/{location_id}', 'PostingController@store')
 Route::post('postings/voting', 'PostingController@voting')->name('posting.voting');
 Route::get('loadPosting/{id}', 'PostingController@show')->name('posting.show');
 
+//Comments
+Route::resource('comments', 'CommentController');
+
 //Profiles
 Route::resource('profile', 'ProfileController');
 
