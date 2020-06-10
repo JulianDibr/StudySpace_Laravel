@@ -35,6 +35,8 @@ Route::get('loadPosting/{id}', 'PostingController@show')->name('posting.show');
 
 //Comments
 Route::resource('comments', 'CommentController');
+Route::post('comments/{posting_id}/{comment_id}', 'CommentController@store')->name('comments.store');
+Route::post('comments/voting', 'CommentController@voting')->name('comment.voting');
 
 //Profiles
 Route::resource('profile', 'ProfileController');

@@ -59,7 +59,3 @@ function downvotePosting(postingId, isUpvote) {
         }
     });
 }
-
-function updateVoting() {
-
-}

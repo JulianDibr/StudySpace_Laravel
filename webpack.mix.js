@@ -20,4 +20,4 @@ mix.js([
 mix.sass('resources/sass/app.scss', 'public/css');
 mix.sass('resources/sass/dashboard.scss', 'public/css')
 
-mix.browserSync('studyspace.entw');
+mix.browserSync('localhost');

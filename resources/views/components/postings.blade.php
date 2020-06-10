@@ -58,11 +58,11 @@
                                     {{$posting->user->first_name}} {{$posting->user->last_name}}
                                 </a>
                                 @if($posting->location_type !== 0)
-                                postete
-                                <a href="{{$posting->getLocationRoute()}}">{{$posting->getLocationName()}}</a>
+                                    postete
+                                    <a href="{{$posting->getLocationRoute()}}">{{$posting->getLocationName()}}</a>
                                     {{$posting->location_type == 1 ? " Profil" : ""}}
                                 @else
-                                postete
+                                    postete
                                 @endif
                             </span>
                         </div>
@@ -97,16 +97,16 @@
 
                     <div class="row mt-1 h-100">
                         <div class="col-3 text-center">
-                            <button class="btn posting-vote-down">
-                                <i class="fa-lg far fa-thumbs-down {{($posting->getIsDownvoted()) ? 'icon-red-active' : 'icon-red'}}"></i>
+                            <button class="btn posting-vote-up">
+                                <i class="fa-lg far fa-thumbs-up {{($posting->getIsUpvoted()) ? 'icon-light-green-active' : 'icon-light-green'}}"></i>
                             </button>
                         </div>
                         <div class="col-2 text-center my-auto">
                             <span>{{$posting->getVoting()}}</span>
                         </div>
                         <div class="col-3 text-center">
-                            <button class="btn posting-vote-up">
-                                <i class="fa-lg far fa-thumbs-up {{($posting->getIsUpvoted()) ? 'icon-light-green-active' : 'icon-light-green'}}"></i>
+                            <button class="btn posting-vote-down">
+                                <i class="fa-lg far fa-thumbs-down {{($posting->getIsDownvoted()) ? 'icon-red-active' : 'icon-red'}}"></i>
                             </button>
                         </div>
                         <div class="col-3 text-center">
