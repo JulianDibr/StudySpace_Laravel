@@ -1,6 +1,5 @@
-<div class="row">
-    <div class="col-12 col-md-6 col-lg-4">
-        <div class="posting-container mb-2 mt-2 p-3">
+<div class="card-columns">
+        <div class="posting-container card mb-2 mt-2 p-3">
             <div class="row h-100">
                 <div class="col-3 my-auto">
                     <div class="profile-picture">
@@ -15,7 +14,7 @@
                 @csrf
                 <div class="row mt-3">
                     <div class="col-12">
-                            <textarea name="content"
+                            <textarea name="content" style="min-height: 100px"
                                       class="p-2 posting-content {{$errors->has('content') ?'validation-error-border' : 'border'}}"
                                       placeholder="Was möchtest du posten?"></textarea>
                         @error('content')
@@ -38,11 +37,9 @@
                 </div>
             </form>
         </div>
-    </div>
 
     @forelse($postingArr as $posting)
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="posting-container mb-2 mt-2 p-3" data-posting-id="{{$posting->id}}">
+            <div class="posting-container card mb-2 mt-2 p-3" data-posting-id="{{$posting->id}}">
                 <div class="row h-100">
                     <div class="col-3 my-auto">
                         <div class="profile-picture">
@@ -91,7 +88,7 @@
                 <div>
                     <div class="row mt-3">
                         <div class="col-12">
-                            <textarea name="content" class="p-2 posting-content" readonly>{{$posting->content}}</textarea>
+                            <p name="content" class="p-2 posting-content" readonly>{{$posting->content}}</p>
                         </div>
                     </div>
 
@@ -117,10 +114,8 @@
                     </div>
                 </div>
             </div>
-        </div>
     @empty
     @endforelse
-</div>
 
 <div id="posting-modal-wrapper">
 

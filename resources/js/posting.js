@@ -18,6 +18,11 @@ $(function () {
         let commentId = $(this).closest('.comment-container').attr('data-comment-id');
         downvoteComment(commentId, 0);
     });
+
+    $('body').on('click', '.submit-comment', function () {
+        let form = $(this).closest('form');
+        submitComment(form);
+    });
 });
 
 function loadPosting(id) {
@@ -60,7 +65,8 @@ function upvoteComment(commentId, isUpvote) {
             'commentId': commentId,
             'isUpvote': isUpvote,
         },
-        success: function () {
+        success: function (response) {
+            $('#posting-modal').find('.modal-body').replaceWith(response.data.modal);
         }
     });
 }
@@ -78,7 +84,36 @@ function downvoteComment(commentId, isUpvote) {
             'commentId': commentId,
             'isUpvote': isUpvote,
         },
-        success: function () {
+        success: function (response) {
+            $('#posting-modal').find('.modal-body').replaceWith(response.data.modal);
+        }
+    });
+}
+
+function submitComment(form) {
+    let url = "";
+    let posting_id = form.closest('.posting-container').attr('data-posting-id');
+
+    if(!form.parent().hasClass('comment-form')){
+        url = 'comments/'+posting_id+'/-1';
+    } else {
+        let comment_id = form.closest('.comment-container').attr('data-comment-id');
+        url = 'comments/'+posting_id+'/'+comment_id;
+    }
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: url,
+        method: 'post',
+        data: {
+            'content': form.find(".posting-content").val(),
+        },
+        success: function (response) {
+            $('#posting-modal').find('.modal-body').replaceWith(response.data.modal);
         }
     });
 }

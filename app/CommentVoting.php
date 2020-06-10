@@ -17,4 +17,9 @@ class CommentVoting extends Model
     {
         return $this->belongsTo('App\Comment');
     }
+
+    public function posting()
+    {
+        return $this->belongsTo('App\Posting');
+    }
 }

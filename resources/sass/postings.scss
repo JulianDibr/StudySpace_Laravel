@@ -1,7 +1,19 @@
+.card-columns {
+    @include media-breakpoint-up(xs) {
+        column-count: 1;
+    }
+    @include media-breakpoint-up(md) {
+        column-count: 2;
+    }
+
+    @include media-breakpoint-up(lg) {
+        column-count: 3;
+    }
+}
+
 .posting-container {
     border: $border;
     border-radius: $border-radius;
-    min-height: 275px;
     background-color: $white-color;
 }
 
@@ -13,12 +25,11 @@
 
 .posting-content {
     width: 100%;
-    height: 150px;
     resize: none;
     border: $border;
     border: none;
     border-radius: $border-radius;
-
+    white-space: pre-wrap;
 }
 
 .posting-location-name{

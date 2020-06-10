@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\CommentVoting;
+use App\Helpers\generateViewHelper;
+use App\Posting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +35,14 @@ class CommentController extends Controller
 
         $comment->save();
 
-        return redirect()->back();
+        $posting = Posting::find($posting_id);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'modal' => generateViewHelper::generatePostingModal($posting, true),
+            ]
+        ]);
     }
 
     public function show(Comment $comment)
@@ -78,5 +87,14 @@ class CommentController extends Controller
         else {
             $existingVoting->update(['is_upvote' => $request->isUpvote]);
         }
+
+        $posting = Comment::find($request->commentId)->posting;
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'modal' => generateViewHelper::generatePostingModal($posting, true),
+            ]
+        ]);
     }
 }

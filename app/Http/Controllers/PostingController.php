@@ -48,7 +48,7 @@ class PostingController extends Controller
         return response()->json([
             'success' => true,
             'data' => [
-                'modal' => generateViewHelper::generatePostingModal($posting),
+                'modal' => generateViewHelper::generatePostingModal($posting, false),
             ]
         ]);
     }
