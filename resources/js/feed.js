@@ -10,16 +10,18 @@ function bindButtons() {
     //Upvote this post
     $('body').on('click', '.posting-vote-up', function () {
         let postingId = $(this).closest('.posting-container').attr('data-posting-id');
-        upvotePosting(postingId, 1);
+        let reload = !$(this).closest('.posting-container').hasClass('modal-content');
+        upvotePosting(postingId, 1, reload);
     });
     //Downvote this post
     $('body').on('click', '.posting-vote-down', function () {
         let postingId = $(this).closest('.posting-container').attr('data-posting-id');
-        downvotePosting(postingId, 0);
+        let reload = !$(this).closest('.posting-container').hasClass('modal-content');
+        downvotePosting(postingId, 0, reload);
     });
 }
 
-function upvotePosting(postingId, isUpvote) {
+function upvotePosting(postingId, isUpvote, reload = true) {
     //Toggle Class -> send toggling of vote to model
     //TODO: In allgemeine JS auslagern
     $.ajaxSetup({
@@ -34,13 +36,17 @@ function upvotePosting(postingId, isUpvote) {
             'postingId': postingId,
             'isUpvote': isUpvote,
         },
-        success: function () {
-            window.location.reload();
+        success: function (response) {
+            if (reload) {
+                window.location.reload();
+            } else {
+                $('#posting-modal').find('.modal-body').replaceWith(response.data.modal);
+            }
         }
     });
 }
 
-function downvotePosting(postingId, isUpvote) {
+function downvotePosting(postingId, isUpvote, reload = true) {
     //Toggle Class -> send toggling of vote to model
     $.ajaxSetup({
         headers: {
@@ -54,8 +60,12 @@ function downvotePosting(postingId, isUpvote) {
             'postingId': postingId,
             'isUpvote': isUpvote,
         },
-        success: function () {
-            window.location.reload();
+        success: function (response) {
+            if (reload) {
+                window.location.reload();
+            } else {
+                $('#posting-modal').find('.modal-body').replaceWith(response.data.modal);
+            }
         }
     });
 }

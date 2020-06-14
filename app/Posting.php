@@ -5,9 +5,13 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Posting extends Model
 {
+    use InteractsWithMedia;
+
     protected $fillable = ['user_id', 'content', 'location_type', 'location_id'];
 
     public function user()

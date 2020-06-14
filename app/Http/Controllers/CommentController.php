@@ -60,9 +60,24 @@ class CommentController extends Controller
         //
     }
 
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        if ($comment !== null) {
+            if ($comment->user_id == Auth::user()->id) {
+                $comment->votings()->delete();
+                $comment->delete();
+            }
+        }
+
+        $posting = $comment->posting;
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'modal' => generateViewHelper::generatePostingModal($posting, true),
+            ]
+        ]);
     }
 
     public function voting(Request $request)

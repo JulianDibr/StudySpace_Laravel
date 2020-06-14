@@ -68,6 +68,8 @@ class PostingController extends Controller
         $posting = Posting::find($id);
         if ($posting !== null) {
             if ($posting->user_id == Auth::user()->id) {
+                $posting->votings()->delete();
+                $posting->comments()->delete();
                 $posting->delete();
             }
         }
@@ -96,6 +98,15 @@ class PostingController extends Controller
         else {
             $existingVoting->update(['is_upvote' => $request->isUpvote]);
         }
+
+        $posting = Posting::find($request->postingId);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'modal' => generateViewHelper::generatePostingModal($posting, true),
+            ]
+        ]);
     }
 
     private function userAuthForLocation($location_id, $location_type)

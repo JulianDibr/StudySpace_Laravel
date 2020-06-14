@@ -1,25 +1,25 @@
 $(function () {
+    let body = $('body');
     $('.open-posting').on('click', function () {
         loadPosting($(this).closest('.posting-container').attr('data-posting-id'));
     })
 
-    $('body').on('click', '.open-comment-field', function () {
-        console.log($(this));
+    body.on('click', '.open-comment-field', function () {
         $(this).closest('.comment-container').find('.comment-form').removeClass('d-none');
     })
 
     //Upvote this post
-    $('body').on('click', '.comment-vote-up', function () {
+    body.on('click', '.comment-vote-up', function () {
         let commentId = $(this).closest('.comment-container').attr('data-comment-id');
         upvoteComment(commentId, 1);
     });
     //Downvote this post
-    $('body').on('click', '.comment-vote-down', function () {
+    body.on('click', '.comment-vote-down', function () {
         let commentId = $(this).closest('.comment-container').attr('data-comment-id');
         downvoteComment(commentId, 0);
     });
 
-    $('body').on('click', '.submit-comment', function () {
+    body.on('click', '.submit-comment', function () {
         let form = $(this).closest('form');
         submitComment(form);
     });

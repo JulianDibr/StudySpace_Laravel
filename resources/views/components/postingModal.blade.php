@@ -89,7 +89,26 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <span class="col-12">{{$comment->content}}</span>
+                                                <span class="col-12 ">{{$comment->content}}</span>
+
+{{--
+                                                TODO: OWN COMMENT?
+                                                @if($posting->ownPosting())
+                                                    <div class="col-2 px-0 text-center">
+                                                        <button class="btn" type="button" data-toggle="dropdown">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="{{ route('postings.edit', $posting->id) }}">Kommentar editieren</a>
+                                                            <a class="dropdown-item" onclick="$(this).next('.destroy-posting').submit()">Kommentar löschen</a>
+                                                            <form class="destroy-posting d-none"
+                                                            action="{{ route('postings.destroy', $posting->id) }}" method="post">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                @endif--}}
                                             </div>
                                         </span>
                                     </div>
