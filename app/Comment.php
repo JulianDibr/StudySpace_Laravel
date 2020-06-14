@@ -43,4 +43,14 @@ class Comment extends Model
     {
         return $this->votings->where('is_upvote', false)->contains('user_id', Auth::user()->id);
     }
+
+    public function ownComment()
+    {
+        return $this->user_id === Auth::user()->id;
+    }
+
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['content'] = $value;
+    }
 }

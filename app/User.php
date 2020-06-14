@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -64,6 +65,11 @@ class User extends Authenticatable
 
     public function getUserImage()
     {
-        return asset('storage/profile_pictures/' . $this->profile_picture);
+        return asset('storage/profile_pictures/users/' . $this->profile_picture);
+    }
+
+    public function getBirthdayAttribute($date)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y');
     }
 }

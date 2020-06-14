@@ -89,26 +89,20 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <span class="col-12 ">{{$comment->content}}</span>
+                                                <p class="{{$comment->ownComment() ? 'col-10' : 'col-12'}} posting-content">{{$comment->content}}</p>
 
-{{--
-                                                TODO: OWN COMMENT?
-                                                @if($posting->ownPosting())
+{{--                                                TODO: OWN COMMENT?--}}
+                                                @if($comment->ownComment())
                                                     <div class="col-2 px-0 text-center">
                                                         <button class="btn" type="button" data-toggle="dropdown">
                                                             <i class="fas fa-ellipsis-v"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="{{ route('postings.edit', $posting->id) }}">Kommentar editieren</a>
-                                                            <a class="dropdown-item" onclick="$(this).next('.destroy-posting').submit()">Kommentar löschen</a>
-                                                            <form class="destroy-posting d-none"
-                                                            action="{{ route('postings.destroy', $posting->id) }}" method="post">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            </form>
+                                                            <a class="dropdown-item edit-comment">Kommentar editieren</a>
+                                                            <a class="dropdown-item delete-comment" data-comment-id="{{$comment->id}}">Kommentar löschen</a>
                                                         </div>
                                                     </div>
-                                                @endif--}}
+                                                @endif
                                             </div>
                                         </span>
                                     </div>
@@ -163,7 +157,20 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <span class="col-12">{{$subcomment->content}}</span>
+                                            <p class="{{$comment->ownComment() ? 'col-10' : 'col-12'}} posting-content">{{$subcomment->content}}</p>
+
+{{--                                                TODO: OWN COMMENT?--}}
+                                            @if($comment->ownComment())
+                                                <div class="col-2 px-0 text-center">
+                                                        <button class="btn" type="button" data-toggle="dropdown">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit-comment">Kommentar editieren</a>
+                                                            <a class="dropdown-item delete-comment" data-comment-id="{{$comment->id}}">Kommentar löschen</a>
+                                                        </div>
+                                                    </div>
+                                            @endif
                                         </div>
                                     </span>
                                         </div>

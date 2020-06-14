@@ -10,4 +10,7 @@ class School extends Model
         return $this->hasMany('App\User');
     }
 
+    public function getSchoolImage() {
+        return asset('storage/profile_pictures/schools/' . $this->profile_picture);
+    }
 }

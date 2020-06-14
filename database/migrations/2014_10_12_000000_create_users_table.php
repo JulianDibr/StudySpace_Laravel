@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->unsignedBigInteger('school_id')->nullable()->default(null);
             $table->string('profile_picture')->nullable()->default(null);
-            $table->time('birthday')->nullable()->default(null);
+            $table->timestamp('birthday')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('school_id')->references('id')->on('schools');

@@ -37,12 +37,7 @@ class CommentController extends Controller
 
         $posting = Posting::find($posting_id);
 
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'modal' => generateViewHelper::generatePostingModal($posting, true),
-            ]
-        ]);
+        return $this->generateNewModal($posting, true);
     }
 
     public function show(Comment $comment)
@@ -57,7 +52,17 @@ class CommentController extends Controller
 
     public function update(Request $request, Comment $comment)
     {
-        //
+        $validatedData = $request->validate([
+            'content' => ['required', 'max:1000'],
+        ]);
+
+        if ($comment->user_id == Auth::user()->id) {
+            $comment->content = $validatedData['content'];
+            $comment->save();
+        }
+
+        $posting = Posting::find($comment->posting->id);
+        return $this->generateNewModal($posting, true);
     }
 
     public function destroy($id)
@@ -72,12 +77,7 @@ class CommentController extends Controller
 
         $posting = $comment->posting;
 
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'modal' => generateViewHelper::generatePostingModal($posting, true),
-            ]
-        ]);
+        return $this->generateNewModal($posting, true);
     }
 
     public function voting(Request $request)
@@ -105,10 +105,15 @@ class CommentController extends Controller
 
         $posting = Comment::find($request->commentId)->posting;
 
+        return $this->generateNewModal($posting, true);
+    }
+
+    private function generateNewModal($posting, $contentOnly)
+    {
         return response()->json([
             'success' => true,
             'data' => [
-                'modal' => generateViewHelper::generatePostingModal($posting, true),
+                'modal' => generateViewHelper::generatePostingModal($posting, $contentOnly),
             ]
         ]);
     }
