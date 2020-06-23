@@ -71,6 +71,8 @@
             </li>
             <li class="{{Route::is('profile.show') ? 'nav-active' : ''}}"><a href="{{ route('profile.show', Auth::user()->id) }}"><i
                         class="fas fa-user mr-2"></i>Mein Profil</a></li>
+            <li class="{{Route::is('friend.showList') ? 'nav-active' : ''}}"><a href="{{ route('friend.showList') }}"><i
+                        class="fas fa-user mr-2"></i>Meine Freunde</a></li>
             <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{ route('school.show', Auth::user()->school->id) }}"><i class="fas fa-school mr-2"></i>Hochschule
                     Hamm-Lippstadt</a></li>
             <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="/courses/overview"><i

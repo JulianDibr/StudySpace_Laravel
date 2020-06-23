@@ -49,3 +49,8 @@ Route::resource('school', 'SchoolController');
 Route::post('school/comments/{posting_id}/{comment_id}', 'CommentController@store')->name('comments.store');
 Route::post('school/comments/voting', 'CommentController@voting')->name('comment.voting');
 Route::post('school/postings/voting', 'PostingController@voting')->name('posting.voting');
+
+//Friendshipsystem
+Route::post('friend/add/{id}', 'FriendController@sendFriendRequest')->name('friend.add');
+Route::post('friend/remove/{id}', 'FriendController@removeFriend')->name('friend.remove');
+Route::get('friend/list', 'FriendController@showList')->name('friend.showList');

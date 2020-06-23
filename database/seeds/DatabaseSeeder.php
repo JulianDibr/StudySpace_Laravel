@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CommentTableSeeder::class);
 
         //Pivot
-        $this->call(FriendsTableSeeder::class);
         $this->call(SchoolUserTableSeeder::class);
     }
 }

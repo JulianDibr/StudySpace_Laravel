@@ -12,7 +12,7 @@
 
     {{--Get $school from controller--}}
     {{--Profile data--}}
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-9">
             <div class="row">
                 <span class="col-12">{{$school->name}}</span>

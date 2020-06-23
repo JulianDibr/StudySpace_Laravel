@@ -68,8 +68,14 @@ class PostingController extends Controller
         $posting = Posting::find($id);
         if ($posting !== null) {
             if ($posting->user_id == Auth::user()->id) {
+
+                foreach($posting->comments() as $comment){
+                    $comment->votings()->delete();
+                    $comment->comments()->votings()->delete();
+                    $comment->comments()->delete();
+                    $comment->delete();
+                }
                 $posting->votings()->delete();
-                $posting->comments()->delete();
                 $posting->delete();
             }
         }

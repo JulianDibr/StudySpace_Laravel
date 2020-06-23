@@ -90,8 +90,6 @@
                                             </div>
                                             <div class="row">
                                                 <p class="{{$comment->ownComment() ? 'col-10' : 'col-12'}} posting-content">{{$comment->content}}</p>
-
-{{--                                                TODO: OWN COMMENT?--}}
                                                 @if($comment->ownComment())
                                                     <div class="col-2 px-0 text-center">
                                                         <button class="btn" type="button" data-toggle="dropdown">
@@ -157,17 +155,15 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <p class="{{$comment->ownComment() ? 'col-10' : 'col-12'}} posting-content">{{$subcomment->content}}</p>
-
-{{--                                                TODO: OWN COMMENT?--}}
-                                            @if($comment->ownComment())
+                                            <p class="{{$subcomment->ownComment() ? 'col-10' : 'col-12'}} posting-content">{{$subcomment->content}}</p>
+                                            @if($subcomment->ownComment())
                                                 <div class="col-2 px-0 text-center">
                                                         <button class="btn" type="button" data-toggle="dropdown">
                                                             <i class="fas fa-ellipsis-v"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item edit-comment">Kommentar editieren</a>
-                                                            <a class="dropdown-item delete-comment" data-comment-id="{{$comment->id}}">Kommentar löschen</a>
+                                                            <a class="dropdown-item delete-comment" data-comment-id="{{$subcomment->id}}">Kommentar löschen</a>
                                                         </div>
                                                     </div>
                                             @endif

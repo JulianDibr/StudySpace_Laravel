@@ -70,6 +70,10 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         if ($comment !== null) {
             if ($comment->user_id == Auth::user()->id) {
+                foreach($comment->comments() as $subcomment){
+                    $subcomment->votings()->delete();
+                    $subcomment->delete();
+                }
                 $comment->votings()->delete();
                 $comment->delete();
             }

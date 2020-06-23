@@ -1,0 +1,21 @@
+.add-to-friends-btn {
+    height: 40px;
+    background-color: $light-green-color;
+    color: $white-color;
+
+    &:hover {
+        background-color: $light-green-color-active;
+        color: $white-color;
+    }
+}
+
+.rm-from-friends-btn, .cancel-friend-request-btn {
+    height: 40px;
+    background-color: $white-color;
+    border: $border;
+    color: $black;
+
+    &:hover {
+        background-color: $light-grey-color;
+    }
+}

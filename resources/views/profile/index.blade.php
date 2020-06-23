@@ -10,7 +10,7 @@
     @endphp
     {{--Get $profile from controller--}}
     {{--Profile data--}}
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-9">
             <div class="row">
                 <span class="col-12">{{$profile->first_name . " " . $profile->last_name}}</span>
@@ -32,7 +32,26 @@
             </div>
         </div>
         <div class="col-3">
-            <img src="{{$profile->getUserImage()}}" alt="profile picture" width="100%" class="rounded-circle">
+            <div class="row">
+                <img src="{{$profile->getUserImage()}}" alt="profile picture" width="100%" class="rounded-circle col-12">
+            </div>
+            @if(Auth::user()->id !== $profile->id)
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <button
+                            class="{{(Auth::user()->isFriendWith($profile) || Auth::user()->hasSentFriendRequestTo($profile)) ? 'd-none' : ''}} btn w-100 add-to-friends-btn"
+                            type="button" data-profile-id="{{$profile->id}}">Zu Freunden hinzufügen
+                        </button>
+                        <button class="{{Auth::user()->isFriendWith($profile) ? '' : 'd-none'}} btn w-100 rm-from-friends-btn" type="button"
+                                data-profile-id="{{$profile->id}}">Aus Freunden entfernen
+                        </button>
+                        <button class="{{Auth::user()->hasSentFriendRequestTo($profile) ? '' : 'd-none'}} btn w-100 cancel-friend-request-btn"
+                                type="button"
+                                data-profile-id="{{$profile->id}}">Anfrage zurückziehen
+                        </button>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
     {{--Postings--}}

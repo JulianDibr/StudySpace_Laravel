@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Demency\Friendships\Traits\Friendable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+    use Friendable;
 
     /**
      * The attributes that are mass assignable.
@@ -58,11 +60,6 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Group');
     }
 
-    public function friends()
-    {
-        return $this->belongsToMany(User::class, 'friends', 'user_1', 'user_2');
-    }
-
     public function getUserImage()
     {
         return asset('storage/profile_pictures/users/' . $this->profile_picture);
@@ -70,6 +67,13 @@ class User extends Authenticatable
 
     public function getBirthdayAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y');
+        if ($date !== null) {
+            return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y');
+        }
+        return null;
+    }
+
+    public function getAllNonFriends() {
+        return [];
     }
 }
