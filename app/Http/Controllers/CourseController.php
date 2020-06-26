@@ -24,7 +24,7 @@ class CourseController extends Controller
 
     public function show(course $course)
     {
-        dd($course);
+        return view('course.singleCourse.index', compact('course'));
     }
 
     public function edit(course $course)
