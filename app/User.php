@@ -63,7 +63,11 @@ class User extends Authenticatable
 
     public function getUserImage()
     {
-        return asset('storage/profile_pictures/users/' . $this->profile_picture);
+        if($this->profile_picture) {
+            return asset('storage/profile_pictures/users/' . $this->profile_picture);
+        } else {
+            return asset('storage/profile_pictures/users/default.png');
+        }
     }
 
     public function getBirthdayAttribute($date)

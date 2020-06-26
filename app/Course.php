@@ -10,4 +10,12 @@ class Course extends Model
     {
         $this->hasMany('App\User');
     }
+
+    public function admin(){
+        $this->belongsTo('App\User');
+    }
+
+    public function postings() {
+        $this->hasMany('App\Posting');
+    }
 }

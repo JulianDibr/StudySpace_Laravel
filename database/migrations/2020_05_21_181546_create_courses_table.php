@@ -10,7 +10,16 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id');
+            $table->unsignedBigInteger('school_id');
+            $table->string('name');
+            $table->string('description')->nullable()->default(null);
+            $table->string('teacher')->nullable()->default(null);
+            $table->string('image')->nullable()->default(null);
             $table->timestamps();
+
+            $table->foreign('admin_id')->references('id')->on('users');
+            $table->foreign('school_id')->references('id')->on('schools');
         });
     }
 

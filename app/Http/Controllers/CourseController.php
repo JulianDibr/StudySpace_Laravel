@@ -9,7 +9,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        //
+        return view('course.overview.index');
     }
 
     public function create()
@@ -24,7 +24,7 @@ class CourseController extends Controller
 
     public function show(course $course)
     {
-        //
+        dd($course);
     }
 
     public function edit(course $course)

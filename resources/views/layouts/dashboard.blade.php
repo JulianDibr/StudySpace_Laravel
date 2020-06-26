@@ -73,11 +73,12 @@
                         class="fas fa-user mr-2"></i>Mein Profil</a></li>
             <li class="{{Route::is('friend.showList') ? 'nav-active' : ''}}"><a href="{{ route('friend.showList') }}"><i
                         class="fas fa-user mr-2"></i>Meine Freunde</a></li>
-            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{ route('school.show', Auth::user()->school->id) }}"><i class="fas fa-school mr-2"></i>Hochschule
+            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{ route('school.show', Auth::user()->school->id) }}"><i
+                        class="fas fa-school mr-2"></i>Hochschule
                     Hamm-Lippstadt</a></li>
-            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="/courses/overview"><i
+            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{route('courses.index')}}"><i
                         class="fas fa-chalkboard-teacher mr-2"></i>Meine Kurse</a></li>
-            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="/courses/overview">Meine Kurse</a></li>
+            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{ route('course.show', "1") }}">Kurse 1</a></li>
         </ul>
     </div>
 

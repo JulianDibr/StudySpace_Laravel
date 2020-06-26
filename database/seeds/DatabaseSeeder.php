@@ -12,7 +12,12 @@ class DatabaseSeeder extends Seeder
         $this->call(VotingsTableSeeder::class);
         $this->call(CommentTableSeeder::class);
 
+        //Factories
+        factory(App\User::class, 50)->create();
+        factory(App\Course::class, 15)->create();
+
         //Pivot
         $this->call(SchoolUserTableSeeder::class);
+        $this->call(CourseUserTableSeeder::class);
     }
 }

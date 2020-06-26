@@ -1,4 +1,4 @@
-<div class="col-12 col-md-6 col-lg-4">
+<div class="col-12 col-md-6 col-lg-4 mb-5">
     <div class="row mb-2">
         <div class="col-4">
             <a href="{{ route('profile.show', $user->id) }}">

@@ -56,3 +56,7 @@ Route::post('friend/remove/{id}', 'FriendController@removeFriend')->name('friend
 Route::post('friend/accept/{id}', 'FriendController@acceptFriend')->name('friend.accept');
 Route::post('friend/decline/{id}', 'FriendController@declineFriend')->name('friend.decline');
 Route::get('friend/list', 'FriendController@showList')->name('friend.showList');
+
+//Courses
+Route::get('courses', 'CourseController@index')->name('courses.index');
+Route::resource('course', 'CourseController');
