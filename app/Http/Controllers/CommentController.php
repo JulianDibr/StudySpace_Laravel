@@ -11,16 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request, $posting_id, $comment_id = null)
     {
         $validatedData = $request->validate([
@@ -38,16 +28,6 @@ class CommentController extends Controller
         $posting = Posting::find($posting_id);
 
         return $this->generateNewModal($posting, true);
-    }
-
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    public function edit(Comment $comment)
-    {
-        //
     }
 
     public function update(Request $request, Comment $comment)
@@ -68,9 +48,10 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $comment = Comment::find($id);
+
         if ($comment !== null) {
             if ($comment->user_id == Auth::user()->id) {
-                foreach($comment->comments() as $subcomment){
+                foreach($comment->comments as $subcomment){
                     $subcomment->votings()->delete();
                     $subcomment->delete();
                 }

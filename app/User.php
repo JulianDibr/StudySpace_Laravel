@@ -7,6 +7,7 @@ use Demency\Friendships\Traits\Friendable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -73,7 +74,12 @@ class User extends Authenticatable
         return null;
     }
 
-    public function getAllNonFriends() {
-        return [];
+    public function getAllNonFriends()
+    {
+        $currentUser = Auth::user();
+        $allUsers = User::where('id', '!=', $currentUser->id)->inRandomOrder()->get();
+        $diffUserFriends = $allUsers->diff($currentUser->getFriends());
+        $receivedRequests = $diffUserFriends->diff($currentUser->getFriendRequests()->pluck('sender'));
+        return $receivedRequests->diff($currentUser->getPendingFriendships()->pluck('recipient'));
     }
 }

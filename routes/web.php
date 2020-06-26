@@ -53,4 +53,6 @@ Route::post('school/postings/voting', 'PostingController@voting')->name('posting
 //Friendshipsystem
 Route::post('friend/add/{id}', 'FriendController@sendFriendRequest')->name('friend.add');
 Route::post('friend/remove/{id}', 'FriendController@removeFriend')->name('friend.remove');
+Route::post('friend/accept/{id}', 'FriendController@acceptFriend')->name('friend.accept');
+Route::post('friend/decline/{id}', 'FriendController@declineFriend')->name('friend.decline');
 Route::get('friend/list', 'FriendController@showList')->name('friend.showList');

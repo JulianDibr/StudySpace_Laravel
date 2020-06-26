@@ -4,7 +4,9 @@
 
 @section('content')
     {{--Postings--}}
-    @include('friends.myRequests')
-    @include('friends.myFriends')
-    @include('friends.friendRecommendations')
+    <div id="friendlist">
+        @include('friends.myRequests')
+        @include('friends.myFriends')
+        @include('friends.friendRecommendations')
+    </div>
 @endsection

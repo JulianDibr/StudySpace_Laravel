@@ -74,23 +74,20 @@
                     <div class="row">
                         <div class="col-12">
                             @forelse($posting->comments->where('comment_id', null)->sortByDesc('created_at') as $comment)
-                                <div class="comment-container" data-comment-id="{{$comment->id}}">
-                                    <div class="row mb-2">
+                                <div class="comment-container {{!$loop->first ? 'mt-3' : ''}}" data-comment-id="{{$comment->id}}">
+                                    <div class="row">
                                         <div class="profile-picture col-1 pr-0">
-                                            <a href="{{ route('profile.show', $posting->user->id) }}">
-                                                <img src="{{$posting->user->getUserImage()}}" width="100%"
+                                            <a href="{{ route('profile.show', $comment->user->id) }}">
+                                                <img src="{{$comment->user->getUserImage()}}" width="100%"
                                                      alt="user profile picture"/>
                                             </a>
                                         </div>
                                         <span class="col-11">
                                             <div class="row">
-                                                <div class="col-12">
-                                                    {{$posting->user->first_name ." " .$posting->user->last_name." am ".$posting->updated_at}}
+                                                <div class="{{$comment->ownComment() ? 'col-10' : 'col-12'}}">
+                                                    {{$comment->user->first_name ." " .$comment->user->last_name." am ".$comment->updated_at}}
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <p class="{{$comment->ownComment() ? 'col-10' : 'col-12'}} posting-content">{{$comment->content}}</p>
-                                                @if($comment->ownComment())
+                                                                                                    @if($comment->ownComment())
                                                     <div class="col-2 px-0 text-center">
                                                         <button class="btn" type="button" data-toggle="dropdown">
                                                             <i class="fas fa-ellipsis-v"></i>
@@ -102,23 +99,20 @@
                                                     </div>
                                                 @endif
                                             </div>
+                                            <div class="row">
+                                                <p class="col-12 posting-content mb-0">{{$comment->content}}</p>
+                                            </div>
                                         </span>
                                     </div>
-                                    <div class="row mt-1">
-                                        <div class="col-1 offset-7 text-center">
+                                    <div class="row">
+                                        <div class="col-4 offset-1 pl-1 text-left">
                                             <button class="btn comment-vote-up">
                                                 <i class="fa-lg far fa-thumbs-up {{($comment->getIsUpvoted()) ? 'icon-light-green-active' : 'icon-light-green'}}"></i>
                                             </button>
-                                        </div>
-                                        <div class="col-1 text-center my-auto">
                                             <span>{{$comment->getVoting()}}</span>
-                                        </div>
-                                        <div class="col-1 text-center">
                                             <button class="btn comment-vote-down">
                                                 <i class="fa-lg far fa-thumbs-down {{($comment->getIsDownvoted()) ? 'icon-red-active' : 'icon-red'}}"></i>
                                             </button>
-                                        </div>
-                                        <div class="col-1 text-center">
                                             <button class="btn open-comment-field">
                                                 <i class="fa-lg far fa-comments"></i>
                                             </button>
@@ -140,8 +134,8 @@
                                     </div>
                                 </div>
                                 @forelse($comment->comments->sortByDesc('created_at') as $subcomment)
-                                    <div class="comment-container" data-comment-id="{{$subcomment->id}}">
-                                        <div class="row ml-2 mb-2">
+                                    <div class="comment-container mt-2" data-comment-id="{{$subcomment->id}}">
+                                        <div class="row ml-2">
                                             <div class="profile-picture col-1 pr-0">
                                                 <a href="{{ route('profile.show', $subcomment->user->id) }}">
                                                     <img src="{{$subcomment->user->getUserImage()}}" width="100%"
@@ -150,36 +144,32 @@
                                             </div>
                                             <span class="col-11">
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="{{$subcomment->ownComment() ? 'col-10' : 'col-12'}}">
                                                 {{$subcomment->user->first_name ." " .$subcomment->user->last_name." am ".$subcomment->updated_at}}
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <p class="{{$subcomment->ownComment() ? 'col-10' : 'col-12'}} posting-content">{{$subcomment->content}}</p>
                                             @if($subcomment->ownComment())
                                                 <div class="col-2 px-0 text-center">
-                                                        <button class="btn" type="button" data-toggle="dropdown">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item edit-comment">Kommentar editieren</a>
-                                                            <a class="dropdown-item delete-comment" data-comment-id="{{$subcomment->id}}">Kommentar löschen</a>
-                                                        </div>
+                                                    <button class="btn" type="button" data-toggle="dropdown">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item edit-comment">Kommentar editieren</a>
+                                                        <a class="dropdown-item delete-comment" data-comment-id="{{$subcomment->id}}">Kommentar löschen</a>
                                                     </div>
+                                                </div>
                                             @endif
+                                        </div>
+                                        <div class="row">
+                                            <p class="col-12 posting-content mb-0">{{$subcomment->content}}</p>
                                         </div>
                                     </span>
                                         </div>
-                                        <div class="row mt-1">
-                                            <div class="col-1 offset-7 text-center">
-                                                <button class="btn comment-vote-up">
+                                        <div class="row">
+                                            <div class="col-4 offset-1 text-left">
+                                                <button class="btn comment-vote-up pl-4">
                                                     <i class="fa-lg far fa-thumbs-up {{($subcomment->getIsUpvoted()) ? 'icon-light-green-active' : 'icon-light-green'}}"></i>
                                                 </button>
-                                            </div>
-                                            <div class="col-1 text-center my-auto">
                                                 <span>{{$subcomment->getVoting()}}</span>
-                                            </div>
-                                            <div class="col-1 text-center">
                                                 <button class="btn comment-vote-down">
                                                     <i class="fa-lg far fa-thumbs-down {{($subcomment->getIsDownvoted()) ? 'icon-red-active' : 'icon-red'}}"></i>
                                                 </button>

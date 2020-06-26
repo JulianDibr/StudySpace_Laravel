@@ -66,8 +66,7 @@ class Posting extends Model
 
     public function getFeed()
     {
-        $user = Auth::user();
-
+        $user = Auth::user(); //TODO: get all relevant posts for $user => my profile, friends profiles, my groups, courses and school
         return Posting::with('user')->get()->sortByDesc('updated_at');
     }
 

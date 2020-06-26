@@ -11,16 +11,6 @@ use Illuminate\Support\Facades\Route;
 
 class PostingController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request, $location_type, $location_id)
     {
         $validatedData = $request->validate([

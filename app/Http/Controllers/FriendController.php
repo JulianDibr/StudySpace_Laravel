@@ -28,4 +28,20 @@ class FriendController extends Controller
             Auth::user()->unfriend($receipient);
         }
     }
+
+    public function acceptFriend($id)
+    {
+        $sender = User::find($id);
+        if ($sender) {
+            Auth::user()->acceptFriendRequest($sender);
+        }
+    }
+
+    public function declineFriend($id)
+    {
+        $sender = User::find($id);
+        if ($sender) {
+            Auth::user()->denyFriendRequest($sender);
+        }
+    }
 }

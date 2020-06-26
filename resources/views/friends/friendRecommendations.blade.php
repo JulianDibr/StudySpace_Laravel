@@ -1,8 +1,8 @@
 @inject('users','App\User')
 
-<div class="row mb-3 mx-0">
+<div class="row mb-5 mx-0">
     <div class="col-12">
-        <div class="row">
+        <div class="row mb-2">
             <h1 class="friends-headline col-12">Freundschaftvorschläge</h1>
         </div>
         <div class="row">
