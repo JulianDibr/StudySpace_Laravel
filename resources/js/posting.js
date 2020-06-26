@@ -11,12 +11,12 @@ $(function () {
     //Upvote this post
     body.on('click', '.comment-vote-up', function () {
         let commentId = $(this).closest('.comment-container').attr('data-comment-id');
-        upvoteComment(commentId, 1);
+        voteComment(commentId, 1);
     });
     //Downvote this post
     body.on('click', '.comment-vote-down', function () {
         let commentId = $(this).closest('.comment-container').attr('data-comment-id');
-        downvoteComment(commentId, 0);
+        voteComment(commentId, 0);
     });
 
     body.on('click', '.submit-comment', function () {
@@ -47,43 +47,16 @@ function loadPosting(id) {
         url: '/loadPosting/' + id,
         method: 'get',
         success: function (response) {
-            hidePostingModal();
+            $('#posting-modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
             $('#posting-modal-wrapper').html(response.data.modal);
-            showPostingModal();
+            $('#posting-modal').modal('show');
         }
     });
 }
 
-function showPostingModal() {
-    $('#posting-modal').modal('show');
-}
-
-function hidePostingModal() {
-    $('#posting-modal').modal('hide');
-}
-
-function upvoteComment(commentId, isUpvote) {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $.ajax({
-        url: 'comments/voting',
-        method: 'post',
-        data: {
-            'commentId': commentId,
-            'isUpvote': isUpvote,
-        },
-        success: function (response) {
-            $('#posting-modal').find('.modal-body').replaceWith(response.data.modal);
-        }
-    });
-}
-
-function downvoteComment(commentId, isUpvote) {
+function voteComment(commentId, isUpvote) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -147,7 +120,6 @@ function deleteComment(id) {
 
 function editComment(btn) {
     let container = btn.closest('.comment-container');
-    let id = container.attr('data-comment-id');
 
     let comment = container.find('.posting-content');
     let content = comment.text();
