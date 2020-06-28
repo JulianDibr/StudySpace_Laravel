@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -14,13 +15,22 @@ class CourseController extends Controller
 
     public function create()
     {
-        $course = new Course();
-        return view('course.singleCourse.edit', compact('course'));
+        return $this->edit(new Course());
     }
 
     public function store(Request $request)
     {
-        //
+        $admin = Auth::user();
+        $course = new Course();
+        $course->fill($request->all());
+        $course->school_id = $admin->school->id;
+        $course->admin_id = $admin->id;
+        $course->save();
+
+        $course->users()->attach($admin); //Include Admin in Group
+        //TODO: Attach all other selected users
+
+        return redirect()->route('course.show', $course->id);
     }
 
     public function show(course $course)
@@ -35,11 +45,11 @@ class CourseController extends Controller
 
     public function update(Request $request, course $course)
     {
-        //
+
     }
 
     public function destroy(course $course)
     {
-        //
+
     }
 }
