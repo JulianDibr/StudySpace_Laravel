@@ -17,7 +17,7 @@
                             <div class="row">
                                 <div class="col-10">
                                     <a href="{{ route('profile.show', $posting->user->id) }}">
-                                        {{$posting->user->first_name ." ". $posting->user->last_name}}
+                                        {{$posting->user->getFullName()}}
                                     </a>
                                     @if($posting->location_type !== 0)
                                         postete
@@ -85,7 +85,7 @@
                                         <span class="col-11">
                                             <div class="row">
                                                 <div class="{{$comment->ownComment() ? 'col-10' : 'col-12'}}">
-                                                    {{$comment->user->first_name ." " .$comment->user->last_name." am ".$comment->updated_at}}
+                                                    {{$comment->user->getFullName()." am ".$comment->updated_at}}
                                                 </div>
                                                                                                     @if($comment->ownComment())
                                                     <div class="col-2 px-0 text-center">
@@ -145,7 +145,7 @@
                                             <span class="col-11">
                                         <div class="row">
                                             <div class="{{$subcomment->ownComment() ? 'col-10' : 'col-12'}}">
-                                                {{$subcomment->user->first_name ." " .$subcomment->user->last_name." am ".$subcomment->updated_at}}
+                                                {{$subcomment->user->getFullName()." am ".$subcomment->updated_at}}
                                             </div>
                                             @if($subcomment->ownComment())
                                                 <div class="col-2 px-0 text-center">

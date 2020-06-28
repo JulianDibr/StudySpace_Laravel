@@ -82,6 +82,8 @@ class Posting extends Model
             case 3: //TODO: Check if course ids include this id
                 return url('course/' . $this->location_id);
         }
+
+        return route('home');
     }
 
     public function getLocationName()
@@ -89,7 +91,7 @@ class Posting extends Model
         switch ($this->location_type) {
             case 1:
                 $user = User::find($this->location_id);
-                return "auf " . $user->first_name . " " . $user->last_name . "s";
+                return "auf " . $user->getFullName() . "s";
             case 2:
                 $school = School::find($this->location_id);
                 return "in " . $school->name;

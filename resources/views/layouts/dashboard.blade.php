@@ -42,7 +42,7 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->first_name }}  {{ Auth::user()->last_name }}<span class="caret"></span>
+                            {{ Auth::user()->getFullName() }}<span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -67,17 +67,12 @@
 <main>
     <div class="sidebar-wrapper d-none d-md-block pl-0">
         <ul id="sidebar">
-            <li class="{{Route::is('home') ? 'nav-active' : ''}}"><a href="/home"><i class="fas fa-house-user mr-2"></i>Feed</a>
-            </li>
-            <li class="{{Route::is('profile.show') ? 'nav-active' : ''}}"><a href="{{ route('profile.show', Auth::user()->id) }}"><i
-                        class="fas fa-user mr-2"></i>Mein Profil</a></li>
-            <li class="{{Route::is('friend.showList') ? 'nav-active' : ''}}"><a href="{{ route('friend.showList') }}"><i
-                        class="fas fa-user mr-2"></i>Meine Freunde</a></li>
-            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{ route('school.show', Auth::user()->school->id) }}"><i
-                        class="fas fa-school mr-2"></i>Hochschule
-                    Hamm-Lippstadt</a></li>
-            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{route('courses.index')}}"><i
-                        class="fas fa-chalkboard-teacher mr-2"></i>Meine Kurse</a></li>
+            <li class="{{Route::is('home') ? 'nav-active' : ''}}"><a href="{{route('home')}}"><i class="fas fa-house-user mr-2"></i>Feed</a></li>
+            <li class="{{Route::is('home') ? 'nav-active' : ''}}"><a href="{{route('messages.index')}}"><i class="fas fa-envelope mr-2"></i>Nachrichten</a></li>
+            <li class="{{Route::is('profile.show') ? 'nav-active' : ''}}"><a href="{{ route('profile.show', Auth::user()->id) }}"><i class="fas fa-user mr-2"></i>Mein Profil</a></li>
+            <li class="{{Route::is('friend.showList') ? 'nav-active' : ''}}"><a href="{{ route('friend.showList') }}"><i class="fas fa-users mr-2"></i>Meine Freunde</a></li>
+            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{ route('school.show', Auth::user()->school->id) }}"><i class="fas fa-school mr-2"></i>Hochschule Hamm-Lippstadt</a></li>
+            <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{route('courses.index')}}"><i class="fas fa-chalkboard-teacher mr-2"></i>Meine Kurse</a></li>
             <li class="{{Route::is() ? 'nav-active' : ''}}"><a href="{{ route('course.show', "1") }}">Kurse 1</a></li>
         </ul>
     </div>

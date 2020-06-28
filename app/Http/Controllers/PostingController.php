@@ -123,8 +123,8 @@ class PostingController extends Controller
                     return true;
                 }
                 return false;
-            case 3: //TODO: Check if course ids include this id
-                if($user->courses()->pluck('id') == $location_id){
+            case 3:
+                if($user->courses->pluck('id')->contains($location_id)){
                     return true;
                 }
                 return false;

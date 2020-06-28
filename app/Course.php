@@ -8,14 +8,22 @@ class Course extends Model
 {
     public function users()
     {
-        $this->hasMany('App\User');
+        return $this->belongsToMany('App\User');
     }
 
     public function admin(){
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 
     public function postings() {
-        $this->hasMany('App\Posting');
+        return $this->hasMany('App\Posting');
+    }
+
+    public function getCourseImage() {
+        if($this->image) {
+            return asset('storage/profile_pictures/courses/' . $this->image);
+        } else {
+            return asset('storage/profile_pictures/courses/default.png');
+        }
     }
 }

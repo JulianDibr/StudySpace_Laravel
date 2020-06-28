@@ -60,3 +60,6 @@ Route::get('friend/list', 'FriendController@showList')->name('friend.showList');
 //Courses
 Route::get('courses', 'CourseController@index')->name('courses.index');
 Route::resource('course', 'CourseController');
+
+//Messages
+Route::resource('messages', 'MessageController');

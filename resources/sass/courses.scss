@@ -3,4 +3,31 @@
     border-radius: $border-radius;
     background-color: $white-color;
     height: 200px;
+    color: $black-color;
+    font-size: 18px;
+
+    &:hover {
+        text-decoration: none;
+        color: $black-color-hover;
+    }
+}
+
+.course-headline {
+    font-size: 18px;
+}
+
+//NEW/EDIT
+.add-to-course-container {
+    height: 600px;
+    overflow: hidden;
+
+    .add-to-course-header {
+        font-size: 18px;
+    }
+
+    .add-to-course-user-list{
+        height: calc(100% - 45px);
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
 }

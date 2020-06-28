@@ -18,6 +18,14 @@
 
 /*===Icons===*/
 /*=====Colors==*/
+.icon-black {
+    color: $black-color;
+
+    &:hover {
+        color: $black-color-hover;
+    }
+}
+
 .icon-white {
     color: $white-color;
 }
@@ -27,7 +35,7 @@
 }
 
 .icon-light-green-active {
-    color: $light-green-color-active;
+    color: $light-green-color-hover;
 }
 
 .icon-light-green:hover {
@@ -93,4 +101,29 @@
 
 .dropdown-item.active, .dropdown-item:active {
     background-color: $light-green-color;
+}
+
+.card-background {
+    background-color: $white-color;
+    border-radius: $border-radius;
+    border: $border;
+    padding: 15px;
+}
+
+.green-standard-btn{
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: $border-radius;
+    background-color: $light-green-color;
+    color: $white;
+
+    &:hover {
+        background-color: $light-green-color-hover;
+        color: $white;
+    }
+
+    &:active {
+        background-color: $light-green-color-active;
+        color: $white;
+    }
 }

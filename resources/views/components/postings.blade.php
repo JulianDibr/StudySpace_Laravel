@@ -52,7 +52,7 @@
                     <div class="row">
                             <span class="posting-location-name col-12">
                                 <a href="{{ route('profile.show', $posting->user->id) }}">
-                                    {{$posting->user->first_name}} {{$posting->user->last_name}}
+                                    {{$posting->user->getFullName()}}
                                 </a>
                                 @if($posting->location_type !== 0)
                                     postete

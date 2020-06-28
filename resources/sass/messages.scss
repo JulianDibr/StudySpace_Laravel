@@ -1,0 +1,19 @@
+#message-container {
+    height: calc(100vh - 260px);
+}
+
+.info-header {
+    border-bottom: $border;
+    padding: 10px 0;
+    margin: 0 20px;
+}
+
+.info-messages-container {
+    overflow-y: auto;
+}
+
+.contact-list-container {
+    border-left: $border;
+    padding-left: 20px;
+    overflow-y: auto;
+}

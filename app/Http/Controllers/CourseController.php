@@ -14,7 +14,8 @@ class CourseController extends Controller
 
     public function create()
     {
-        //
+        $course = new Course();
+        return view('course.singleCourse.edit', compact('course'));
     }
 
     public function store(Request $request)
@@ -29,7 +30,7 @@ class CourseController extends Controller
 
     public function edit(course $course)
     {
-        //
+        return view('course.singleCourse.edit', compact('course'));
     }
 
     public function update(Request $request, course $course)

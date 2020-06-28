@@ -8,11 +8,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Musonza\Chat\Traits\Messageable;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use Friendable;
+    use Messageable;
 
     /**
      * The attributes that are mass assignable.
@@ -76,6 +78,10 @@ class User extends Authenticatable
             return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y');
         }
         return null;
+    }
+
+    public function getFullName(){
+        return $this->first_name . " " . $this->last_name;
     }
 
     public function getAllNonFriends()
