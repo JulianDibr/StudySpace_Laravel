@@ -128,6 +128,11 @@ class PostingController extends Controller
                     return true;
                 }
                 return false;
+            case 4:
+                if($user->groups->pluck('id')->contains($location_id)){
+                    return true;
+                }
+                return false;
         }
     }
 }

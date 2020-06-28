@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class CourseRequest extends FormRequest
+class GroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,10 +14,10 @@ class CourseRequest extends FormRequest
      */
     public function authorize()
     {
-        $course = $this->route('course');
+        $group = $this->route('group');
         //Check if user is admin for this course -> if no admin_id is set return true
-        if (isset($course->admin_id)) {
-            return Auth::user()->id === $course->admin_id;
+        if (isset($group->admin_id)) {
+            return Auth::user()->id === $group->admin_id;
         } else {
             return true;
         }
@@ -33,16 +33,14 @@ class CourseRequest extends FormRequest
         return [
             'name' => 'required',
             'description' => 'required',
-            'teacher' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Bitte füllen Sie einen Namen für den Kurs aus.',
-            'description.required' => 'Bitte füllen Sie eine Beschreibung für den Kurs aus.',
-            'teacher.required' => 'Bitte füllen Sie den Dozenten für den Kurs aus.',
+            'name.required' => 'Bitte füllen Sie einen Namen für die Gruppe aus.',
+            'description.required' => 'Bitte füllen Sie eine Beschreibung für die Gruppe aus.',
         ];
     }
 }

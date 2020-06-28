@@ -10,7 +10,13 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id');
+            $table->string('name');
+            $table->string('description')->nullable()->default(null);
+            $table->string('image')->nullable()->default(null);
             $table->timestamps();
+
+            $table->foreign('admin_id')->references('id')->on('users');
         });
     }
 

@@ -50,6 +50,14 @@ Route::post('school/comments/{posting_id}/{comment_id}', 'CommentController@stor
 Route::post('school/comments/voting', 'CommentController@voting')->name('comment.voting');
 Route::post('school/postings/voting', 'PostingController@voting')->name('posting.voting');
 
+//Groups
+Route::get('groups', 'GroupController@index')->name('groups.index');
+Route::resource('group', 'GroupController');
+
+//Projects
+Route::get('projects', 'ProjectController@index')->name('projects.index');
+Route::resource('project', 'SchoolController');
+
 //Friendshipsystem
 Route::post('friend/add/{id}', 'FriendController@sendFriendRequest')->name('friend.add');
 Route::post('friend/remove/{id}', 'FriendController@removeFriend')->name('friend.remove');

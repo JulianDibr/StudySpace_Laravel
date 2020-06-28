@@ -81,6 +81,8 @@ class Posting extends Model
                 return url('school/' . $this->location_id);
             case 3: //TODO: Check if course ids include this id
                 return url('course/' . $this->location_id);
+            case 4: //TODO: Check if group ids include this id
+                return url('group/' . $this->location_id);
         }
 
         return route('home');
@@ -98,6 +100,9 @@ class Posting extends Model
             case 3: //TODO: Check if course ids include this id
                 $course = Course::find($this->location_id);
                 return "in " . $course->name;
+            case 4: //TODO: Check if course ids include this id
+                $group = Group::find($this->location_id);
+                return "in " . $group->name;
         }
     }
 }

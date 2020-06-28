@@ -65,7 +65,7 @@ class User extends Authenticatable
 
     public function getUserImage()
     {
-        if($this->profile_picture) {
+        if ($this->profile_picture) {
             return asset('storage/profile_pictures/users/' . $this->profile_picture);
         } else {
             return asset('storage/profile_pictures/users/default.png');
@@ -80,7 +80,8 @@ class User extends Authenticatable
         return null;
     }
 
-    public function getFullName(){
+    public function getFullName()
+    {
         return $this->first_name . " " . $this->last_name;
     }
 
@@ -93,8 +94,23 @@ class User extends Authenticatable
         return $receivedRequests->diff($currentUser->getPendingFriendships()->pluck('recipient'));
     }
 
-    public function getRecommendedCourses() {
-        $schoolCourses =  $this->school->courses;
-        return $schoolCourses->diff($this->courses);
+    public function getRecommendedCourses()
+    {
+        $schoolCourses = $this->school->courses;
+        if ($schoolCourses !== null) {
+            return $schoolCourses->diff($this->courses);
+        } else {
+            return [];
+        }
+    }
+
+    public function getRecommendedGroups()
+    {
+        $allGroups = $this->school->groups;
+        if ($allGroups !== null) {
+            return $allGroups->diff($this->groups);
+        } else {
+            return [];
+        }
     }
 }

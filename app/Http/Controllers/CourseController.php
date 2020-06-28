@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\course;
 use App\Http\Requests\CourseRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -30,15 +29,20 @@ class CourseController extends Controller
         $course->admin_id = $admin->id;
         $course->save();
 
-        $course->users()->sync(explode(",", $request->user_list)); //TODO: Nur Nutzer der selben school_id zulassen
-        $course->users()->attach($admin); //Include Admin in Group
+        $this->storeUsers($request, $course, $admin);
 
         return redirect()->route('course.show', $course->id);
     }
 
-    public function show(course $course)
+    public function show($id)
     {
-        return view('course.singleCourse.index', compact('course'));
+        $course = Course::find($id);
+
+        if($course !== null){
+            return view('course.singleCourse.index', compact('course'));
+        } else {
+            return redirect()->route('courses.index');
+        }
     }
 
     public function edit(course $course)
@@ -55,14 +59,19 @@ class CourseController extends Controller
     {
         $admin = Auth::user();
 
-        $course->users()->sync(explode(",", $request->user_list)); //TODO: Nur Nutzer der selben school_id zulassen
-        $course->users()->attach($admin); //Include Admin in Group
-
+        $this->storeUsers($request, $course, $admin);
         return redirect()->route('course.show', $course->id);
     }
 
     public function destroy(course $course)
     {
 
+    }
+
+    public function storeUsers($request, $course, $admin) {
+        if($request->user_list !== null) {
+            $course->users()->sync(explode(",", $request->user_list)); //TODO: Nur Nutzer der selben school_id zulassen
+        }
+        $course->users()->attach($admin); //Include Admin in Group
     }
 }

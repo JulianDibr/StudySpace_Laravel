@@ -1,6 +1,6 @@
 //Create/Edit
 $(function () {
-    $('.add-user, .remove-user').on('click', function () {
+    $('.add-to-course-user-list').on('click', '.add-user, .remove-user', function () {
         //Toggle if user is added to course
         $(this).closest('.course-user-row').find('.add-user, .remove-user').toggleClass('d-none');
     })
