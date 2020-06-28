@@ -21,7 +21,7 @@
                                        placeholder="Name des Kurses eingeben"
                                        value="{{old('name', $course->name ?? '')}}">
                                 @error('name')
-                                <label for="name" class="validation-error-text">Bitte füllen Sie einen Namen für den Kurs aus.</label>
+                                <label for="name" class="validation-error-text">{{ $message }}</label>
                                 @enderror
                             </div>
 
@@ -31,7 +31,7 @@
                                        placeholder="Beschreibung des Kurses eingeben"
                                        value="{{old('description', $course->description ?? '')}}">
                                 @error('description')
-                                <label for="description" class="validation-error-text">Bitte füllen Sie eine Beschreibung für den Kurs aus.</label>
+                                <label for="description" class="validation-error-text">{{ $message }}</label>
                                 @enderror
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                placeholder="Dozent des Kurses eingeben"
                                value="{{old('teacher', $course->teacher ?? '')}}">
                         @error('teacher')
-                        <label for="teacher" class="validation-error-text">Bitte füllen Sie den Dozenten für den Kurs aus.</label>
+                        <label for="teacher" class="validation-error-text">{{ $message }}</label>
                         @enderror
                     </div>
 
