@@ -15,13 +15,15 @@
 
         @foreach(Auth::user()->courses as $course)
             <div class="col-12 col-md-6 col-lg-4 mb-3">
-                <a class="course-container card mb-2 mt-2 p-3" href="{{route('course.show', $course->id)}}">
-                    <div class="row h-100">
-                        <div class="col-12 my-auto text-center">
-                            {{$course->name}}
+                <a class="course-container card mb-2 mt-2 p-0"
+                   href="{{route('course.show', $course->id)}}" style="background: url({{$course->getCourseImage()}}) no-repeat center center">
+                    <div class="row mx-0 h-100">
+                        <div class="col-12 my-auto text-center course-name-container">
+                            <div class="course-name">{{$course->name}}</div>
                         </div>
                     </div>
                 </a>
+                </img>
             </div>
         @endforeach
     </div>
@@ -31,15 +33,17 @@
     </div>
 
     <div class="row">
-        @foreach(Auth::user()->courses as $course)
+        @foreach(Auth::user()->getRecommendedCourses() as $course)
             <div class="col-12 col-md-6 col-lg-4 mb-3">
-                <a class="course-container card mb-2 mt-2 p-3" href="{{route('course.show', $course->id)}}">
-                    <div class="row h-100">
-                        <div class="col-12 my-auto text-center">
-                            {{$course->name}}
+                <a class="course-container card mb-2 mt-2 p-0"
+                   href="{{route('course.show', $course->id)}}" style="background: url({{$course->getCourseImage()}}) no-repeat center center">
+                    <div class="row mx-0 h-100">
+                        <div class="col-12 my-auto text-center course-name-container">
+                            <div class="course-name">{{$course->name}}</div>
                         </div>
                     </div>
                 </a>
+                </img>
             </div>
         @endforeach
     </div>

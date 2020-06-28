@@ -25,7 +25,7 @@ class Course extends Model
         if($this->image) {
             return asset('storage/profile_pictures/courses/' . $this->image);
         } else {
-            return asset('storage/profile_pictures/courses/default.png');
+            return asset('storage/profile_pictures/courses/default.jpg');
         }
     }
 }

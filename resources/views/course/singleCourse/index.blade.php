@@ -28,36 +28,16 @@
             </div>
             <div class="col-3">
                 <div class="row">
-                    <img src="{{$course->getCourseImage()}}" alt="profile picture" width="100%" class="rounded-circle col-12">
+                    <img src="{{$course->getCourseImage()}}" alt="profile picture" width="100%"
+                         class="rounded-circle col-12">
                 </div>
-                {{--@if(Auth::user()->id !== $profile->id)
+                @if(Auth::user()->id === $course->admin_id)
                     <div class="row mt-2">
                         <div class="col-12">
-                            @if(Auth::user()->hasFriendRequestFrom($profile))
-                                <div class="row">
-                                    <button class="btn col-5 accept-friend-request-btn" data-profile-id="{{$profile->id}}">
-                                        Akzeptieren
-                                    </button>
-                                    <button class="btn col-5 offset-2 decline-friend-request-btn" data-profile-id="{{$profile->id}}">
-                                        Ablehnen
-                                    </button>
-                                </div>
-                            @else
-                                <button
-                                    class="{{(Auth::user()->isFriendWith($profile) || Auth::user()->hasSentFriendRequestTo($profile)) ? 'd-none' : ''}} btn w-100 add-to-friends-btn"
-                                    type="button" data-profile-id="{{$profile->id}}">Zu Freunden hinzufügen
-                                </button>
-                                <button class="{{Auth::user()->isFriendWith($profile) ? '' : 'd-none'}} btn w-100 rm-from-friends-btn" type="button"
-                                        data-profile-id="{{$profile->id}}">Aus Freunden entfernen
-                                </button>
-                                <button class="{{Auth::user()->hasSentFriendRequestTo($profile) ? '' : 'd-none'}} btn w-100 cancel-friend-request-btn"
-                                        type="button"
-                                        data-profile-id="{{$profile->id}}">Anfrage zurückziehen
-                                </button>
-                            @endif
+                            <a class="btn w-100 edit-course-btn green-standard-btn" type="button" href="{{route('course.edit', $course)}}">Kurs editieren</a>
                         </div>
                     </div>
-                @endif--}}
+                @endif
             </div>
         </div>
     </div>

@@ -92,4 +92,9 @@ class User extends Authenticatable
         $receivedRequests = $diffUserFriends->diff($currentUser->getFriendRequests()->pluck('sender'));
         return $receivedRequests->diff($currentUser->getPendingFriendships()->pluck('recipient'));
     }
+
+    public function getRecommendedCourses() {
+        $schoolCourses =  $this->school->courses;
+        return $schoolCourses->diff($this->courses);
+    }
 }

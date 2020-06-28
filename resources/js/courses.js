@@ -1,0 +1,18 @@
+//Create/Edit
+$(function () {
+    $('.add-user, .remove-user').on('click', function () {
+        //Toggle if user is added to course
+        $(this).closest('.course-user-row').find('.add-user, .remove-user').toggleClass('d-none');
+    })
+
+    $('.submit-course').on('click', function () {
+        let idArr = [];
+        //Find all users to add an submit form
+        $('.add-to-course-user-list').find('.add-user.d-none').each(function () {
+            idArr.push($(this).closest('.course-user-row').attr('data-user-id'));
+        })
+
+        $('input[name="user_list"]').val(idArr.join(","));
+        $('#edit-course-form').submit();
+    })
+})

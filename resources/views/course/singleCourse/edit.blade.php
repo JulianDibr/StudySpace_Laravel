@@ -3,7 +3,8 @@
 @inject('users', 'App\User')
 
 @section('content')
-    <form action="{{$course->exists ? route('course.update', $course) : route('course.store')}}" method="POST">
+    <form id="edit-course-form" action="{{$course->exists ? route('course.update', $course) : route('course.store')}}"
+          method="POST">
         @csrf
         @if($course->exists)
             @method('PUT')
@@ -17,7 +18,8 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label for="name" class="mb-2">Name des Kurses</label>
-                                <input type="text" name="name" class="form-control @error('name') validation-error-border @enderror"
+                                <input type="text" name="name"
+                                       class="form-control @error('name') validation-error-border @enderror"
                                        placeholder="Name des Kurses eingeben"
                                        value="{{old('name', $course->name ?? '')}}">
                                 @error('name')
@@ -27,7 +29,8 @@
 
                             <div class="form-group">
                                 <label for="description" class="mt-2 mb-2">Beschreibung des Kurses</label>
-                                <input type="text" name="description" class="form-control @error('description') validation-error-border @enderror"
+                                <input type="text" name="description"
+                                       class="form-control @error('description') validation-error-border @enderror"
                                        placeholder="Beschreibung des Kurses eingeben"
                                        value="{{old('description', $course->description ?? '')}}">
                                 @error('description')
@@ -43,7 +46,8 @@
 
                     <div class="form-group">
                         <label for="teacher" class="mt-2 mb-2">Dozent des Kurses</label>
-                        <input type="text" name="teacher" class="form-control @error('teacher') validation-error-border @enderror"
+                        <input type="text" name="teacher"
+                               class="form-control @error('teacher') validation-error-border @enderror"
                                placeholder="Dozent des Kurses eingeben"
                                value="{{old('teacher', $course->teacher ?? '')}}">
                         @error('teacher')
@@ -51,7 +55,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn green-standard-btn mt-3">Kurs anlegen</button>
+                    <button type="button" class="submit-course btn green-standard-btn mt-3">{{$course->exists ? 'Kurs updaten' : 'Kurs anlegen'}}</button>
                 </div>
             </div>
             <div class="col-12 col-md-12 col-lg-4 mt-5 mt-lg-0">
@@ -59,14 +63,19 @@
                     <h2 class="add-to-course-header text-center mb-4">Personen hinzufügen</h2>
 
                     <div class="add-to-course-user-list">
-                        @foreach($users::all() as $user) {{--TODO: Only relevant users--}}
-                        <div class="row mb-3" style="margin:0">
-                            <img class="col-2 px-lg-0" src="{{$user->getUserImage()}}" width="100%" alt="user profile picture"/>
+                        <input type="hidden" name="user_list" class="d-none">
+                        @foreach($users::all()->sortBy('last_name') as $user) {{--TODO: Only relevant users--}}
+                        <div class="course-user-row row mb-3" style="margin:0" data-user-id="{{$user->id}}">
+                            <img class="col-2 px-lg-0" src="{{$user->getUserImage()}}" width="100%"
+                                 alt="user profile picture"/>
                             <div class="col-8 text-break my-auto">
                                 {{$user->getFullName()}}
                             </div>
-                            <button class="add-user col-2 btn" type="button"><i class="fas fa-plus-circle icon-light-green"></i></button>
-                            <button class="remove-user col-2 btn d-none" type="button"><i class="fas fa-minus-circle icon-red"></i></button>
+                            <button class="add-user col-2 btn {{$course->users->contains($user->id) ? 'd-none' : ''}}"
+                                    type="button"><i class="fas fa-lg fa-plus-circle icon-light-green"></i></button>
+                            <button
+                                class="remove-user col-2 btn {{$course->users->contains($user->id) ? '' : 'd-none'}}"
+                                type="button"><i class="fas fa-lg fa-minus-circle icon-red"></i></button>
                         </div>
                         @endforeach
                     </div>

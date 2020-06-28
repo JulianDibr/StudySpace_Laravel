@@ -30,8 +30,8 @@ class CourseController extends Controller
         $course->admin_id = $admin->id;
         $course->save();
 
+        $course->users()->sync(explode(",", $request->user_list)); //TODO: Nur Nutzer der selben school_id zulassen
         $course->users()->attach($admin); //Include Admin in Group
-        //TODO: Attach all other selected users
 
         return redirect()->route('course.show', $course->id);
     }
@@ -53,7 +53,12 @@ class CourseController extends Controller
 
     public function update(CourseRequest $request, course $course)
     {
+        $admin = Auth::user();
 
+        $course->users()->sync(explode(",", $request->user_list)); //TODO: Nur Nutzer der selben school_id zulassen
+        $course->users()->attach($admin); //Include Admin in Group
+
+        return redirect()->route('course.show', $course->id);
     }
 
     public function destroy(course $course)
