@@ -59,7 +59,7 @@ class PostingController extends Controller
         if ($posting !== null) {
             if ($posting->user_id == Auth::user()->id) {
 
-                foreach($posting->comments() as $comment){
+                foreach ($posting->comments() as $comment) {
                     $comment->votings()->delete();
                     $comment->comments()->votings()->delete();
                     $comment->comments()->delete();
@@ -109,7 +109,7 @@ class PostingController extends Controller
     {
         $user = Auth::user();
 
-        if ($location_type == 0 && $location_id == 0){
+        if ($location_type == 0 && $location_id == 0) {
             return true;
         }
 
@@ -119,20 +119,27 @@ class PostingController extends Controller
             case 1:
                 return true;
             case 2:
-                if($user->school->id == $location_id){
+                if ($user->school->id == $location_id) {
                     return true;
                 }
-                return false;
+                break;
             case 3:
-                if($user->courses->pluck('id')->contains($location_id)){
+                if ($user->courses->pluck('id')->contains($location_id)) {
                     return true;
                 }
-                return false;
+                break;
             case 4:
-                if($user->groups->pluck('id')->contains($location_id)){
+                if ($user->groups->pluck('id')->contains($location_id)) {
                     return true;
                 }
-                return false;
+                break;
+            case 5:
+                if ($user->projects->pluck('id')->contains($location_id)) {
+                    return true;
+                }
+                break;
         }
+
+        return false;
     }
 }

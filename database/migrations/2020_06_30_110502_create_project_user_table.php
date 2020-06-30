@@ -12,6 +12,7 @@ class CreateProjectUserTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
+            $table->boolean('status')->default(0); // 0 = invited / 1 = accepted
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

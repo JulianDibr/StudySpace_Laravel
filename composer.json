@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "cmgmyr/messenger": "^2.20",
         "demency/laravel-friendships": "1.2.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
@@ -16,7 +17,6 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "musonza/chat": "^4.4",
         "spatie/laravel-medialibrary": "^8.0.0"
     },
     "require-dev": {

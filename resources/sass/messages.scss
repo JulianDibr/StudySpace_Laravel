@@ -12,8 +12,13 @@
     overflow-y: auto;
 }
 
-.contact-list-container {
+.contact-conversation-list-container {
     border-left: $border;
     padding-left: 20px;
     overflow-y: auto;
+
+    .active-tab {
+        border-bottom: $border;
+        border-radius: 0;
+    }
 }

@@ -20,6 +20,7 @@ mix.js([
     'resources/js/courses.js',
     'resources/js/group.js',
     'resources/js/project.js',
+    'resources/js/messages.js',
 ], 'public/js').sourceMaps();
 
 mix.sass('resources/sass/app.scss', 'public/css');

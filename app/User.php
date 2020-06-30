@@ -3,18 +3,18 @@
 namespace App;
 
 use Carbon\Carbon;
+use Cmgmyr\Messenger\Traits\Messagable;
 use Demency\Friendships\Traits\Friendable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
-use Musonza\Chat\Traits\Messageable;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use Friendable;
-    use Messageable;
+    use Messagable;
 
     protected $fillable = [
         'first_name', 'last_name', 'email', 'password',
