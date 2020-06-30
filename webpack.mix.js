@@ -19,6 +19,7 @@ mix.js([
     'resources/js/friendlist.js',
     'resources/js/courses.js',
     'resources/js/group.js',
+    'resources/js/project.js',
 ], 'public/js').sourceMaps();
 
 mix.sass('resources/sass/app.scss', 'public/css');

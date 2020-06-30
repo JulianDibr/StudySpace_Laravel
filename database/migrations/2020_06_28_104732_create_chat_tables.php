@@ -7,11 +7,6 @@ use Musonza\Chat\ConfigurationManager;
 
 class CreateChatTables extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create(ConfigurationManager::CONVERSATIONS_TABLE, function (Blueprint $table) {
@@ -89,11 +84,6 @@ class CreateChatTables extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists(ConfigurationManager::MESSAGE_NOTIFICATIONS_TABLE);

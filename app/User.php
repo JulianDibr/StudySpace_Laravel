@@ -16,11 +16,6 @@ class User extends Authenticatable
     use Friendable;
     use Messageable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'first_name', 'last_name', 'email', 'password',
     ];
@@ -61,6 +56,11 @@ class User extends Authenticatable
     public function groups()
     {
         return $this->belongsToMany('App\Group');
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany('App\Project');
     }
 
     public function getUserImage()
@@ -109,6 +109,16 @@ class User extends Authenticatable
         $allGroups = $this->school->groups;
         if ($allGroups !== null) {
             return $allGroups->diff($this->groups);
+        } else {
+            return [];
+        }
+    }
+
+    public function getRecommendedProjects()
+    {
+        $allProjects = Project::all();
+        if ($allProjects !== null) {
+            return $allProjects->diff($this->projects);
         } else {
             return [];
         }

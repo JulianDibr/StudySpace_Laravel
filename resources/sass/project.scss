@@ -1,0 +1,41 @@
+.project-container {
+    border: $border;
+    border-radius: $border-radius;
+    background-color: $white-color;
+    height: 200px;
+    color: $black-color;
+    font-size: 18px;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+
+    &:hover {
+        text-decoration: none;
+        color: $black-color-hover;
+    }
+}
+
+.project-headline {
+    font-size: 18px;
+}
+
+.project-name-container {
+    background-color: $white-color-opague;
+}
+
+//NEW/EDIT
+.add-to-project-container {
+    height: 600px;
+    overflow: hidden;
+
+    .add-to-project-header {
+        font-size: 18px;
+    }
+
+    .add-to-project-user-list {
+        height: calc(100% - 45px);
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+}

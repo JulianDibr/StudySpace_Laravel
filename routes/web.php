@@ -56,7 +56,7 @@ Route::resource('group', 'GroupController');
 
 //Projects
 Route::get('projects', 'ProjectController@index')->name('projects.index');
-Route::resource('project', 'SchoolController');
+Route::resource('project', 'ProjectController');
 
 //Friendshipsystem
 Route::post('friend/add/{id}', 'FriendController@sendFriendRequest')->name('friend.add');

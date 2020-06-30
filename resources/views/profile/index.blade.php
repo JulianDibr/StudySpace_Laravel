@@ -29,10 +29,10 @@
                     <span class="col-12">Eingeschriebene Kurse: {{count($profile->courses)}}</span>
                 </div>
                 <div class="row">
-                    <span class="col-12">Teilgenommene Projekte: 0{{--count($profile->projects)--}}</span>
+                    <span class="col-12">Teilgenommene Projekte: {{count($profile->projects)}}</span>
                 </div>
                 <div class="row">
-                    <span class="col-12">Gruppen: 0{{--count($profile->groups)--}}</span>
+                    <span class="col-12">Gruppen: {{count($profile->groups)}}</span>
                 </div>
             </div>
             <div class="col-3">
