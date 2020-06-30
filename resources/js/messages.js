@@ -18,7 +18,12 @@ $(function () {
 
     messageContainer.on('click', '.start-conversation', function () {
         let receiverId = $(this).attr('data-user-id');
-        loadConversation(receiverId);
+        startConversation(receiverId);
+    })
+
+    messageContainer.on('click', '.load-conversation', function () {
+        let conversationid = $(this).attr('data-conversation-id');
+        loadConversation(conversationid);
     })
 })
 
@@ -32,6 +37,22 @@ function loadContacts() {
     $('.contacts-list').removeClass('d-none');
 }
 
+function startConversation(receiverId) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: '/messages/create/' + receiverId,
+        method: 'GET',
+        success: function (response) {
+            console.log(response);
+            $('#message-container').html(response.data.messageContainer);
+        }
+    });
+}
+
 function loadConversation(receiverId) {
     $.ajaxSetup({
         headers: {
@@ -39,7 +60,7 @@ function loadConversation(receiverId) {
         }
     });
     $.ajax({
-        url: '/messages/loadConversationWithUser/' + receiverId,
+        url: '/messages/' + receiverId,
         method: 'GET',
         success: function (response) {
             console.log(response);

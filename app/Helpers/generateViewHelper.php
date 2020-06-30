@@ -10,9 +10,15 @@ final class generateViewHelper
         return $postingModal->render();
     }
 
-    public static function generateConversationWindow($conversation)
+    public static function generateConversationWindow($conversations, $currentThread = [])
     {
-        $conversationWindow = view('messages.messageContainer')->with(compact('conversation'));
+        $conversationWindow = view('messages.show')->with(compact('conversations', 'currentThread'));
+        return $conversationWindow->render();
+    }
+
+    public static function generateNewConversationWindow($conversations, $receiver)
+    {
+        $conversationWindow = view('messages.create')->with(compact('conversations', 'receiver'));
         return $conversationWindow->render();
     }
 }

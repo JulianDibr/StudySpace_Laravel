@@ -71,4 +71,4 @@ Route::resource('course', 'CourseController');
 
 //Messages
 Route::resource('messages', 'MessageController');
-Route::get('messages/loadConversationWithUser/{id}', 'MessageController@loadConversation');
+Route::get('messages/create/{id}', 'MessageController@create');

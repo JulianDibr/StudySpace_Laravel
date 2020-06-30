@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         //Pivot
         $this->call(SchoolUserTableSeeder::class);
         $this->call(CourseUserTableSeeder::class);
+        $this->call(FriendshipTableSeeder::class);
     }
 }

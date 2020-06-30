@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="message-container" class="card-background">
-        @include('messages.messageContainer')
+        @include('messages.show')
     </div>
 @endsection

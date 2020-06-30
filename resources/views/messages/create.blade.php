@@ -2,7 +2,7 @@
     <div class="col-9 info-messages-container">
         <div class="row info-header">
             <div class="col-9">
-
+                {{$receiver->getFullName()}}
             </div>
             <div class="col-3">
                 Was anderes?
@@ -26,7 +26,19 @@
         </div>
 
         <div class="conversation-list row">
-
+            @forelse($conversations as $conversation)
+                <button class="btn text-left p-0 pl-1 load-conversation" type="button" data-conversation-id="{{$conversation->id}}">
+                    <div class="row mb-3">
+                        <img class="col-2 px-lg-0" src="{{--{{$contact->getUserImage()}}--}}" width="100%"
+                             alt="user profile picture"/>
+                        <div class="col-10 text-break my-auto">
+                            test
+                            {{--                            {{$contact->getFullName()}}--}}
+                        </div>
+                    </div>
+                </button>
+            @empty
+            @endforelse
         </div>
         <div class="contacts-list row d-none">
             <div class="col-12">
