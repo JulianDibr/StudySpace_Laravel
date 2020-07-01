@@ -20,11 +20,13 @@ class MessageController extends Controller
     public function index()
     {
         $conversations = Thread::forUser(Auth::id())->latest('updated_at')->get();
-        $currentThread = $conversations->first();
-        return view('messages.index', compact('conversations', 'currentThread'));
+        $currentThread = $conversations->first(); //Get last chat to open on load
+
+        return view('messages.index', compact('currentThread'));
     }
 
-    public function create($receiver_id) {
+    public function create($receiver_id)
+    {
         $user = Auth::user();
         $receiver = User::find($receiver_id);
 
@@ -38,16 +40,14 @@ class MessageController extends Controller
         $currentThread = Thread::between([$user->id, $receiver->id])->get();
 
         //https://github.com/cmgmyr/laravel-messenger/pull/210
-        if ($currentThread  && $currentThread instanceof Collection && $currentThread->count() > 0) {
+        if ($currentThread && $currentThread instanceof Collection && $currentThread->count() > 0) {
             $this->show($currentThread->first()->id);
         }
-
-        $conversations = Thread::forUser(Auth::id())->latest('updated_at')->get();
 
         return response()->json([
             'success' => true,
             'data' => [
-                'messageContainer' => generateViewHelper::generateNewConversationWindow($conversations, $receiver),
+                'messageContainer' => generateViewHelper::generateNewConversationWindow($receiver),
             ]
         ]);
     }
@@ -56,7 +56,7 @@ class MessageController extends Controller
     {
         $thread = Thread::find($conversation_id);
 
-        if(!$thread){
+        if (!$thread) {
             return response()->json(['success' => false, 'error' => 'Conversation doesnt exist']);
         }
 
@@ -65,14 +65,7 @@ class MessageController extends Controller
 
         $thread->markAsRead($userId); //mark as read when opened
 
-        $conversations = Thread::forUser(Auth::id())->latest('updated_at')->get();
-
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'messageContainer' => generateViewHelper::generateConversationWindow($conversations, $thread),
-            ]
-        ]);
+        return $this->showConversation($thread);
     }
 
     public function store()
@@ -80,7 +73,7 @@ class MessageController extends Controller
         $input = Request::all();
 
         $thread = Thread::create([
-            'subject' => $input['subject'],
+            'subject' => 'UserChat',
         ]);
 
         // Message
@@ -102,17 +95,15 @@ class MessageController extends Controller
             $thread->addParticipant($input['recipients']);
         }
 
-        return redirect()->route('messages');
+        return $this->showConversation($thread);
     }
 
     public function update($id)
     {
-        try {
-            $thread = Thread::findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            Session::flash('error_message', 'The thread with ID: ' . $id . ' was not found.');
+        $thread = Thread::find($id);
 
-            return redirect()->route('messages');
+        if (!$thread) {
+            return response()->json(['success' => false, 'error' => 'Conversation doesnt exist']);
         }
 
         $thread->activateAllParticipants();
@@ -137,6 +128,16 @@ class MessageController extends Controller
             $thread->addParticipant(Request::input('recipients'));
         }
 
-        return redirect()->route('messages.show', $id);
+        return $this->showConversation($thread);
+    }
+
+    private function showConversation($thread)
+    {
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'messageContainer' => generateViewHelper::generateConversationWindow($thread),
+            ]
+        ]);
     }
 }

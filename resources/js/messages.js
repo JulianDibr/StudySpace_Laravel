@@ -18,12 +18,20 @@ $(function () {
 
     messageContainer.on('click', '.start-conversation', function () {
         let receiverId = $(this).attr('data-user-id');
-        startConversation(receiverId);
+        openNewConversation(receiverId);
     })
 
     messageContainer.on('click', '.load-conversation', function () {
         let conversationid = $(this).attr('data-conversation-id');
         loadConversation(conversationid);
+    })
+
+    messageContainer.on('click', '.submit-message-to-conversation', function () {
+        submitMessage($(this).attr('data-conversation-id'));
+    })
+
+    messageContainer.on('click', '.start-new-conversation', function () {
+        submitNewConversation();
     })
 })
 
@@ -37,7 +45,7 @@ function loadContacts() {
     $('.contacts-list').removeClass('d-none');
 }
 
-function startConversation(receiverId) {
+function openNewConversation(receiverId) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -47,7 +55,6 @@ function startConversation(receiverId) {
         url: '/messages/create/' + receiverId,
         method: 'GET',
         success: function (response) {
-            console.log(response);
             $('#message-container').html(response.data.messageContainer);
         }
     });
@@ -63,7 +70,43 @@ function loadConversation(receiverId) {
         url: '/messages/' + receiverId,
         method: 'GET',
         success: function (response) {
-            console.log(response);
+            $('#message-container').html(response.data.messageContainer);
+        }
+    });
+}
+
+function submitNewConversation() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: '/messages',
+        method: 'POST',
+        data: {
+            'message': $('.message-input').val(),
+            'recipients': $('.message-recipient').val(),
+        },
+        success: function (response) {
+            $('#message-container').html(response.data.messageContainer);
+        }
+    });
+}
+
+function submitMessage(conversationId) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: '/messages/' + conversationId,
+        method: 'PUT',
+        data: {
+            'message': $('.message-input').val(),
+        },
+        success: function (response) {
             $('#message-container').html(response.data.messageContainer);
         }
     });

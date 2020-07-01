@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Cmgmyr\Messenger\Models\Thread;
 use Cmgmyr\Messenger\Traits\Messagable;
 use Demency\Friendships\Traits\Friendable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -122,5 +123,9 @@ class User extends Authenticatable
         } else {
             return [];
         }
+    }
+
+    public function getConversations(){
+        return Thread::forUser(Auth::id())->latest('updated_at')->get();
     }
 }

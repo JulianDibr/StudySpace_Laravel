@@ -10,15 +10,15 @@ final class generateViewHelper
         return $postingModal->render();
     }
 
-    public static function generateConversationWindow($conversations, $currentThread = [])
+    public static function generateConversationWindow($currentThread = [])
     {
-        $conversationWindow = view('messages.show')->with(compact('conversations', 'currentThread'));
+        $conversationWindow = view('messages.show')->with(compact('currentThread'));
         return $conversationWindow->render();
     }
 
-    public static function generateNewConversationWindow($conversations, $receiver)
+    public static function generateNewConversationWindow($receiver)
     {
-        $conversationWindow = view('messages.create')->with(compact('conversations', 'receiver'));
+        $conversationWindow = view('messages.show')->with(compact('receiver'));
         return $conversationWindow->render();
     }
 }
