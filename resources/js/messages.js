@@ -27,12 +27,28 @@ $(function () {
     })
 
     messageContainer.on('click', '.submit-message-to-conversation', function () {
-        submitMessage($(this).attr('data-conversation-id'));
+        if (messageNotEmpty()) {
+            submitMessage($(this).attr('data-conversation-id'));
+        }
     })
 
+    messageContainer.on('keypress', '.message-input', function (e) {
+        if (e.which === 13) {
+            if (messageNotEmpty()) {
+                if ($(this).next().hasClass('submit-message-to-conversation')) {
+                    submitMessage($(this).closest('.message-input-container').find('.submit-message-to-conversation').attr('data-conversation-id'));
+                } else {
+                    submitNewConversation();
+                }
+            }
+        }
+    });
+
     messageContainer.on('click', '.start-new-conversation', function () {
-        submitNewConversation();
-    })
+        if (messageNotEmpty()) {
+            submitNewConversation();
+        }
+    });
 })
 
 function loadConversations() {
@@ -56,6 +72,7 @@ function openNewConversation(receiverId) {
         method: 'GET',
         success: function (response) {
             $('#message-container').html(response.data.messageContainer);
+            focusMessageInput();
         }
     });
 }
@@ -71,6 +88,7 @@ function loadConversation(receiverId) {
         method: 'GET',
         success: function (response) {
             $('#message-container').html(response.data.messageContainer);
+            focusMessageInput();
         }
     });
 }
@@ -90,6 +108,7 @@ function submitNewConversation() {
         },
         success: function (response) {
             $('#message-container').html(response.data.messageContainer);
+            focusMessageInput();
         }
     });
 }
@@ -108,6 +127,15 @@ function submitMessage(conversationId) {
         },
         success: function (response) {
             $('#message-container').html(response.data.messageContainer);
+            focusMessageInput();
         }
     });
+}
+
+function messageNotEmpty() {
+    return $('.message-input').val() !== "";
+}
+
+function focusMessageInput() {
+    $('.message-input').focus();
 }
