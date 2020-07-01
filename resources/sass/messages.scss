@@ -73,4 +73,14 @@
         border-bottom: $border;
         border-radius: 0;
     }
+
+    .unread-counter{
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        background-color: $light-green-color;
+        color: $white-color;
+        border: $border;
+        border-radius: 50%;
+    }
 }

@@ -89,9 +89,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-2 text-right">
-                                <span>{{$conversation->userUnreadMessagesCount(Auth::id()) > 0 ? $conversation->userUnreadMessagesCount(Auth::id()) : ''}}</span>
-                            </div>
+                            @if($conversation->userUnreadMessagesCount(Auth::id()))
+                                <div class="col-2 text-right px-2 my-auto">
+                                    <div class="unread-counter">{{$conversation->userUnreadMessagesCount(Auth::id())}}</div>
+                                </div>
+                            @endif
                         </div>
                     </button>
                 @empty

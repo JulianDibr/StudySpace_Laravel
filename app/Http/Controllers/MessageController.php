@@ -37,6 +37,7 @@ class MessageController extends Controller
             return response()->json(['success' => false, 'error' => 'Cant send messages to this user']);
         }
 
+        //TODO: Not working
         $currentThread = Thread::between([$user->id, $receiver->id])->get();
 
         //https://github.com/cmgmyr/laravel-messenger/pull/210
