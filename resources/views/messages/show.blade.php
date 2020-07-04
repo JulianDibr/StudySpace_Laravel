@@ -4,7 +4,7 @@
 @endphp
 
 <div class="row h-100">
-    <div class="col-9 info-messages-container">
+    <div class="col-9 info-messages-container h-100">
         <div class="row info-header">
             <div class="col-9">
                 @if($currentThread)
@@ -21,22 +21,16 @@
             </div>
         </div>
         <div class="row message-view">
-            <div class="col-12">
+            <div class="col-12 message-view-inner">
                 @if($currentThread)
                     @forelse($currentThread->messages as $message)
                         @php
                             $currentUsers = $message->user_id === Auth::id();
                         @endphp
-                        <div class="w-100 mb-3 {{$currentUsers ? 'text-right' : 'text-left'}}">
-                            @if($currentUsers)
-                                <span class="message-by-me">
-                                    {{$message->body}}
-                                </span>
-                            @else
-                                <span class="message-by-others">
-                                    {{$message->body}}
-                                </span>
-                            @endif
+                        <div class="{{$currentUsers ? 'message-by-me' : 'message-by-others'}}">
+                            <span>{{$message->body}}</span>
+                            <br>
+                            <span class="message-timestamp">{{$message->created_at}}</span>
                         </div>
                     @empty
                     @endforelse
@@ -75,7 +69,7 @@
                         <div class="row mb-3">
                             <img class="col-2 px-lg-0"
                                  src="{{$conversation->participants->where('user_id', '!=',  Auth::id())->first()->user->getUserImage()}}"
-                                 width="100%"
+                                 height="50px"
                                  alt="user profile picture"/>
                             <div class="col-8 text-break my-auto">
                                 <div class="row">
@@ -84,7 +78,7 @@
                                             {{$loop->last ? $participant->user->getFullName() : $participant->user->getFullName() .", "}}
                                         @endforeach
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12 conversation-message-body">
                                         {{$conversation->getLatestMessageAttribute()->body}}
                                     </div>
                                 </div>

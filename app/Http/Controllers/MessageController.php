@@ -42,7 +42,7 @@ class MessageController extends Controller
 
         //https://github.com/cmgmyr/laravel-messenger/pull/210
         if ($currentThread && $currentThread instanceof Collection && $currentThread->count() > 0) {
-            $this->show($currentThread->first()->id);
+            return $this->show($currentThread->first()->id);
         }
 
         return response()->json([

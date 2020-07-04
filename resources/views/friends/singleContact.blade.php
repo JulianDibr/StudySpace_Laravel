@@ -6,7 +6,7 @@
                     <img src="{{$user->getUserImage()}}" width="100%" alt="user profile picture"/>
                 </a>
             </div>
-            <div class="{{$type === "accepted" ? 'col-7' : 'col-8'}}">
+            <div class="px-0 {{$type === "accepted" ? 'col-6' : 'col-8'}}">
                 <div>
                     <a href="{{ route('profile.show', $user->id) }}">
                         {{$user->getFullName()}}
@@ -17,7 +17,7 @@
                 <div>Gemeinsame Kurse: Todo</div>
             </div>
             @if($type === "accepted")
-                <div class="col-1 px-0 text-center ">
+                <div class="col-2 text-center ">
                     <button class="btn" type="button" data-toggle="dropdown">
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
