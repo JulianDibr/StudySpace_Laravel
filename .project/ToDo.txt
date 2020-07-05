@@ -15,3 +15,7 @@ Weitere Felder je Typ
 Current User aus Mitgliederliste nehmen
 Image preview
 Kalender
+Mobile Anpassen
+    navigation
+    Nachrichten
+Unterseiten alle gleiche breite

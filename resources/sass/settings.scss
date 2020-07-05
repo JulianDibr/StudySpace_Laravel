@@ -1,0 +1,54 @@
+.settings-save {
+    padding: 15px;
+    color: $white-color;
+    background-color: $light-green-color;
+    margin-top: 20px;
+}
+
+.settings-save:active, .settings-save-btn.active, .settings-save:hover {
+    background-color: $dark-green-color;
+    color: $white-color;
+}
+
+.settings-input {
+    height: 50px;
+    width: 100%;
+    background-color: #fcfcfc;
+    border: $border;
+    border-radius: $border-radius;
+    padding: 0 10px;
+}
+
+.settings-label{
+    margin-top: 20px;
+    margin-bottom: 3px;
+}
+
+.delete-acc-btn {
+    padding: 15px;
+    background-color: $red-color;
+    color: $white-color;
+
+    &:hover {
+        background-color: $red-hover-color;
+        color: $white-color;
+    }
+
+    &:active {
+        background-color: $red-color-active;
+        color: $white-color;
+    }
+}
+
+.cancel-btn {
+    padding: 15px;
+    border: $border;
+
+    &:hover {
+        background-color: $white-hover-color;
+    }
+
+    &:active {
+        background-color: $white-active-color;
+    }
+}
