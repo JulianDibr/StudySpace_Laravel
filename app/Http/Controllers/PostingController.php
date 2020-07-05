@@ -7,12 +7,9 @@ use App\Posting;
 use App\Voting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
-class PostingController extends Controller
-{
-    public function store(Request $request, $location_type, $location_id)
-    {
+class PostingController extends Controller {
+    public function store(Request $request, $location_type, $location_id) {
         $validatedData = $request->validate([
             'content' => ['required', 'max:1000'],
         ]);
@@ -31,8 +28,7 @@ class PostingController extends Controller
         return redirect()->back();
     }
 
-    public function show($id)
-    {
+    public function show($id) {
         $posting = Posting::find($id);
 
         return response()->json([
@@ -43,18 +39,24 @@ class PostingController extends Controller
         ]);
     }
 
-    public function edit(Posting $posting)
-    {
+    public function edit(Posting $posting) {
         //
     }
 
-    public function update(Request $request, Posting $posting)
-    {
-        //
+    public function update(Request $request, Posting $posting) {
+        $validatedData = $request->validate([
+            'content_update' => ['required', 'max:1000'],
+        ]);
+
+        if ($posting->user_id === Auth::id()) {
+            $posting->content = $request->content_update;
+            $posting->save();
+        }
+
+        return redirect()->back();
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $posting = Posting::find($id);
         if ($posting !== null) {
             if ($posting->user_id == Auth::id()) {
@@ -72,8 +74,7 @@ class PostingController extends Controller
         return redirect()->back();
     }
 
-    public function voting(Request $request)
-    {
+    public function voting(Request $request) {
         $user = Auth::id();
         $existingVoting = Voting::where([['posting_id', $request->postingId], ['user_id', $user]])->first();
 
@@ -105,8 +106,7 @@ class PostingController extends Controller
         ]);
     }
 
-    private function userAuthForLocation($location_id, $location_type)
-    {
+    private function userAuthForLocation($location_id, $location_type) {
         $user = Auth::user();
 
         if ($location_type == 0 && $location_id == 0) {

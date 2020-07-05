@@ -35,6 +35,18 @@ $(function () {
     body.on('click', '.submit-comment-edit', function () {
         submitEditedComment($(this));
     });
+
+    body.on('click', '.edit-posting-btn', function () {
+        editPosting($(this));
+    })
+
+    body.on('click', '.submit-posting-edit', function () {
+        submitEditedPosting($(this));
+    })
+
+    body.on('click', '.cancel-posting-edit', function () {
+        cancelEditPosting($(this));
+    })
 });
 
 function loadPosting(id) {
@@ -160,4 +172,20 @@ function submitEditedComment(btn) {
             $('#posting-modal').find('.modal-body').replaceWith(response.data.modal);
         }
     });
+}
+
+function editPosting(btn) {
+    let container = btn.closest('.posting-container');
+    let id = container.attr('data-posting-id');
+    let postingContentContainer = container.find('.posting-content-container');
+
+    postingContentContainer.find('.posting-content-trigger').addClass('d-none');
+    postingContentContainer.find('.edit-posting-container').removeClass('d-none');
+}
+
+function cancelEditPosting(btn) {
+    let postingContentContainer = btn.closest('.posting-container').find('.posting-content-container');
+
+    postingContentContainer.find('.posting-content-trigger').removeClass('d-none');
+    postingContentContainer.find('.edit-posting-container').addClass('d-none');
 }

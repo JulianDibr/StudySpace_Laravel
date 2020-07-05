@@ -19,7 +19,7 @@ class CourseController extends Controller
         return view('course.singleCourse.edit', compact('course'));
     }
 
-    public function store(CourseRequest $request) //TODO: Request Handler
+    public function store(CourseRequest $request)
     {
         $admin = Auth::user();
         //Store new course

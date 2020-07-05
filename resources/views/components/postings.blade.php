@@ -6,7 +6,10 @@
                     <img src="{{Auth::user()->getUserImage()}}" width="100%" alt="user profile picture"/>
                 </div>
             </div>
-            <div class="col-9 my-auto">
+            <div class="col-9">
+                <div class="row">
+                    <span class="posting-location-name col-12">Neuen Post erstellen</span>
+                </div>
             </div>
         </div>
 
@@ -73,8 +76,7 @@
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ route('postings.edit', $posting->id) }}">Beitrag
-                                editieren</a>
+                            <button class="dropdown-item edit-posting-btn">Beitrag editieren</button>
                             <a class="dropdown-item" onclick="$(this).next('.destroy-posting').submit()">Beitrag
                                 löschen</a>
                             <form class="destroy-posting d-none"
@@ -89,8 +91,29 @@
 
             <div>
                 <div class="row mt-3">
-                    <div class="col-12">
-                        <p class="p-2 posting-content">{{$posting->content}}</p>
+                    <div class="col-12 posting-content-container">
+                        <p class="p-2 posting-content posting-content-trigger">{{$posting->content}}</p>
+                        <div class="edit-posting-container d-none">
+                            <form action="{{route('postings.update', $posting->id)}}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <textarea name="content_update" style="min-height: 100px"
+                                          class="p-2 posting-content {{$errors->has('content') ?'validation-error-border' : 'border'}}"
+                                          placeholder="Was möchtest du posten?">{{$posting->content}}</textarea>
+                                <div class="row mt-1">
+                                    <div class="col-6 text-center">
+                                        <button class="cancel-posting-edit btn" type="button">
+                                            <i class="fa-lg far fa-times-circle"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <button class="btn submit-posting-edit">
+                                            <i class="fa-lg far fa-check-circle icon-light-green"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
 

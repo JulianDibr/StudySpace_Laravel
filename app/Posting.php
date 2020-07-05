@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class Posting extends Model
 {
@@ -79,11 +80,11 @@ class Posting extends Model
                 return url('profile/' . $this->location_id);
             case 2:
                 return url('school/' . $this->location_id);
-            case 3: //TODO: Check if course ids include this id
+            case 3:
                 return url('course/' . $this->location_id);
-            case 4: //TODO: Check if group ids include this id
+            case 4:
                 return url('group/' . $this->location_id);
-            case 5: //TODO: Check if group ids include this id
+            case 5:
                 return url('project/' . $this->location_id);
         }
 
@@ -99,13 +100,13 @@ class Posting extends Model
             case 2:
                 $school = School::find($this->location_id);
                 return "in " . $school->name;
-            case 3: //TODO: Check if course ids include this id
+            case 3:
                 $course = Course::find($this->location_id);
                 return "in " . $course->name;
-            case 4: //TODO: Check if course ids include this id
+            case 4:
                 $group = Group::find($this->location_id);
                 return "in " . $group->name;
-            case 5: //TODO: Check if course ids include this id
+            case 5:
                 $project = Project::find($this->location_id);
                 return "in " . $project->name;
         }

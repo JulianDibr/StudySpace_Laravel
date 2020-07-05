@@ -1,8 +1,4 @@
 $(function () {
-    bindButtons();
-});
-
-function bindButtons() {
     let body = $('body');
     //Bind Reset Button for new Posting
     $('.new-posting-reset').on('click', function () {
@@ -20,11 +16,10 @@ function bindButtons() {
         let reload = !$(this).closest('.posting-container').hasClass('modal-content');
         votePosting(postingId, 0, reload);
     });
-}
+});
 
 function votePosting(postingId, isUpvote, reload = true) {
     //Toggle Class -> send toggling of vote to model
-    //TODO: In allgemeine JS auslagern
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
