@@ -48,7 +48,7 @@ class CourseController extends Controller
     public function edit(course $course)
     {
         //Only open edit mode when user is the admin
-        if (Auth::user()->id == $course->admin_id) {
+        if (Auth::id() == $course->admin_id) {
             return view('course.singleCourse.edit', compact('course'));
         } else {
             return redirect()->route('course.show', $course);

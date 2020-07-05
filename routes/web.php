@@ -72,3 +72,9 @@ Route::resource('course', 'CourseController');
 //Messages
 Route::resource('messages', 'MessageController');
 Route::get('messages/create/{id}', 'MessageController@create');
+
+//Calender
+Route::resource('calender', 'CalenderController');
+
+//Settings
+Route::resource('settings', 'SettingsController');

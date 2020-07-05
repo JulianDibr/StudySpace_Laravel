@@ -2,10 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-class CourseUserTableSeeder extends Seeder
-{
-    public function run()
-    {
+class CourseUserTableSeeder extends Seeder {
+    public function run() {
         DB::table('course_user')->delete();
         DB::table('course_user')->insert([
             ['course_id' => 1, 'user_id' => 1],

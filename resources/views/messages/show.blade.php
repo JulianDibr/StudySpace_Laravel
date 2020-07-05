@@ -20,7 +20,7 @@
             <div class="col-3">
             </div>
         </div>
-        <div class="row message-view">
+        <div class="row message-view no-scrollbar">
             <div class="col-12 message-view-inner">
                 @if($currentThread)
                     @forelse($currentThread->messages as $message)
@@ -30,7 +30,7 @@
                         <div class="{{$currentUsers ? 'message-by-me' : 'message-by-others'}}">
                             <span>{{$message->body}}</span>
                             <br>
-                            <span class="message-timestamp">{{$message->created_at}}</span>
+                            <span class="message-timestamp">{{$message->created_at->format('d.m.Y H:i:s')}}</span>
                         </div>
                     @empty
                     @endforelse
@@ -64,9 +64,9 @@
         <div class="conversation-list row">
             <div class="col-12">
                 @forelse(Auth::user()->getConversations() as $conversation)
-                    <button class="btn text-left p-0 pl-1 load-conversation" type="button"
+                    <button class="btn mb-3 text-left p-0 pl-1 load-conversation" type="button"
                             data-conversation-id="{{$conversation->id}}">
-                        <div class="row mb-3">
+                        <div class="row">
                             <img class="col-2 px-lg-0"
                                  src="{{$conversation->participants->where('user_id', '!=',  Auth::id())->first()->user->getUserImage()}}"
                                  height="50px"
@@ -97,9 +97,9 @@
         <div class="contacts-list row d-none">
             <div class="col-12">
                 @foreach(Auth::user()->getFriends() as $contact)
-                    <button class="btn text-left p-0 pl-1 start-conversation" type="button"
+                    <button class="btn mb-3 text-left p-0 pl-1 start-conversation" type="button"
                             data-user-id="{{$contact->id}}">
-                        <div class="row mb-3">
+                        <div class="row">
                             <img class="col-2 px-lg-0" src="{{$contact->getUserImage()}}" width="100%"
                                  alt="user profile picture"/>
                             <div class="col-10 text-break my-auto">

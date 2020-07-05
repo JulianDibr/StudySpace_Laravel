@@ -48,7 +48,7 @@ class GroupController extends Controller
     {
         //TODO: durch $id ersetzen nur aufrufen wenn gefunden kurse auch
         //Only open edit mode when user is the admin
-        if (Auth::user()->id == $group->admin_id) {
+        if (Auth::id() == $group->admin_id) {
             return view('group.singleGroup.edit', compact('group'));
         } else {
             return redirect()->route('group.show', $group);

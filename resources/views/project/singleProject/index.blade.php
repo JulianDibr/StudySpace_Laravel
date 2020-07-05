@@ -28,7 +28,7 @@
                     <img src="{{$project->getProjectImage()}}" alt="profile picture" width="100%"
                          class="rounded-circle col-12">
                 </div>
-                @if(Auth::user()->id === $project->admin_id)
+                @if(Auth::id() === $project->admin_id)
                     <div class="row mt-2">
                         <div class="col-12">
                             <a class="btn w-100 edit-project-btn green-standard-btn" type="button" href="{{route('project.edit', $project)}}">Projekt editieren</a>

@@ -110,7 +110,7 @@
     padding: 15px;
 }
 
-.green-standard-btn{
+.green-standard-btn {
     padding: 5px 10px;
     font-size: 14px;
     border-radius: $border-radius;
@@ -125,5 +125,14 @@
     &:active {
         background-color: $light-green-color-active;
         color: $white;
+    }
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
     }
 }

@@ -39,7 +39,7 @@
                 <div class="row">
                     <img src="{{$profile->getUserImage()}}" alt="profile picture" width="100%" class="rounded-circle col-12">
                 </div>
-                @if(Auth::user()->id !== $profile->id)
+                @if(Auth::id() !== $profile->id)
                     <div class="row mt-2">
                         <div class="col-12">
                             @if(Auth::user()->hasFriendRequestFrom($profile))

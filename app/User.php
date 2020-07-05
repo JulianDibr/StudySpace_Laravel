@@ -11,8 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
     use Notifiable;
     use Friendable;
     use Messagable;
@@ -39,33 +38,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function postings()
-    {
+    public function postings() {
         return $this->hasMany('App\Posting');
     }
 
-    public function school()
-    {
+    public function school() {
         return $this->belongsTo('App\School');
     }
 
-    public function courses()
-    {
+    public function courses() {
         return $this->belongsToMany('App\Course');
     }
 
-    public function groups()
-    {
+    public function groups() {
         return $this->belongsToMany('App\Group');
     }
 
-    public function projects()
-    {
+    public function projects() {
         return $this->belongsToMany('App\Project');
     }
 
-    public function getUserImage()
-    {
+    public function settings() {
+
+    }
+
+    public function getUserImage() {
         if ($this->profile_picture) {
             return asset('storage/profile_pictures/users/' . $this->profile_picture);
         } else {
@@ -73,21 +70,18 @@ class User extends Authenticatable
         }
     }
 
-    public function getBirthdayAttribute($date)
-    {
+    public function getBirthdayAttribute($date) {
         if ($date !== null) {
             return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y');
         }
         return null;
     }
 
-    public function getFullName()
-    {
+    public function getFullName() {
         return $this->first_name . " " . $this->last_name;
     }
 
-    public function getAllNonFriends()
-    {
+    public function getAllNonFriends() {
         $currentUser = Auth::user();
         $allUsers = User::where('id', '!=', $currentUser->id)->inRandomOrder()->get();
         $diffUserFriends = $allUsers->diff($currentUser->getFriends());
@@ -95,8 +89,7 @@ class User extends Authenticatable
         return $receivedRequests->diff($currentUser->getPendingFriendships()->pluck('recipient'));
     }
 
-    public function getRecommendedCourses()
-    {
+    public function getRecommendedCourses() {
         $schoolCourses = $this->school->courses;
         if ($schoolCourses !== null) {
             return $schoolCourses->diff($this->courses);
@@ -105,8 +98,7 @@ class User extends Authenticatable
         }
     }
 
-    public function getRecommendedGroups()
-    {
+    public function getRecommendedGroups() {
         $allGroups = $this->school->groups;
         if ($allGroups !== null) {
             return $allGroups->diff($this->groups);
@@ -115,8 +107,7 @@ class User extends Authenticatable
         }
     }
 
-    public function getRecommendedProjects()
-    {
+    public function getRecommendedProjects() {
         $allProjects = Project::all();
         if ($allProjects !== null) {
             return $allProjects->diff($this->projects);
@@ -125,7 +116,7 @@ class User extends Authenticatable
         }
     }
 
-    public function getConversations(){
+    public function getConversations() {
         return Thread::forUser(Auth::id())->latest('updated_at')->get();
     }
 }

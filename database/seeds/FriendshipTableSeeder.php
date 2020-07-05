@@ -2,10 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-class FriendshipTableSeeder extends Seeder
-{
-    public function run()
-    {
+class FriendshipTableSeeder extends Seeder {
+    public function run() {
         DB::table('friendships')->delete();
         DB::table('friendships')->insert([
             [

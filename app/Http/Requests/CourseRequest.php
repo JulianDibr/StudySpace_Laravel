@@ -17,7 +17,7 @@ class CourseRequest extends FormRequest
         $course = $this->route('course');
         //Check if user is admin for this course -> if no admin_id is set return true
         if (isset($course->admin_id)) {
-            return Auth::user()->id === $course->admin_id;
+            return Auth::id() === $course->admin_id;
         } else {
             return true;
         }

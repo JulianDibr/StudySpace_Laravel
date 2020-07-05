@@ -1,5 +1,5 @@
 .add-to-friends-btn, .accept-friend-request-btn {
-    height: 40px;
+    min-height: 40px;
     background-color: $light-green-color;
     color: $white-color;
 
@@ -10,7 +10,7 @@
 }
 
 .rm-from-friends-btn, .cancel-friend-request-btn, .decline-friend-request-btn {
-    height: 40px;
+    min-height: 40px;
     background-color: $white-color;
     border: $border;
     color: $black;

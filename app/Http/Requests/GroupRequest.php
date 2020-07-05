@@ -12,7 +12,7 @@ class GroupRequest extends FormRequest
         $group = $this->route('group');
         //Check if user is admin for this course -> if no admin_id is set return true
         if (isset($group->admin_id)) {
-            return Auth::user()->id === $group->admin_id;
+            return Auth::id() === $group->admin_id;
         } else {
             return true;
         }

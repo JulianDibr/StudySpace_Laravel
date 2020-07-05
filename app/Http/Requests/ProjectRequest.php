@@ -12,7 +12,7 @@ class ProjectRequest extends FormRequest
         $project = $this->route('project');
         //Check if user is admin for this course -> if no admin_id is set return true
         if (isset($project->admin_id)) {
-            return Auth::user()->id === $project->admin_id;
+            return Auth::id() === $project->admin_id;
         } else {
             return true;
         }

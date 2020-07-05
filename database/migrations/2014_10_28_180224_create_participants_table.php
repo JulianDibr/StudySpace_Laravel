@@ -5,10 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParticipantsTable extends Migration
-{
-    public function up()
-    {
+class CreateParticipantsTable extends Migration {
+    public function up() {
         Schema::create(Models::table('participants'), function (Blueprint $table) {
             $table->increments('id');
             $table->integer('thread_id')->unsigned();
@@ -18,8 +16,7 @@ class CreateParticipantsTable extends Migration
         });
     }
 
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists(Models::table('participants'));
     }
 }

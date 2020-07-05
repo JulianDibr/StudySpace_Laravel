@@ -31,7 +31,7 @@
                     <img src="{{$course->getCourseImage()}}" alt="profile picture" width="100%"
                          class="rounded-circle col-12">
                 </div>
-                @if(Auth::user()->id === $course->admin_id)
+                @if(Auth::id() === $course->admin_id)
                     <div class="row mt-2">
                         <div class="col-12">
                             <a class="btn w-100 edit-course-btn green-standard-btn" type="button" href="{{route('course.edit', $course)}}">Kurs editieren</a>

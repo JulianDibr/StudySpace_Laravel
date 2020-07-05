@@ -2,10 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-class CommentTableSeeder extends Seeder
-{
-    public function run()
-    {
+class CommentTableSeeder extends Seeder {
+    public function run() {
         DB::table('comments')->delete();
         DB::table('comments')->insert([
             [

@@ -2,10 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-class SchoolUserTableSeeder extends Seeder
-{
-    public function run()
-    {
+class SchoolUserTableSeeder extends Seeder {
+    public function run() {
         DB::table('school_user')->delete();
         DB::table('school_user')->insert([
             [

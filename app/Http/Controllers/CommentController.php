@@ -19,7 +19,7 @@ class CommentController extends Controller
 
         $comment = new Comment($validatedData);
 
-        $comment->user_id = Auth::user()->id;
+        $comment->user_id = Auth::id();
         $comment->posting_id = $posting_id;
         $comment->comment_id = $comment_id == -1 ? null : $comment_id;
 
@@ -36,7 +36,7 @@ class CommentController extends Controller
             'content' => ['required', 'max:1000'],
         ]);
 
-        if ($comment->user_id == Auth::user()->id) {
+        if ($comment->user_id == Auth::id()) {
             $comment->content = $validatedData['content'];
             $comment->save();
         }
@@ -50,7 +50,7 @@ class CommentController extends Controller
         $comment = Comment::find($id);
 
         if ($comment !== null) {
-            if ($comment->user_id == Auth::user()->id) {
+            if ($comment->user_id == Auth::id()) {
                 foreach($comment->comments as $subcomment){
                     $subcomment->votings()->delete();
                     $subcomment->delete();
@@ -67,7 +67,7 @@ class CommentController extends Controller
 
     public function voting(Request $request)
     {
-        $user = Auth::user()->id;
+        $user = Auth::id();
         $existingVoting = CommentVoting::where([['comment_id', $request->commentId], ['user_id', $user]])->first();
 
         //Für den Post und User existiert noch kein voting

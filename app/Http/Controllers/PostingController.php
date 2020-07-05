@@ -20,7 +20,7 @@ class PostingController extends Controller
         if ($this->userAuthForLocation($location_id, $location_type)) {
             $posting = new Posting($validatedData);
 
-            $posting->user_id = Auth::user()->id;
+            $posting->user_id = Auth::id();
             $posting->location_type = $location_type;
             $posting->location_id = $location_id;
             $posting->user_type = 0; //TODO: Wofür?
@@ -57,7 +57,7 @@ class PostingController extends Controller
     {
         $posting = Posting::find($id);
         if ($posting !== null) {
-            if ($posting->user_id == Auth::user()->id) {
+            if ($posting->user_id == Auth::id()) {
 
                 foreach ($posting->comments() as $comment) {
                     $comment->votings()->delete();
@@ -74,7 +74,7 @@ class PostingController extends Controller
 
     public function voting(Request $request)
     {
-        $user = Auth::user()->id;
+        $user = Auth::id();
         $existingVoting = Voting::where([['posting_id', $request->postingId], ['user_id', $user]])->first();
 
         //Für den Post und User existiert noch kein voting

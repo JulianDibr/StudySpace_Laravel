@@ -36,17 +36,17 @@ class Comment extends Model
 
     public function getIsUpvoted()
     {
-        return $this->votings->where('is_upvote', true)->contains('user_id', Auth::user()->id);
+        return $this->votings->where('is_upvote', true)->contains('user_id', Auth::id());
     }
 
     public function getIsDownvoted()
     {
-        return $this->votings->where('is_upvote', false)->contains('user_id', Auth::user()->id);
+        return $this->votings->where('is_upvote', false)->contains('user_id', Auth::id());
     }
 
     public function ownComment()
     {
-        return $this->user_id === Auth::user()->id;
+        return $this->user_id === Auth::id();
     }
 
     public function setFirstNameAttribute($value)

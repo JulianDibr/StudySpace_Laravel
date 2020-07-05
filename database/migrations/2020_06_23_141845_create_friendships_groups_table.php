@@ -6,8 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 /**
  * Class CreateFriendshipsGroupsTable
  */
-class CreateFriendshipsGroupsTable extends Migration
-{
+class CreateFriendshipsGroupsTable extends Migration {
 
     public function up() {
 

@@ -3,8 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFriendshipsTable extends Migration
-{
+class CreateFriendshipsTable extends Migration {
 
     public function up() {
 

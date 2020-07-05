@@ -4,10 +4,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PostingsTableSeeder extends Seeder
-{
-    public function run()
-    {
+class PostingsTableSeeder extends Seeder {
+    public function run() {
         DB::table('postings')->delete();
         DB::table('postings')->insert([
             [

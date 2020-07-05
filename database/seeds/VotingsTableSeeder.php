@@ -3,10 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class VotingsTableSeeder extends Seeder
-{
-    public function run()
-    {
+class VotingsTableSeeder extends Seeder {
+    public function run() {
         DB::table('votings')->delete();
         DB::table('votings')->insert([
             [

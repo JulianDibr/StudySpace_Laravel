@@ -4,10 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectUserTable extends Migration
-{
-    public function up()
-    {
+class CreateProjectUserTable extends Migration {
+    public function up() {
         Schema::create('project_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
@@ -20,8 +18,7 @@ class CreateProjectUserTable extends Migration
         });
     }
 
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('project_user');
     }
 }

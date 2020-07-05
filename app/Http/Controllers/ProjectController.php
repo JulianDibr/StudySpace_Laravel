@@ -48,7 +48,7 @@ class ProjectController extends Controller
     {
         //TODO: durch $id ersetzen nur aufrufen wenn gefunden kurse auch
         //Only open edit mode when user is the admin
-        if (Auth::user()->id == $project->admin_id) {
+        if (Auth::id() == $project->admin_id) {
             return view('project.singleProject.edit', compact('project'));
         } else {
             return redirect()->route('project.show', $project);

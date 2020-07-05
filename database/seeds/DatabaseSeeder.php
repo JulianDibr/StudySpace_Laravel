@@ -2,10 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
-    public function run()
-    {
+class DatabaseSeeder extends Seeder {
+    public function run() {
         $this->call(SchoolTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(PostingsTableSeeder::class);

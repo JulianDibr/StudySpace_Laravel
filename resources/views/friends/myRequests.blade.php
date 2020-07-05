@@ -6,12 +6,12 @@
             </div>
             <div class="row">
                 @foreach(Auth::user()->getFriendRequests()->sortBy('last_name') as $friend)
-                    @if(Auth::user()->id !== $friend->sender->id)
+                    @if(Auth::id() !== $friend->sender->id)
                         @include('friends.singleContact', ['user' => $friend->sender, 'type' => 'pending', 'received' => true])
                     @endif
                 @endforeach
                     @foreach(Auth::user()->getPendingFriendships()->sortBy('last_name') as $friend)
-                    @if(Auth::user()->id !== $friend->recipient->id)
+                    @if(Auth::id() !== $friend->recipient->id)
                         @include('friends.singleContact', ['user' => $friend->recipient, 'type' => 'pending', 'received' => false])
                     @endif
                 @endforeach
