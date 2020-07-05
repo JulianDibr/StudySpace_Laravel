@@ -59,11 +59,13 @@ Route::get('projects', 'ProjectController@index')->name('projects.index');
 Route::resource('project', 'ProjectController');
 
 //Friendshipsystem
-Route::post('friend/add/{id}', 'FriendController@sendFriendRequest')->name('friend.add');
-Route::post('friend/remove/{id}', 'FriendController@removeFriend')->name('friend.remove');
-Route::post('friend/accept/{id}', 'FriendController@acceptFriend')->name('friend.accept');
-Route::post('friend/decline/{id}', 'FriendController@declineFriend')->name('friend.decline');
-Route::get('friend/list', 'FriendController@showList')->name('friend.showList');
+Route::prefix('friend')->name('friend.')->group(function () {
+    Route::post('add/{id}', 'FriendController@sendFriendRequest')->name('add');
+    Route::post('remove/{id}', 'FriendController@removeFriend')->name('remove');
+    Route::post('accept/{id}', 'FriendController@acceptFriend')->name('accept');
+    Route::post('decline/{id}', 'FriendController@declineFriend')->name('decline');
+    Route::get('list', 'FriendController@showList')->name('showList');
+});
 
 //Courses
 Route::get('courses', 'CourseController@index')->name('courses.index');
