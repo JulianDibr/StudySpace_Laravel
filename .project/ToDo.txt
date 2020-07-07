@@ -4,10 +4,9 @@ Profil <img> verbessern => Überall ersetzen
 Nachrichten um Files erweitern?
 Gruppenchats? => Namensanzeige in Bubble bei mehreren Usern
 Chats aus einer Gruppe/Projekt/Kurs mitglieder liste generieren
-Settings/Profil editieren
+Settings/Profil editieren , Profilbild upload
 Registrierung => Schule angeben
 Profile -> Liste seiner Freunde=?
-Geburtstagshinweis
 Gemeinsame Kurse und Projekte anzeigen
 Projekte, Gruppen => Offen, Einladungs, Bewerbung Switch => Jeweilige Anzeige in overview
 Weitere Felder je Typ

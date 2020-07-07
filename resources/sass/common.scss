@@ -136,3 +136,44 @@
         display: none;
     }
 }
+
+.edit-image-container {
+    //Nach Quelle: https://www.w3schools.com/howto/howto_css_image_overlay_icon.asp
+    position: relative;
+    width: 150px;
+
+    /* Make the image to responsive */
+    .edit-image-current-image {
+        width: 100%;
+        height: auto;
+    }
+
+    /* The overlay effect (full height and width) - lays on top of the container and over the image */
+    .edit-image-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .3s ease;
+        background-color: rgba(255, 255, 255, 0.85);
+        cursor: pointer;
+
+        /* When you mouse over the container, fade in the overlay icon*/
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .edit-image-icon{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}

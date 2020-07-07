@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="row">
-        <div class="col-6">
-            <div class="row mb-2">
-                <h1 class="friends-headline col-12">Optionen</h1>
-            </div>
-            <form method="POST" action="{{ route('settings.update', $user->id) }}">
-                @csrf
-                @method('PUT')
+    <form method="POST" action="{{ route('settings.update', $user->id) }}">
+        @csrf
+        @method('PUT')
+        <div class="row">
+            <div class="col-6">
+                <div class="row mb-2">
+                    <h1 class="friends-headline col-12">Optionen</h1>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="first_name" class="settings-label">Vorname</label>
@@ -88,16 +88,27 @@
                         </button>
                     </div>
                 </div>
-            </form>
 
-            <button class="delete-acc-btn btn mt-5" data-toggle="modal" data-target="#delete-account-modal">Meinen Account löschen</button>
-        </div>
-        <div class="col-6">
-            <div class="row mb-2">
-                <h1 class="friends-headline col-12">Profilbild ändern</h1>
+                <button class="delete-acc-btn btn mt-5" data-toggle="modal" data-target="#delete-account-modal">Meinen Account löschen</button>
+            </div>
+            <div class="col-6">
+                <div class="row mb-2">
+                    <h1 class="friends-headline col-12">Profilbild ändern</h1>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="margin-top: 20px">
+                        <label for="profile_picture" class="edit-image-container">
+                            <img src="{{$user->getUserImage()}}" alt="" width="100%" class="edit-image-current-image">
+                            <div class="edit-image-overlay">
+                                <i class="fas fa-edit fa-2x edit-image-icon"></i>
+                            </div>
+                        </label>
+                        <input class="d-none" id="profile_picture" name="profile_picture" type="file">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
     @include('settings.deleteAccountModal')
 @endsection

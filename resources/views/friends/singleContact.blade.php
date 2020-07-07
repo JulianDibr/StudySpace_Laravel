@@ -11,6 +11,9 @@
                     <a href="{{ route('profile.show', $user->id) }}">
                         {{$user->getFullName()}}
                     </a>
+                    @if($user->todayBirthday())
+                        <i class="ml-2 fas fa-birthday-cake" data-toggle="tooltip" title="{{$user->first_name. " hat heute Geburtstag."}}"></i>
+                    @endif
                 </div>
                 <div>Gemeinsame Freunde: {{$user->getMutualFriendsCount(Auth::user())}}</div>
                 <div>Gemeinsame Projekte: Todo</div>

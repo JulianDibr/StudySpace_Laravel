@@ -77,6 +77,13 @@ class User extends Authenticatable {
         return null;
     }
 
+    public function todayBirthday() {
+        if($this->birthday !== null) {
+            return Carbon::now()->isBirthday($this->birthday);
+        }
+        return false;
+    }
+
     public function getFullName() {
         return $this->first_name . " " . $this->last_name;
     }

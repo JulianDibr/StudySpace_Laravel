@@ -14,7 +14,11 @@
         <div id="user-profile" class="row">
             <div class="col-9">
                 <div class="row">
-                    <span class="col-12">{{$profile->getFullName()}}</span>
+                    <span class="col-12">{{$profile->getFullName()}}
+                        @if($profile->todayBirthday())
+                            <i class="ml-2 fas fa-birthday-cake" data-toggle="tooltip" title="{{$profile->first_name. " hat heute Geburtstag."}}"></i>
+                        @endif
+                    </span>
                 </div>
                 <div class="row">
                     <span class="col-12">Geburtstag: {{$profile->birthday ?? 'Noch nicht hinterlegt'}}</span>
