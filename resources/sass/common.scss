@@ -10,6 +10,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import "~bootstrap-select/dist/css/bootstrap-select.min.css";
 
 * {
     outline: none !important;
@@ -176,4 +177,8 @@
         -ms-transform: translate(-50%, -50%);
         text-align: center;
     }
+}
+
+.form-control:focus{
+    border: 1px solid $light-green-color;
 }

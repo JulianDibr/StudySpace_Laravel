@@ -67,6 +67,21 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                <select id="school_id" type="school_id" class="selectpicker w-100 @error('school_id') is-invalid @enderror" name="school_id"
+                        required data-style="index-input index-selectpicker" data-live-search="true">
+                    @foreach(\App\School::all()->sortBy('name') as $school)
+                        <option class="index-selectpicker-option" value="{{$school->id}}">{{$school->name}}</option>
+                    @endforeach
+                </select>
+
+                @error('school_id')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+            </div>
+        </div>
+
         <div class="row mb-0">
             <div class="col">
                 <button type="submit" class="btn index-btn">

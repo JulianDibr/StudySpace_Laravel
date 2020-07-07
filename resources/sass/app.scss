@@ -35,3 +35,11 @@
     margin-top: 20px;
     padding: 0 10px;
 }
+
+.index-selectpicker,.index-selectpicker-option{
+    padding: 15px 10px;
+}
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle{
+    outline: none !important //Fix too thick outline
+}
