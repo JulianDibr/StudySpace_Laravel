@@ -66,9 +66,18 @@
                         @enderror
                     </div>
 
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="user_invite" name="user_invite" value="1" {{$course->user_invite == 1 ? 'checked' : ''}}>
+                        <label class="custom-control-label" for="user_invite" >Einladungen erlauben</label>
+                    </div>
+
                     <button type="button" class="submit-course btn green-standard-btn mt-3">{{$course->exists ? 'Kurs updaten' : 'Kurs anlegen'}}</button>
                     @if($course->exists)
-                        <button type="button" class="submit-delete-course btn red-standard-btn mt-3" data-course-id="{{$course->id}}">Kurs löschen</button>
+                        <button class="submit-delete-course btn red-standard-btn mt-3 ml-2" data-course-id="{{$course->id}}">Kurs löschen</button>
+                        <form action="{{route('course.destroy', $course->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                     @endif
                 </div>
             </div>

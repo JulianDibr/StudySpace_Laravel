@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\group;
+use App\Helpers\commonHelpers;
 use App\Http\Requests\GroupRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,7 +49,7 @@ class GroupController extends Controller
     {
         //TODO: durch $id ersetzen nur aufrufen wenn gefunden kurse auch
         //Only open edit mode when user is the admin
-        if (Auth::id() == $group->admin_id) {
+        if ($this->isAdmin($group)) {
             return view('group.singleGroup.edit', compact('group'));
         } else {
             return redirect()->route('group.show', $group);
@@ -59,6 +60,10 @@ class GroupController extends Controller
     {
         $admin = Auth::user();
 
+        if($this->isAdmin($group)) {
+            $group->update($request->all());
+        }
+
         $this->storeUsers($request, $group, $admin);
 
         return redirect()->route('group.show', $group->id);
@@ -66,13 +71,22 @@ class GroupController extends Controller
 
     public function destroy(group $group)
     {
-        //
+        if($this->isAdmin($group)){
+            $group->users()->detach();
+            $group->delete();
+        }
     }
 
     public function storeUsers($request, $group, $admin) {
-        if($request->user_list !== null) {
-            $group->users()->sync(explode(",", $request->user_list)); //TODO: Nur Nutzer der selben school_id zulassen
+        if($this->isAdmin($group) || ($group->user_invite == 1 && $group->users->contains(Auth::id()))) {
+            if ($request->user_list !== null) {
+                $group->users()->sync(explode(",", $request->user_list)); //TODO: Nur Nutzer der selben school_id zulassen
+            }
+            $group->users()->attach($admin); //Include Admin in Group
         }
-        $group->users()->attach($admin); //Include Admin in Group
+    }
+
+    public function isAdmin($group) {
+        return commonHelpers::isAdmin($group);
     }
 }

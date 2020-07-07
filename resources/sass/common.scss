@@ -218,3 +218,8 @@
 .form-control:focus{
     border: 1px solid $light-green-color;
 }
+
+.custom-control-input:checked ~ .custom-control-label::before{
+    background-color: $light-green-color;
+    border-color: $light-green-color;
+}

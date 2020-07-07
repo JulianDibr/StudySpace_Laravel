@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class Posting extends Model
 {
-    use InteractsWithMedia;
+//    use InteractsWithMedia;
 
     protected $fillable = ['user_id', 'content', 'location_type', 'location_id'];
 
@@ -109,6 +109,24 @@ class Posting extends Model
             case 5:
                 $project = Project::find($this->location_id);
                 return "in " . $project->name;
+        }
+
+        return false;
+    }
+
+    public function deletePosting() {
+        if ($this !== null) {
+            if ($this->user_id == Auth::id()) {
+
+                foreach ($this->comments() as $comment) {
+                    $comment->votings()->delete();
+                    $comment->comments()->votings()->delete();
+                    $comment->comments()->delete();
+                    $comment->delete();
+                }
+                $this->votings()->delete();
+                $this->delete();
+            }
         }
     }
 }

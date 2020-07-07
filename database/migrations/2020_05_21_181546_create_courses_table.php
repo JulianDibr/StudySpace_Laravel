@@ -15,6 +15,7 @@ class CreateCoursesTable extends Migration {
             $table->string('abbreviation')->nullable()->default(null);
             $table->string('teacher')->nullable()->default(null);
             $table->string('image')->nullable()->default(null);
+            $table->boolean('user_invite')->default(0);
             $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('users');

@@ -75,7 +75,7 @@ function voteComment(commentId, isUpvote) {
         }
     });
     $.ajax({
-        url: 'comments/voting',
+        url: '/comments/voting',
         method: 'post',
         data: {
             'commentId': commentId,
@@ -92,10 +92,10 @@ function submitComment(form) {
     let posting_id = form.closest('.posting-container').attr('data-posting-id');
 
     if (!form.parent().hasClass('comment-form')) {
-        url = 'comments/' + posting_id + '/-1';
+        url = '/comments/' + posting_id + '/-1';
     } else {
         let comment_id = form.closest('.comment-container').attr('data-comment-id');
-        url = 'comments/' + posting_id + '/' + comment_id;
+        url = '/comments/' + posting_id + '/' + comment_id;
     }
 
     $.ajaxSetup({
@@ -122,7 +122,7 @@ function deleteComment(id) {
         }
     });
     $.ajax({
-        url: 'comments/' + id,
+        url: '/comments/' + id,
         method: 'delete',
         success: function (response) {
             $('#posting-modal').find('.modal-body').replaceWith(response.data.modal);
@@ -155,7 +155,7 @@ function submitEditedComment(btn) {
     let container = btn.closest('.comment-container');
     let id = container.attr('data-comment-id');
     let comment = container.find('.edit-posting-val').val();
-    let url = 'comments/' + id;
+    let url = '/comments/' + id;
 
     $.ajaxSetup({
         headers: {

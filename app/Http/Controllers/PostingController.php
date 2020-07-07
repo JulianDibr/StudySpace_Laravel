@@ -58,19 +58,8 @@ class PostingController extends Controller {
 
     public function destroy($id) {
         $posting = Posting::find($id);
-        if ($posting !== null) {
-            if ($posting->user_id == Auth::id()) {
 
-                foreach ($posting->comments() as $comment) {
-                    $comment->votings()->delete();
-                    $comment->comments()->votings()->delete();
-                    $comment->comments()->delete();
-                    $comment->delete();
-                }
-                $posting->votings()->delete();
-                $posting->delete();
-            }
-        }
+        $posting->deletePosting();
         return redirect()->back();
     }
 

@@ -26,7 +26,7 @@ function votePosting(postingId, isUpvote, reload = true) {
         }
     });
     $.ajax({
-        url: 'postings/voting',
+        url: '/postings/voting',
         method: 'post',
         data: {
             'postingId': postingId,

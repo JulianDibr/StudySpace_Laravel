@@ -40,15 +40,10 @@ Route::post('comments/voting', 'CommentController@voting')->name('comment.voting
 
 //Profiles
 Route::resource('profile', 'ProfileController');
-Route::post('profile/comments/{posting_id}/{comment_id}', 'CommentController@store')->name('comments.store');
-Route::post('profile/comments/voting', 'CommentController@voting')->name('comment.voting');
-Route::post('profile/postings/voting', 'PostingController@voting')->name('posting.voting');
 
 //School
 Route::resource('school', 'SchoolController');
 Route::post('school/comments/{posting_id}/{comment_id}', 'CommentController@store')->name('comments.store');
-Route::post('school/comments/voting', 'CommentController@voting')->name('comment.voting');
-Route::post('school/postings/voting', 'PostingController@voting')->name('posting.voting');
 
 //Groups
 Route::get('groups', 'GroupController@index')->name('groups.index');

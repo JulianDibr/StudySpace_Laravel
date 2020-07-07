@@ -13,6 +13,7 @@ Weitere Felder je Typ
 Image preview
 Kalender
 Mobile Anpassen
-    navigation
     Nachrichten
 Unterseiten alle gleiche breite
+
+deletePosting methode

@@ -25,7 +25,7 @@ $(function () {
             }
         });
         $.ajax({
-            url: 'courses/delete/'+id,
+            url: '/courses/delete/'+id,
             method: 'post',
             success: function (response) {
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\commonHelpers;
 use App\Http\Requests\ProjectRequest;
 use App\Project;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +49,7 @@ class ProjectController extends Controller
     {
         //TODO: durch $id ersetzen nur aufrufen wenn gefunden kurse auch
         //Only open edit mode when user is the admin
-        if (Auth::id() == $project->admin_id) {
+        if ($this->isAdmin($project)) {
             return view('project.singleProject.edit', compact('project'));
         } else {
             return redirect()->route('project.show', $project);
@@ -59,6 +60,10 @@ class ProjectController extends Controller
     {
         $admin = Auth::user();
 
+        if($this->isAdmin($project)) {
+            $project->update($request->all());
+        }
+
         $this->storeUsers($request, $project, $admin);
 
         return redirect()->route('project.show', $project->id);
@@ -66,14 +71,20 @@ class ProjectController extends Controller
 
     public function destroy(project $project)
     {
-        //
+        dd("destroy");
     }
 
     public function storeUsers($request, $project, $admin)
     {
-        if ($request->user_list !== null) {
-            $project->users()->sync(explode(",", $request->user_list)); //TODO: Nur Nutzer der selben school_id zulassen
+        if($this->isAdmin($project) || ($project->user_invite == 1 && $project->users->contains(Auth::id()))) {
+            if ($request->user_list !== null) {
+                $project->users()->sync(explode(",", $request->user_list)); //TODO: Nur Nutzer der selben school_id zulassen
+            }
+            $project->users()->attach($admin); //Include Admin in Project
         }
-        $project->users()->attach($admin); //Include Admin in Project
+    }
+
+    public function isAdmin($project) {
+        return commonHelpers::isAdmin($project);
     }
 }
