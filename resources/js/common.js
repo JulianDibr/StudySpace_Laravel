@@ -7,4 +7,9 @@ $(function () {
 
     //Init tooltips
     $('[data-toggle="tooltip"]').tooltip();
+
+    //Toggle sidebar mobile
+    $('.toggle-sidebar').on('click', function () {
+        $('.sidebar-wrapper').toggleClass('d-none');
+    })
 })

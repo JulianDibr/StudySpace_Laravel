@@ -17,7 +17,7 @@ class User extends Authenticatable {
     use Messagable;
 
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'school_id'
+        'first_name', 'last_name', 'email', 'password', 'school_id', 'birthday'
     ];
 
     /**

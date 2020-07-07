@@ -49,6 +49,14 @@
     height: 100%;
     background-color: $light-green-color;
     padding: 25px 20px;
+    z-index: 10;
+}
+
+@include media-breakpoint-down(sm) {
+    .sidebar-wrapper {
+        right: 0;
+        left: auto;
+    }
 }
 
 .home-content {

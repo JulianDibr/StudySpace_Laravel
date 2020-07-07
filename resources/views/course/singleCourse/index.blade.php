@@ -17,6 +17,9 @@
                     <span class="col-12">{{$course->name}}</span>
                 </div>
                 <div class="row">
+                    <span class="col-12">{{$course->abbreviation}}</span>
+                </div>
+                <div class="row">
                     <span class="col-12">{{$course->description ?? ''}}</span>
                 </div>
                 <div class="row">

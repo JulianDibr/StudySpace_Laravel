@@ -1,21 +1,7 @@
 .add-to-friends-btn, .accept-friend-request-btn {
-    min-height: 40px;
-    background-color: $light-green-color;
-    color: $white-color;
-
-    &:hover {
-        background-color: $light-green-color-hover;
-        color: $white-color;
-    }
+    @extend .green-standard-btn;
 }
 
 .rm-from-friends-btn, .cancel-friend-request-btn, .decline-friend-request-btn {
-    min-height: 40px;
-    background-color: $white-color;
-    border: $border;
-    color: $black;
-
-    &:hover {
-        background-color: $light-grey-color;
-    }
+    @extend .white-standard-btn;
 }

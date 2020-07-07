@@ -57,9 +57,12 @@ class CourseController extends Controller
 
     public function update(CourseRequest $request, course $course)
     {
-        $admin = Auth::user();
+        $admin = Auth::id();
 
-        $this->storeUsers($request, $course, $admin);
+        if($admin == $course->admin_id) {
+            $course->update($request->all());
+            $this->storeUsers($request, $course, $admin);
+        }
         return redirect()->route('course.show', $course->id);
     }
 

@@ -53,7 +53,7 @@
 
                     <div class="add-to-project-user-list">
                         <input type="hidden" name="user_list" class="d-none">
-                        @foreach($users::all()->sortBy('last_name') as $user) {{--TODO: Only relevant users--}}
+                        @foreach(Auth::user()->getFriends()->sortBy('last_name') as $user)
                         <div class="project-user-row row mb-3" style="margin:0" data-user-id="{{$user->id}}">
                             <img class="col-2 px-lg-0" src="{{$user->getUserImage()}}" width="100%"
                                  alt="user profile picture"/>

@@ -15,4 +15,21 @@ $(function () {
         $('input[name="user_list"]').val(idArr.join(","));
         $('#edit-course-form').submit();
     })
+
+    $('.submit-delete-course').on('click', function () {
+        let id = $(this).attr('data-course-id');
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: 'courses/delete/'+id,
+            method: 'post',
+            success: function (response) {
+
+            }
+        });
+    })
 })

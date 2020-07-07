@@ -11,11 +11,11 @@
                 Diese Aktion kann nicht rückgängig gemacht werden!
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn cancel-btn" data-dismiss="modal">Abbrechen</button>
+                <button type="button" class="btn white-standard-btn" data-dismiss="modal">Abbrechen</button>
                 <form action="{{route('settings.destroy', $user->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn delete-acc-btn" onclick="">Löschen</button>
+                    <button type="submit" class="btn red-standard-btn" onclick="">Löschen</button>
                 </form>
             </div>
         </div>

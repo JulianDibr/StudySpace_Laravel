@@ -10,7 +10,6 @@ Profile -> Liste seiner Freunde=?
 Gemeinsame Kurse und Projekte anzeigen
 Projekte, Gruppen => Offen, Einladungs, Bewerbung Switch => Jeweilige Anzeige in overview
 Weitere Felder je Typ
-Current User aus Mitgliederliste nehmen
 Image preview
 Kalender
 Mobile Anpassen

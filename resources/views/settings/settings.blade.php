@@ -5,7 +5,7 @@
         @csrf
         @method('PUT')
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <div class="row mb-2">
                     <h1 class="friends-headline col-12">Optionen</h1>
                 </div>
@@ -83,15 +83,15 @@
 
                 <div class="row mb-0">
                     <div class="col">
-                        <button type="submit" class="btn settings-save">
+                        <button type="submit" class="btn settings-save-btn green-standard-btn">
                             {{ __('Speichern') }}
                         </button>
                     </div>
                 </div>
 
-                <button class="delete-acc-btn btn mt-5" data-toggle="modal" data-target="#delete-account-modal">Meinen Account löschen</button>
+                <button class="red-standard-btn btn mt-5" data-toggle="modal" data-target="#delete-account-modal">Meinen Account löschen</button>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-6 mt-5 mt-md-0">
                 <div class="row mb-2">
                     <h1 class="friends-headline col-12">Profilbild ändern</h1>
                 </div>

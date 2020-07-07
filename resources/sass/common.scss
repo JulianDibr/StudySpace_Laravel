@@ -29,6 +29,9 @@
 
 .icon-white {
     color: $white-color;
+    &:hover {
+        color: $white-hover-color;
+    }
 }
 
 .icon-light-green {
@@ -111,10 +114,14 @@
     padding: 15px;
 }
 
-.green-standard-btn {
+.standard-btn{
     padding: 5px 10px;
     font-size: 14px;
     border-radius: $border-radius;
+}
+
+.green-standard-btn {
+    @extend .standard-btn;
     background-color: $light-green-color;
     color: $white;
 
@@ -126,6 +133,35 @@
     &:active {
         background-color: $light-green-color-active;
         color: $white;
+    }
+}
+
+.red-standard-btn {
+    @extend .standard-btn;
+    background-color: $red-color;
+    color: $white-color;
+
+    &:hover {
+        background-color: $red-hover-color;
+        color: $white-color;
+    }
+
+    &:active {
+        background-color: $red-color-active;
+        color: $white-color;
+    }
+}
+
+.white-standard-btn {
+    @extend .standard-btn;
+    border: $border;
+
+    &:hover {
+        background-color: $white-hover-color;
+    }
+
+    &:active {
+        background-color: $white-active-color;
     }
 }
 
