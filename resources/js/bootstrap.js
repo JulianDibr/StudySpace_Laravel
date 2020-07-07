@@ -11,6 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    var Inputmask = require('inputmask');
 } catch (e) {}
 
 /**

@@ -68,6 +68,19 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col">
+                        <label for="birthday" class="settings-label">Geburtstag</label>
+                        <input id="birthday" type="text"
+                               class="date-mask settings-input @error('birthday') is-invalid @enderror" name="birthday"
+                               placeholder="01.01.1999" value="{{ old('birthday', \Carbon\Carbon::parse($user->birthday)->format('d.m.Y'))}}">
+
+                        @error('birthday')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="row mb-0">
                     <div class="col">
                         <button type="submit" class="btn settings-save">

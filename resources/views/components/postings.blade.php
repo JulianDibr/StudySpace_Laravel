@@ -1,6 +1,6 @@
 <div class="card-columns">
     <div class="posting-container card mb-2 mt-2 p-3">
-        <div class="row h-100">
+{{--        <div class="row h-100">
             <div class="col-3 my-auto">
                 <div class="profile-picture">
                     <img src="{{Auth::user()->getUserImage()}}" width="100%" alt="user profile picture"/>
@@ -8,15 +8,20 @@
             </div>
             <div class="col-9">
                 <div class="row">
-                    <span class="posting-location-name col-12">Neuen Post erstellen</span>
+--}}{{--                    <span class="posting-location-name col-12">Neuen Post erstellen</span>--}}{{--
                 </div>
             </div>
-        </div>
+        </div>--}}
 
         <form method="post" action="{{ route('postings.store', [$location_type, $location_id]) }}">
             @csrf
             <div class="row mt-3">
-                <div class="col-12">
+                <div class="col-3 my-auto">
+                    <div class="profile-picture">
+                        <img src="{{Auth::user()->getUserImage()}}" width="100%" alt="user profile picture"/>
+                    </div>
+                </div>
+                <div class="col-9 pl-0">
                             <textarea name="content" style="min-height: 100px"
                                       class="p-2 posting-content {{$errors->has('content') ?'validation-error-border' : 'border'}}"
                                       placeholder="Was möchtest du posten?"></textarea>

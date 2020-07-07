@@ -14,6 +14,7 @@ mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts
 
 mix.js([
     'resources/js/app.js',
+    'resources/js/common.js',
     'resources/js/posting.js',
     'resources/js/profile.js',
     'resources/js/friendlist.js',
