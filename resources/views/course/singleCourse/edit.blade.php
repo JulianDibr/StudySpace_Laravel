@@ -67,13 +67,16 @@
                     </div>
 
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="user_invite" name="user_invite" value="1" {{$course->user_invite == 1 ? 'checked' : ''}}>
-                        <label class="custom-control-label" for="user_invite" >Einladungen erlauben</label>
+                        <input type="checkbox" class="custom-control-input" id="user_invite" name="user_invite"
+                               value="1" {{$course->user_invite == 1 ? 'checked' : ''}}>
+                        <label class="custom-control-label" for="user_invite">Einladungen erlauben</label>
                     </div>
 
-                    <button type="button" class="submit-course btn green-standard-btn mt-3">{{$course->exists ? 'Kurs updaten' : 'Kurs anlegen'}}</button>
+                    <button type="button"
+                            class="submit-course btn green-standard-btn mt-3">{{$course->exists ? 'Kurs updaten' : 'Kurs anlegen'}}</button>
                     @if($course->exists)
-                        <button type="button" class="btn red-standard-btn mt-3 ml-2" onclick="$('#destroy-course-form').submit();">Kurs löschen</button>
+                        <button type="button" class="btn red-standard-btn mt-3 ml-2" onclick="$('#destroy-course-form').submit();">Kurs löschen
+                        </button>
                     @endif
                 </div>
             </div>
@@ -84,18 +87,18 @@
                     <div class="add-to-course-user-list">
                         <input type="hidden" name="user_list" class="d-none">
                         @foreach(Auth::user()->getFriends()->sortBy('last_name') as $user)
-                        <div class="course-user-row row mb-3" style="margin:0" data-user-id="{{$user->id}}">
-                            <img class="col-2 px-lg-0" src="{{$user->getUserImage()}}" width="100%"
-                                 alt="user profile picture"/>
-                            <div class="col-8 text-break my-auto">
-                                {{$user->getFullName()}}
+                            <div class="course-user-row row mb-3" style="margin:0" data-user-id="{{$user->id}}">
+                                <img class="col-2 px-lg-0" src="{{$user->getUserImage()}}" width="100%"
+                                     alt="user profile picture"/>
+                                <div class="col-8 text-break my-auto">
+                                    {{$user->getFullName()}}
+                                </div>
+                                <button class="add-user col-2 btn {{$course->users->contains($user->id) ? 'd-none' : ''}}"
+                                        type="button"><i class="fas fa-lg fa-plus-circle icon-light-green"></i></button>
+                                <button
+                                    class="remove-user col-2 btn {{$course->users->contains($user->id) ? '' : 'd-none'}}"
+                                    type="button"><i class="fas fa-lg fa-minus-circle icon-red"></i></button>
                             </div>
-                            <button class="add-user col-2 btn {{$course->users->contains($user->id) ? 'd-none' : ''}}"
-                                    type="button"><i class="fas fa-lg fa-plus-circle icon-light-green"></i></button>
-                            <button
-                                class="remove-user col-2 btn {{$course->users->contains($user->id) ? '' : 'd-none'}}"
-                                type="button"><i class="fas fa-lg fa-minus-circle icon-red"></i></button>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -103,8 +106,10 @@
         </div>
     </form>
 
-    <form id="destroy-course-form" action="{{route('course.destroy', $course->id)}}" method="POST">
-        @csrf
-        @method('DELETE')
-    </form>
+    @if($course->exists)
+        <form id="destroy-course-form" action="{{route('course.destroy', $course->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+        </form>
+    @endif
 @endsection

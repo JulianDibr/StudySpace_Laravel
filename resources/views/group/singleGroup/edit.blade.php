@@ -50,9 +50,11 @@
                         </div>
                     </div>
 
-                    <button type="button" class="submit-group btn green-standard-btn mt-3">{{$group->exists ? 'Gruppe updaten' : 'Gruppe anlegen'}}</button>
+                    <button type="button"
+                            class="submit-group btn green-standard-btn mt-3">{{$group->exists ? 'Gruppe updaten' : 'Gruppe anlegen'}}</button>
                     @if($group->exists)
-                        <button type="button" class="btn red-standard-btn mt-3 ml-2" onclick="$('#destroy-group-form').submit();">Gruppe löschen</button>
+                        <button type="button" class="btn red-standard-btn mt-3 ml-2" onclick="$('#destroy-group-form').submit();">Gruppe löschen
+                        </button>
                     @endif
                 </div>
             </div>
@@ -82,8 +84,10 @@
         </div>
     </form>
 
-    <form id="destroy-group-form" action="{{route('group.destroy', $group->id)}}" method="POST">
-        @csrf
-        @method('DELETE')
-    </form>
+    @if($group->exists)
+        <form id="destroy-group-form" action="{{route('group.destroy', $group->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+        </form>
+    @endif
 @endsection

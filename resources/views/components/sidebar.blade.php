@@ -12,8 +12,8 @@
         <li class="{{Route::is('settings.index') ? 'nav-active' : ''}}"><a href="{{route('settings.index')}}"><i class="fas fa-cogs mr-2"></i>Einstellungen</a></li>
         <li><a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt mr-2"></i>{{ __('Logout') }}</a></li>
 
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+{{--        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
-        </form>
+        </form>--}}
     </ul>
 </div>

@@ -50,9 +50,11 @@
                         </div>
                     </div>
 
-                    <button type="button" class="submit-project btn green-standard-btn mt-3">{{$project->exists ? 'Projekt updaten' : 'Projekt anlegen'}}</button>
+                    <button type="button"
+                            class="submit-project btn green-standard-btn mt-3">{{$project->exists ? 'Projekt updaten' : 'Projekt anlegen'}}</button>
                     @if($project->exists)
-                        <button type="button" class="btn red-standard-btn mt-3 ml-2" onclick="$('#destroy-project-form').submit();">Projekt löschen</button>
+                        <button type="button" class="btn red-standard-btn mt-3 ml-2" onclick="$('#destroy-project-form').submit();">Projekt löschen
+                        </button>
                     @endif
                 </div>
             </div>
@@ -82,8 +84,10 @@
         </div>
     </form>
 
-    <form id="destroy-project-form" action="{{route('project.destroy', $project->id)}}" method="POST">
-        @csrf
-        @method('DELETE')
-    </form>
+    @if($project->exists)
+        <form id="destroy-project-form" action="{{route('project.destroy', $project->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+        </form>
+    @endif
 @endsection

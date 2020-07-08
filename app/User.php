@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Thread;
 use Cmgmyr\Messenger\Traits\Messagable;
 use Demency\Friendships\Traits\Friendable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +16,7 @@ class User extends Authenticatable {
     use Messagable;
 
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'school_id', 'birthday'
+        'first_name', 'last_name', 'email', 'password', 'school_id', 'birthday', 'profile_picture'
     ];
 
     /**
@@ -58,8 +57,8 @@ class User extends Authenticatable {
         return $this->belongsToMany('App\Project');
     }
 
-    public function settings() {
-
+    public function setProfilePictureAttribute($value) {
+        $this->attributes['profile_picture'] = $value;
     }
 
     public function getUserImage() {
@@ -78,7 +77,7 @@ class User extends Authenticatable {
     }
 
     public function todayBirthday() {
-        if($this->birthday !== null) {
+        if ($this->birthday !== null) {
             return Carbon::now()->isBirthday($this->birthday);
         }
         return false;

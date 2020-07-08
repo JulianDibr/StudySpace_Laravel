@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <form method="POST" action="{{ route('settings.update', $user->id) }}">
+    <form method="POST" action="{{ route('settings.update', $user->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
@@ -103,7 +103,7 @@
                                 <i class="fas fa-edit fa-2x edit-image-icon"></i>
                             </div>
                         </label>
-                        <input class="d-none" id="profile_picture" name="profile_picture" type="file">
+                        <input class="d-none picture-input" id="profile_picture" name="profile_picture" type="file" onchange="readURL(this)">
                     </div>
                 </div>
             </div>
@@ -111,4 +111,19 @@
     </form>
 
     @include('settings.deleteAccountModal')
+
+    <script>
+        function readURL(input) {
+            //Quelle: https://codepen.io/waqasy/pen/rkuJf
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.edit-image-current-image').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection
