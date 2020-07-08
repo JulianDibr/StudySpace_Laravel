@@ -37,9 +37,20 @@
                 @if(Auth::id() === $course->admin_id)
                     <div class="row mt-2">
                         <div class="col-12">
-                            <a class="btn w-100 edit-course-btn green-standard-btn" type="button" href="{{route('course.edit', $course)}}">Kurs editieren</a>
+                            <a class="w-100 edit-course-btn green-standard-btn" type="button" href="{{route('course.edit', $course)}}">Kurs editieren</a>
                         </div>
                     </div>
+                @endif
+                @if($course->user_invite == 1)
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <button class="btn w-100 edit-course-btn green-standard-btn" type="button" data-toggle="modal" data-target="#user-invite-modal">Nutzer einladen</button>
+                        </div>
+                    </div>
+                    @php
+                        $users = $course->users;
+                    @endphp
+                    @include('components.modals.userInvite')
                 @endif
             </div>
         </div>
