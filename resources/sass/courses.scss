@@ -26,7 +26,7 @@
 
 //NEW/EDIT
 .add-to-course-container {
-    height: 600px;
+    max-height: 600px;
     overflow: hidden;
 
     .add-to-course-header {
@@ -36,6 +36,6 @@
     .add-to-course-user-list {
         height: calc(100% - 45px);
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 }

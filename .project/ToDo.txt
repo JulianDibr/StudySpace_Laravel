@@ -1,5 +1,4 @@
 Icon in Illustrator evtl Farben anpassen
-Postings um Files erweitern
 Profil <img> verbessern => Überall ersetzen
 Nachrichten um Files erweitern?
 Gruppenchats? => Namensanzeige in Bubble bei mehreren Usern
@@ -10,10 +9,8 @@ Profile -> Liste seiner Freunde=?
 Gemeinsame Kurse und Projekte anzeigen
 Projekte, Gruppen => Offen, Einladungs, Bewerbung Switch => Jeweilige Anzeige in overview
 Weitere Felder je Typ
-Image preview
-Kalender
 Mobile Anpassen
     Nachrichten
 Unterseiten alle gleiche breite
-
+Support mail
 deletePosting methode

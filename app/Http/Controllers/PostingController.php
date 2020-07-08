@@ -7,6 +7,7 @@ use App\Posting;
 use App\Voting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class PostingController extends Controller {
     public function store(Request $request, $location_type, $location_id) {
@@ -23,6 +24,10 @@ class PostingController extends Controller {
             $posting->user_type = 0; //TODO: Wofür?
 
             $posting->save();
+
+            if ($request->file !== null) {
+                $posting->addMedia($request->file('file'))->toMediaCollection('uploads');
+            }
         }
 
         return redirect()->back();
@@ -37,10 +42,6 @@ class PostingController extends Controller {
                 'modal' => generateViewHelper::generatePostingModal($posting, false),
             ]
         ]);
-    }
-
-    public function edit(Posting $posting) {
-        //
     }
 
     public function update(Request $request, Posting $posting) {
@@ -130,5 +131,10 @@ class PostingController extends Controller {
         }
 
         return false;
+    }
+
+    public function downloadFile($id) {
+        $mediaItem = Media::find($id);
+        return response()->download($mediaItem->getPath(), $mediaItem->file_name);
     }
 }

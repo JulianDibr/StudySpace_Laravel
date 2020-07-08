@@ -9,9 +9,9 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
-class Posting extends Model
+class Posting extends Model implements HasMedia
 {
-//    use InteractsWithMedia;
+    use InteractsWithMedia;
 
     protected $fillable = ['user_id', 'content', 'location_type', 'location_id'];
 

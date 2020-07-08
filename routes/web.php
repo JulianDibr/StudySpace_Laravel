@@ -26,12 +26,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('home', 'HomeController@index')->name('home');
+Route::post('home/supportMessage', 'HomeController@supportMessage')->name('home.supportMessage');
 
 //Postings
 Route::resource('postings', 'PostingController');
 Route::post('postings/{location_type}/{location_id}', 'PostingController@store')->name('postings.store');
 Route::post('postings/voting', 'PostingController@voting')->name('posting.voting');
 Route::get('loadPosting/{id}', 'PostingController@show')->name('posting.show');
+Route::get('downloadFile/{id}', 'PostingController@downloadFile')->name('posting.downloadFile');
 
 //Comments
 Route::resource('comments', 'CommentController');

@@ -1,5 +1,7 @@
 #message-container {
     height: calc(100vh - 260px);
+    min-width: 850px;
+    overflow-x: auto;
 }
 
 .info-header {

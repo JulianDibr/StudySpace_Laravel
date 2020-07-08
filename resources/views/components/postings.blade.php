@@ -1,6 +1,6 @@
 <div class="card-columns">
     <div class="posting-container card mb-2 mt-2 p-3">
-        <form method="post" action="{{ route('postings.store', [$location_type, $location_id]) }}">
+        <form method="POST" action="{{ route('postings.store', [$location_type, $location_id]) }}" enctype="multipart/form-data">
             @csrf
             <div class="row mt-3">
                 <div class="col-3 my-auto">
@@ -19,12 +19,16 @@
             </div>
 
             <div class="row mt-1">
-                <div class="col-6 text-center">
+                <div class="col-4 text-center">
                     <button class="new-posting-reset btn" type="button">
                         <i class="fa-lg far fa-times-circle"></i>
                     </button>
                 </div>
-                <div class="col-6 text-center">
+                <div class="col-4 text-center">
+                    <label for="file" class="cursor-pointer mb-0 p-2"><i class="fa-lg fas fa-file-upload"></i></label>
+                    <input type="file" name="file" id="file" class="d-none">
+                </div>
+                <div class="col-4 text-center">
                     <button class="btn">
                         <i class="fa-lg far fa-check-circle icon-light-green"></i>
                     </button>
@@ -82,9 +86,23 @@
             </div>
 
             <div>
-                <div class="row mt-3">
+                <div class="row my-3">
                     <div class="col-12 posting-content-container">
-                        <p class="p-2 posting-content posting-content-trigger">{{$posting->content}}</p>
+                        @if($posting->content)
+                            <p class="p-2 posting-content posting-content-trigger">{{$posting->content}}</p>
+                        @endif
+                        @if($posting->getFirstMedia('uploads'))
+                            @php
+                                $media = $posting->getFirstMedia('uploads');
+                            @endphp
+
+                            @if(strpos($media->mime_type, "image") !== false)
+                                <img src="{{$media->getUrl()}}" alt="" width="100%">
+                            @else
+                                    <a class="white-standard-btn" href="{{route('posting.downloadFile', $media->id)}}"><i class="fas fa-download mr-2"></i>{{$media->name}}</a>
+{{--                                <button class="btn white-standard-btn download-file" data-media-id="{{$media->id}}"><i class="fas fa-download mr-2"></i>{{$media->name}}</button>--}}
+                            @endif
+                        @endif
                         <div class="edit-posting-container d-none">
                             <form action="{{route('postings.update', $posting->id)}}" method="POST">
                                 @csrf

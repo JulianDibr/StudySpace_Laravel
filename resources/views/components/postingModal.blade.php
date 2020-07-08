@@ -35,9 +35,22 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-5">
-                                <span class="col-12">{{$posting->content}}</span>
-                            </div>
+                            @if($posting->content)
+                                <div class="row mt-5">
+                                    <span class="col-12">{{$posting->content}}</span>
+                                </div>
+                            @endif
+
+                            @if($posting->getFirstMedia('uploads'))
+                                @php
+                                    $media = $posting->getFirstMedia('uploads');
+                                @endphp
+                                <div class="row mt-3">
+                                    @if(strpos($media->mime_type, "image") !== false)
+                                        <img src="{{$media->getUrl()}}" alt="" width="100%">
+                                    @endif
+                                </div>
+                            @endif
                         </div>
                     </div>
 

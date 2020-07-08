@@ -25,4 +25,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function supportMessage(Request $request) {
+        //TODO: Send mail
+        return redirect()->route('home');
+    }
 }

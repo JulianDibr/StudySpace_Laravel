@@ -66,6 +66,10 @@
 }
 
 @media (min-width: 768px) {
+    .footer {
+        padding-left: 25%;
+    }
+
     .sidebar-wrapper {
         width: 25%;
     }
@@ -77,6 +81,10 @@
 }
 
 @media (min-width: 1201px) {
+    .footer {
+        padding-left: 15%;
+    }
+
     .sidebar-wrapper {
         width: 15%;
     }
@@ -85,4 +93,11 @@
         width: 85%;
         margin-left: 15%;
     }
+}
+
+.contact-input{
+    padding: 5px 10px;
+    border: $border;
+    border-radius: $border-radius;
+    width: 75%;
 }
