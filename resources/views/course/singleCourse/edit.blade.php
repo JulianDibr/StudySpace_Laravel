@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="teacher" class="mt-2 mb-2">Dozent des Kurses</label>
+                        <label for="teacher" class="my-2">Dozent des Kurses</label>
                         <input type="text" name="teacher"
                                class="form-control @error('teacher') validation-error-border @enderror"
                                placeholder="Dozent des Kurses eingeben"
@@ -73,11 +73,7 @@
 
                     <button type="button" class="submit-course btn green-standard-btn mt-3">{{$course->exists ? 'Kurs updaten' : 'Kurs anlegen'}}</button>
                     @if($course->exists)
-                        <button class="submit-delete-course btn red-standard-btn mt-3 ml-2" data-course-id="{{$course->id}}">Kurs löschen</button>
-                        <form action="{{route('course.destroy', $course->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                        </form>
+                        <button type="button" class="btn red-standard-btn mt-3 ml-2" onclick="$('#destroy-course-form').submit();">Kurs löschen</button>
                     @endif
                 </div>
             </div>
@@ -105,5 +101,10 @@
                 </div>
             </div>
         </div>
+    </form>
+
+    <form id="destroy-course-form" action="{{route('course.destroy', $course->id)}}" method="POST">
+        @csrf
+        @method('DELETE')
     </form>
 @endsection

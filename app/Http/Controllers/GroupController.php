@@ -72,6 +72,9 @@ class GroupController extends Controller
     public function destroy(group $group)
     {
         if($this->isAdmin($group)){
+            foreach($group->postings() as $posting){
+                $posting->deletePosting();
+            }
             $group->users()->detach();
             $group->delete();
         }

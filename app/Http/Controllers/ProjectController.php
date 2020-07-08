@@ -71,7 +71,15 @@ class ProjectController extends Controller
 
     public function destroy(project $project)
     {
-        dd("destroy");
+        if($this->isAdmin($project)){
+            foreach($project->postings() as $posting){
+                $posting->deletePosting();
+            }
+            $project->users()->detach();
+            $project->delete();
+        }
+
+        return redirect()->route('project.index');
     }
 
     public function storeUsers($request, $project, $admin)
