@@ -67,6 +67,7 @@ Route::prefix('friend')->name('friend.')->group(function () {
 //Courses
 Route::get('courses', 'CourseController@index')->name('courses.index');
 Route::resource('course', 'CourseController');
+Route::get('course/leave/{id}', 'CourseController@leave')->name('course.leave');
 
 //Messages
 Route::resource('messages', 'MessageController');

@@ -86,4 +86,12 @@ class CourseController extends Controller {
 
         return redirect()->route('courses.index');
     }
+
+    public function leave(course $course) {
+        dd($course);
+        if ($course->users->contains(Auth::id())) {
+            $course->users->detach(Auth::id());
+        }
+        return redirect()->route('home');
+    }
 }
