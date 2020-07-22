@@ -11,7 +11,30 @@
     padding: 0 10px;
 }
 
-.settings-label{
+.settings-label {
     margin-top: 20px;
     margin-bottom: 3px;
+}
+
+.index-input {
+    height: 50px;
+    width: 100%;
+    background-color: #fcfcfc;
+    border: $border;
+    border-radius: $border-radius;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.index-selectpicker {
+    padding: 15px 10px;
+    margin-top: 0;
+}
+
+.index-selectpicker-option {
+    padding: 5px 10px;
+}
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select > select.mobile-device:focus + .dropdown-toggle {
+    outline: none !important //Fix too thick outline
 }

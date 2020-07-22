@@ -9,10 +9,8 @@ use App\Posting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CommentController extends Controller
-{
-    public function store(Request $request, $posting_id, $comment_id = null)
-    {
+class CommentController extends Controller {
+    public function store(Request $request, $posting_id, $comment_id = null) {
         $validatedData = $request->validate([
             'content' => ['required', 'max:1000'],
         ]);
@@ -30,8 +28,16 @@ class CommentController extends Controller
         return $this->generateNewModal($posting, true);
     }
 
-    public function update(Request $request, Comment $comment)
-    {
+    private function generateNewModal($posting, $contentOnly) {
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'modal' => generateViewHelper::generatePostingModal($posting, $contentOnly),
+            ]
+        ]);
+    }
+
+    public function update(Request $request, Comment $comment) {
         $validatedData = $request->validate([
             'content' => ['required', 'max:1000'],
         ]);
@@ -45,13 +51,12 @@ class CommentController extends Controller
         return $this->generateNewModal($posting, true);
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $comment = Comment::find($id);
 
         if ($comment !== null) {
             if ($comment->user_id == Auth::id()) {
-                foreach($comment->comments as $subcomment){
+                foreach ($comment->comments as $subcomment) {
                     $subcomment->votings()->delete();
                     $subcomment->delete();
                 }
@@ -65,8 +70,7 @@ class CommentController extends Controller
         return $this->generateNewModal($posting, true);
     }
 
-    public function voting(Request $request)
-    {
+    public function voting(Request $request) {
         $user = Auth::id();
         $existingVoting = CommentVoting::where([['comment_id', $request->commentId], ['user_id', $user]])->first();
 
@@ -91,15 +95,5 @@ class CommentController extends Controller
         $posting = Comment::find($request->commentId)->posting;
 
         return $this->generateNewModal($posting, true);
-    }
-
-    private function generateNewModal($posting, $contentOnly)
-    {
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'modal' => generateViewHelper::generatePostingModal($posting, $contentOnly),
-            ]
-        ]);
     }
 }

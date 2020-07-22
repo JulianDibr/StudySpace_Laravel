@@ -4,27 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
-{
+class Project extends Model {
     protected $fillable = ['name', 'description', 'image', 'admin_id', 'user_invite'];
 
-    public function users()
-    {
+    public function users() {
         return $this->belongsToMany('App\User');
     }
 
-    public function admin()
-    {
+    public function admin() {
         return $this->belongsTo('App\User');
     }
 
-    public function postings()
-    {
+    public function postings() {
         return $this->hasMany('App\Posting');
     }
 
-    public function getProjectImage()
-    {
+    public function getProjectImage() {
         if ($this->image) {
             return asset('storage/profile_pictures/projects/' . $this->image);
         } else {

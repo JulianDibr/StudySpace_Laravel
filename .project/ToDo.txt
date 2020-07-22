@@ -11,3 +11,10 @@ Weitere Felder je Typ
 Unterseiten alle gleiche breite
 Support mail
 deletePosting methode
+Uploadsektion?
+Anlegen moderieren von Schulen
+Suche nach Beiträgen, Personen, Kursen, Gruppen, Schulen etc
+Projekte Gruppen, offen geschlossen => Sichtbarkeit für nicht Mitglieder
+Einladungen als Anfragen
+Verlassen von Gruppen, Kurse, Projekten
+Projekt: Deadline

@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder {
         factory(App\Course::class, 15)->create();
 
         //Pivot
-        $this->call(SchoolUserTableSeeder::class);
         $this->call(CourseUserTableSeeder::class);
         $this->call(FriendshipTableSeeder::class);
     }

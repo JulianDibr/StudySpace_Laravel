@@ -9,24 +9,19 @@ use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Session;
 
-class MessageController extends Controller
-{
+class MessageController extends Controller {
     //Teilweise nach: https://github.com/cmgmyr/laravel-messenger/blob/master/examples/MessagesController.php
-    public function index()
-    {
+    public function index() {
         $conversations = Thread::forUser(Auth::id())->latest('updated_at')->get();
         $currentThread = $conversations->first(); //Get last chat to open on load
 
         return view('messages.index', compact('currentThread'));
     }
 
-    public function create($receiver_id)
-    {
+    public function create($receiver_id) {
         $user = Auth::user();
         $receiver = User::find($receiver_id);
 
@@ -52,8 +47,7 @@ class MessageController extends Controller
         ]);
     }
 
-    public function show($conversation_id)
-    {
+    public function show($conversation_id) {
         $thread = Thread::find($conversation_id);
 
         if (!$thread) {
@@ -68,8 +62,16 @@ class MessageController extends Controller
         return $this->showConversation($thread);
     }
 
-    public function store()
-    {
+    private function showConversation($thread) {
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'messageContainer' => generateViewHelper::generateConversationWindow($thread),
+            ]
+        ]);
+    }
+
+    public function store() {
         $input = Request::all();
 
         $thread = Thread::create([
@@ -98,8 +100,7 @@ class MessageController extends Controller
         return $this->showConversation($thread);
     }
 
-    public function update($id)
-    {
+    public function update($id) {
         $thread = Thread::find($id);
 
         if (!$thread) {
@@ -129,15 +130,5 @@ class MessageController extends Controller
         }
 
         return $this->showConversation($thread);
-    }
-
-    private function showConversation($thread)
-    {
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'messageContainer' => generateViewHelper::generateConversationWindow($thread),
-            ]
-        ]);
     }
 }

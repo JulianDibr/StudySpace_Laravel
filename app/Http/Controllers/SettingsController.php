@@ -20,6 +20,7 @@ class SettingsController extends Controller {
         if ($data['birthday'] !== null) {
             $data['birthday'] = Carbon::parse($data['birthday']); //Parse birthday to Carbon object
         }
+
         $user->update($data);
 
         if ($request->profile_picture !== null) {
@@ -27,6 +28,19 @@ class SettingsController extends Controller {
         }
 
         return redirect()->route('settings.index');
+    }
+
+    public function saveUserImage($request, $user) {
+        $image = $request->file('profile_picture');
+        $name = strtolower('profile_' . str_pad($user->id, 4, "0", STR_PAD_LEFT) . '.' . $image->getClientOriginalExtension());
+        $dest = storage_path('app/public/profile_pictures/users/');
+        $image_resized = Image::make($image->getRealPath());
+        $image_resized->resize(1400, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $image_resized->save($dest . $name);
+        $user->profile_picture = $name;
+        $user->save();
     }
 
     public function destroy($id) {
@@ -41,18 +55,5 @@ class SettingsController extends Controller {
         }
 
         return redirect()->back();
-    }
-
-    public function saveUserImage($request, $user) {
-        $image = $request->file('profile_picture');
-        $name = strtolower('profile_' . str_pad($user->id, 4, "0", STR_PAD_LEFT) . '.' . $image->getClientOriginalExtension());
-        $dest = storage_path('app/public/profile_pictures/users/');
-        $image_resized = Image::make($image->getRealPath());
-        $image_resized->resize(1400, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $image_resized->save($dest . $name);
-        $user->profile_picture = $name;
-        $user->save();
     }
 }

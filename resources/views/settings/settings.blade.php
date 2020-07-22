@@ -81,6 +81,23 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col">
+                        <label for="school_id" class="settings-label">Schule wechseln</label>
+                        <select id="school_id" type="text" class="selectpicker w-100 @error('school_id') is-invalid @enderror" name="school_id"
+                                required data-style="index-input index-selectpicker" data-live-search="true">
+                            @foreach(\App\School::all()->sortBy('name') as $school)
+                                <option class="index-selectpicker-option" value="{{$school->id}}"
+                                        @if($school->id == Auth::user()->school->id) selected @endif>{{$school->name}}</option>
+                            @endforeach
+                        </select>
+
+                        @error('school_id')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="row mb-0">
                     <div class="col">
                         <button type="submit" class="btn settings-save-btn green-standard-btn">

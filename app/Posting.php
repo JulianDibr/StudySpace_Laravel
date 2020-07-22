@@ -8,70 +8,49 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Posting extends Model implements HasMedia
-{
+class Posting extends Model implements HasMedia {
     use InteractsWithMedia;
 
     protected $fillable = ['user_id', 'content', 'location_type', 'location_id'];
 
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo('App\User');
     }
 
-    public function comments()
-    {
-        return $this->hasMany('App\Comment');
-    }
-
-    public function votings()
-    {
-        return $this->hasMany('App\Voting');
-    }
-
-    public function getByUser($id)
-    {
+    public function getByUser($id) {
         return Posting::with('user')->where('user_id', $id)->get()->sortByDesc('updated_at');
     }
 
-    public function getVoting()
-    {
+    public function getVoting() {
         return count($this->votings->where('is_upvote', true)) - count($this->votings->where('is_upvote', false));
     }
 
-    public function getIsUpvoted()
-    {
+    public function getIsUpvoted() {
         return $this->votings->where('is_upvote', true)->contains('user_id', Auth::id());
     }
 
-    public function getIsDownvoted()
-    {
+    public function getIsDownvoted() {
         return $this->votings->where('is_upvote', false)->contains('user_id', Auth::id());
     }
 
-    public function ownPosting()
-    {
+    public function ownPosting() {
         return $this->user_id === Auth::id();
     }
 
-    public function getCreatedAtAttribute($date)
-    {
+    public function getCreatedAtAttribute($date) {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y, H:i');
     }
 
-    public function getUpdatedAtAttribute($date)
-    {
+    public function getUpdatedAtAttribute($date) {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y, H:i');
     }
 
-    public function getFeed()
-    {
+    public function getFeed() {
         $user = Auth::user(); //TODO: get all relevant posts for $user => my profile, friends profiles, my groups, courses and school
         return Posting::with('user')->get()->sortByDesc('updated_at');
     }
 
-    public function getLocationRoute()
-    {
+    public function getLocationRoute() {
         switch ($this->location_type) {
             case 0:
                 return route('home');
@@ -90,8 +69,7 @@ class Posting extends Model implements HasMedia
         return route('home');
     }
 
-    public function getLocationName()
-    {
+    public function getLocationName() {
         switch ($this->location_type) {
             case 1:
                 $user = User::find($this->location_id);
@@ -127,5 +105,13 @@ class Posting extends Model implements HasMedia
                 $this->delete();
             }
         }
+    }
+
+    public function comments() {
+        return $this->hasMany('App\Comment');
+    }
+
+    public function votings() {
+        return $this->hasMany('App\Voting');
     }
 }

@@ -33,6 +33,43 @@ class PostingController extends Controller {
         return redirect()->back();
     }
 
+    private function userAuthForLocation($location_id, $location_type) {
+        $user = Auth::user();
+
+        if ($location_type == 0 && $location_id == 0) {
+            return true;
+        }
+
+        switch ($location_type) {
+            case 0:
+                return false;
+            case 1:
+                return true;
+            case 2:
+                if ($user->school->id == $location_id) {
+                    return true;
+                }
+                break;
+            case 3:
+                if ($user->courses->pluck('id')->contains($location_id)) {
+                    return true;
+                }
+                break;
+            case 4:
+                if ($user->groups->pluck('id')->contains($location_id)) {
+                    return true;
+                }
+                break;
+            case 5:
+                if ($user->projects->pluck('id')->contains($location_id)) {
+                    return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
     public function show($id) {
         $posting = Posting::find($id);
 
@@ -94,43 +131,6 @@ class PostingController extends Controller {
                 'modal' => generateViewHelper::generatePostingModal($posting, true),
             ]
         ]);
-    }
-
-    private function userAuthForLocation($location_id, $location_type) {
-        $user = Auth::user();
-
-        if ($location_type == 0 && $location_id == 0) {
-            return true;
-        }
-
-        switch ($location_type) {
-            case 0:
-                return false;
-            case 1:
-                return true;
-            case 2:
-                if ($user->school->id == $location_id) {
-                    return true;
-                }
-                break;
-            case 3:
-                if ($user->courses->pluck('id')->contains($location_id)) {
-                    return true;
-                }
-                break;
-            case 4:
-                if ($user->groups->pluck('id')->contains($location_id)) {
-                    return true;
-                }
-                break;
-            case 5:
-                if ($user->projects->pluck('id')->contains($location_id)) {
-                    return true;
-                }
-                break;
-        }
-
-        return false;
     }
 
     public function downloadFile($id) {

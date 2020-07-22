@@ -5,25 +5,20 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
-{
-    public function index()
-    {
+class ProfileController extends Controller {
+    public function index() {
         //
     }
 
-    public function create()
-    {
+    public function create() {
         //
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
-    public function show($id)
-    {
+    public function show($id) {
         $profile = User::find($id);
         if ($profile !== null) {
             //If profile for this id exist -> show profile
@@ -34,18 +29,15 @@ class ProfileController extends Controller
         }
     }
 
-    public function edit(User $profile)
-    {
+    public function edit(User $profile) {
         //
     }
 
-    public function update(Request $request, User $profile)
-    {
+    public function update(Request $request, User $profile) {
         //
     }
 
-    public function destroy(User $profile)
-    {
+    public function destroy(User $profile) {
         //
     }
 }
