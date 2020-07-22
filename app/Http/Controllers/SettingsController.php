@@ -6,6 +6,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class SettingsController extends Controller {
@@ -14,13 +15,15 @@ class SettingsController extends Controller {
         return view('settings.settings', compact('user'));
     }
 
-    public function update(Request $request, $id) { //TODO: Validate, Bcyrpt password
+    public function update(Request $request, $id) { //TODO: Validate
         $user = User::find($id);
         $data = array_filter($request->all()); //Filter null elements
         if ($data['birthday'] !== null) {
             $data['birthday'] = Carbon::parse($data['birthday']); //Parse birthday to Carbon object
         }
-
+        if (array_key_exists('password', $data)){
+            $data['password'] = Hash::make($data['password']);
+        }
         $user->update($data);
 
         if ($request->profile_picture !== null) {
