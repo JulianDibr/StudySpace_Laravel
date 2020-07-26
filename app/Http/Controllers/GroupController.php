@@ -84,4 +84,13 @@ class GroupController extends Controller {
             $group->delete();
         }
     }
+
+    public function leave($id) {
+        $group = Group::find($id);
+
+        if ($group->users->contains(Auth::id())) {
+            $group->users()->detach(Auth::id());
+        }
+        return redirect()->route('group.index');
+    }
 }

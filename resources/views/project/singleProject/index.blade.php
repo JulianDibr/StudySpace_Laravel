@@ -31,7 +31,16 @@
                 @if(Auth::id() === $project->admin_id)
                     <div class="row mt-2">
                         <div class="col-12">
-                            <a class="btn w-100 edit-project-btn green-standard-btn" type="button" href="{{route('project.edit', $project)}}">Projekt editieren</a>
+                            <a class="btn w-100 edit-project-btn green-standard-btn" type="button" href="{{route('project.edit', $project)}}">Projekt
+                                editieren</a>
+                        </div>
+                    </div>
+                @endif
+                @if($project->users->contains(Auth::id()) && Auth::id() !== $project->admin_id)
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <a class="w-100 edit-course-btn red-standard-btn" type="button" href="{{route('project.leave', $group->id)}}">Projekt
+                                verlassen</a>
                         </div>
                     </div>
                 @endif

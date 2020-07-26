@@ -38,6 +38,17 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <label for="deadline" class="my-2">Abgabetermin</label>
+                                <input type="text" name="deadline"
+                                       class="form-control @error('deadline') validation-error-border @enderror"
+                                       placeholder="Beschreibung des Projekts eingeben"
+                                       value="{{old('deadline', $project->deadline ?? '')}}">
+                                @error('deadline')
+                                <label for="deadline" class="validation-error-text">{{ $message }}</label>
+                                @enderror
+                            </div>
+
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input" id="user_invite" name="user_invite"
                                        value="1" {{$project->user_invite == 1 ? 'checked' : ''}}>

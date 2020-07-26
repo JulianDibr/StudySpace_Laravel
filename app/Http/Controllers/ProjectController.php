@@ -86,4 +86,13 @@ class ProjectController extends Controller {
 
         return redirect()->route('project.index');
     }
+
+    public function leave($id) {
+        $project = Project::find($id);
+
+        if ($project->users->contains(Auth::id())) {
+            $project->users()->detach(Auth::id());
+        }
+        return redirect()->route('project.index');
+    }
 }

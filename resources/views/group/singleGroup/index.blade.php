@@ -35,6 +35,13 @@
                         </div>
                     </div>
                 @endif
+                @if($group->users->contains(Auth::id()) && Auth::id() !== $group->admin_id)
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <a class="w-100 edit-course-btn red-standard-btn" type="button" href="{{route('group.leave', $group->id)}}">Gruppe verlassen</a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

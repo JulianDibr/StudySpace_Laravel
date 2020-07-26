@@ -41,10 +41,10 @@
                         </div>
                     </div>
                 @endif
-                @if($course->users->contains(Auth::id()) /*&& Auth::id() !== $course->admin_id*/)
+                @if($course->users->contains(Auth::id()) && Auth::id() !== $course->admin_id)
                     <div class="row mt-2">
                         <div class="col-12">
-                            <a class="w-100 edit-course-btn red-standard-btn" type="button" href="{{route('course.leave', $course->id)}}">Kurs editieren</a>
+                            <a class="w-100 edit-course-btn red-standard-btn" type="button" href="{{route('course.leave', $course->id)}}">Kurs verlassen</a>
                         </div>
                     </div>
                 @endif

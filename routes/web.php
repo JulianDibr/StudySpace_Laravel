@@ -50,10 +50,12 @@ Route::post('school/comments/{posting_id}/{comment_id}', 'CommentController@stor
 //Groups
 Route::get('groups', 'GroupController@index')->name('groups.index');
 Route::resource('group', 'GroupController');
+Route::get('group/leave/{id}', 'GroupController@leave')->name('group.leave');
 
 //Projects
 Route::get('projects', 'ProjectController@index')->name('projects.index');
 Route::resource('project', 'ProjectController');
+Route::get('project/leave/{id}', 'ProjectController@leave')->name('project.leave');
 
 //Friendshipsystem
 Route::prefix('friend')->name('friend.')->group(function () {
