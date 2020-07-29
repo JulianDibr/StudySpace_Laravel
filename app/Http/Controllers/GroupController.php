@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\group;
 use App\Helpers\commonHelpers;
 use App\Http\Requests\GroupRequest;
+use App\Posting;
 use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller {
@@ -77,12 +78,17 @@ class GroupController extends Controller {
 
     public function destroy(group $group) {
         if ($this->isAdmin($group)) {
-            foreach ($group->postings() as $posting) {
+            $location_type = 4;
+            $postingArr = Posting::where([['location_type', '=', $location_type], ['location_id', '=', $group->id]])->get();
+
+            foreach ($postingArr as $posting) {
                 $posting->deletePosting();
             }
             $group->users()->detach();
             $group->delete();
         }
+
+        return redirect()->route('group.index');
     }
 
     public function leave($id) {

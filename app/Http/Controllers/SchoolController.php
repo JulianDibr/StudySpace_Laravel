@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Posting;
 use App\school;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,18 @@ class SchoolController extends Controller {
     }
 
     public function destroy(school $school) {
-        //
+/*        if ($this->isAdmin($school)) {
+            $location_type = 5;
+            $postingArr = Posting::where([['location_type', '=', $location_type], ['location_id', '=', $school->id]])->get();
+
+            foreach ($postingArr as $posting) {
+                $posting->deletePosting();
+            }
+            $school->users()->detach();
+            $school->delete();
+        }
+
+
+        return redirect()->route('project.index');*/
     }
 }

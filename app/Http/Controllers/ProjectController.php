@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\commonHelpers;
 use App\Http\Requests\ProjectRequest;
+use App\Posting;
 use App\Project;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,12 +78,16 @@ class ProjectController extends Controller {
 
     public function destroy(project $project) {
         if ($this->isAdmin($project)) {
-            foreach ($project->postings() as $posting) {
+            $location_type = 5;
+            $postingArr = Posting::where([['location_type', '=', $location_type], ['location_id', '=', $project->id]])->get();
+
+            foreach ($postingArr as $posting) {
                 $posting->deletePosting();
             }
             $project->users()->detach();
             $project->delete();
         }
+
 
         return redirect()->route('project.index');
     }

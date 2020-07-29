@@ -95,10 +95,12 @@ class Posting extends Model implements HasMedia {
         if ($this !== null) {
             if ($this->user_id == Auth::id()) {
 
-                foreach ($this->comments() as $comment) {
+                foreach ($this->comments as $comment) {
+                    foreach ($comment->comments as $subcomment) {
+                        $subcomment->votings()->delete();
+                        $subcomment->delete();
+                    }
                     $comment->votings()->delete();
-                    $comment->comments()->votings()->delete();
-                    $comment->comments()->delete();
                     $comment->delete();
                 }
                 $this->votings()->delete();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\course;
 use App\Helpers\commonHelpers;
 use App\Http\Requests\CourseRequest;
+use App\Posting;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller {
@@ -77,7 +78,10 @@ class CourseController extends Controller {
 
     public function destroy(course $course) {
         if ($this->isAdmin($course)) {
-            foreach ($course->postings() as $posting) {
+            $location_type = 3;
+            $postingArr = Posting::where([['location_type', '=', $location_type], ['location_id', '=', $course->id]])->get();
+
+            foreach ($postingArr as $posting) {
                 $posting->deletePosting();
             }
             $course->users()->detach();
