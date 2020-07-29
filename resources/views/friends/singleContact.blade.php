@@ -16,8 +16,8 @@
                     @endif
                 </div>
                 <div>Gemeinsame Freunde: {{$user->getMutualFriendsCount(Auth::user())}}</div>
-                <div>Gemeinsame Projekte: Todo</div>
-                <div>Gemeinsame Kurse: Todo</div>
+                <div>Gemeinsame Projekte: {{$user->getMutualProjects(Auth::user())}}</div>
+                <div>Gemeinsame Kurse: {{$user->getMutualCourses(Auth::user())}}</div>
             </div>
             @if($type === "accepted")
                 <div class="col-2 text-center ">

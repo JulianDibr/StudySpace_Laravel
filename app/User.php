@@ -125,4 +125,28 @@ class User extends Authenticatable {
     public function getConversations() {
         return Thread::forUser(Auth::id())->latest('updated_at')->get();
     }
+
+    public function getMutualProjects($currentUser) {
+        $friendsProjects = $this->projects;
+        $mutualCourses = 0;
+        foreach ($friendsProjects as $project) {
+            if ($project->users->contains($currentUser->id)) {
+                $mutualCourses++;
+            }
+        }
+
+        return $mutualCourses;
+    }
+
+    public function getMutualCourses($currentUser) {
+        $friendsCourses = $this->courses;
+        $mutualCourses = 0;
+        foreach ($friendsCourses as $course) {
+            if ($course->users->contains($currentUser->id)) {
+                $mutualCourses++;
+            }
+        }
+
+        return $mutualCourses;
+    }
 }
