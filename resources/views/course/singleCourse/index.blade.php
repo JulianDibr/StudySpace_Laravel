@@ -7,6 +7,7 @@
         $location_id = $course->id;
         $location_type = 3;
         $postingArr = $postings::with('user')->where([['location_type', '=', $location_type], ['location_id', '=', $location_id]])->get()->sortByDesc('updated_at');
+        $canPost = $course->users->contains(Auth::id());
     @endphp
     {{--Get $profile from controller--}}
     {{--Profile data--}}

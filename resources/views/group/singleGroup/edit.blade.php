@@ -43,6 +43,12 @@
                                        value="1" {{$group->user_invite == 1 ? 'checked' : ''}}>
                                 <label class="custom-control-label" for="user_invite">Einladungen erlauben</label>
                             </div>
+
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="is_open" name="is_open"
+                                       value="1" {{$group->is_open == 1 ? 'checked' : ''}}>
+                                <label class="custom-control-label" for="is_open">Offene Gruppe</label>
+                            </div>
                         </div>
                         <div class="col-3 text-center my-auto">
                             <input type="file" id="image" name="image" class="d-none">

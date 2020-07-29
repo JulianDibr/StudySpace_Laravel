@@ -13,6 +13,7 @@ class CreateProjectsTable extends Migration {
             $table->string('description')->nullable()->default(null);
             $table->string('image')->nullable()->default(null);
             $table->boolean('user_invite')->default(0);
+            $table->boolean('is_open')->default(0);
             $table->timestamp('deadline')->nullable()->default(null);
             $table->timestamps();
 

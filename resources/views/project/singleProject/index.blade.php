@@ -7,6 +7,7 @@
         $location_id = $project->id;
         $location_type = 5;
         $postingArr = $postings::with('user')->where([['location_type', '=', $location_type], ['location_id', '=', $location_id]])->get()->sortByDesc('updated_at');
+        $canPost = $project->users->contains(Auth::id()) || $project->is_open;
     @endphp
     {{--Get $profile from controller--}}
     {{--Profile data--}}

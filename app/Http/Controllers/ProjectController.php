@@ -20,9 +20,17 @@ class ProjectController extends Controller {
 
     public function store(ProjectRequest $request) {
         $admin = Auth::user();
+
+        $data = $request->all();
+        if(!array_key_exists('user_invite', $data)){
+            $data['user_invite'] = 0;
+        }
+        if(!array_key_exists('is_open', $data)){
+            $data['is_open'] = 0;
+        }
         //Store new project
         $project = new Project();
-        $project->fill($request->all());
+        $project->fill($data);
         $project->admin_id = $admin->id;
         $project->save();
 
@@ -67,8 +75,16 @@ class ProjectController extends Controller {
     public function update(ProjectRequest $request, project $project) {
         $admin = Auth::user();
 
+        $data = $request->all();
+        if(!array_key_exists('user_invite', $data)){
+            $data['user_invite'] = 0;
+        }
+        if(!array_key_exists('is_open', $data)){
+            $data['is_open'] = 0;
+        }
+
         if ($this->isAdmin($project)) {
-            $project->update($request->all());
+            $project->update($data);
         }
 
         $this->storeUsers($request, $project, $admin);

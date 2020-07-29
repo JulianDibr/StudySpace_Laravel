@@ -20,9 +20,16 @@ class GroupController extends Controller {
 
     public function store(GroupRequest $request) {
         $admin = Auth::user();
+        $data = $request->all();
+        if(!array_key_exists('user_invite', $data)){
+            $data['user_invite'] = 0;
+        }
+        if(!array_key_exists('is_open', $data)){
+            $data['is_open'] = 0;
+        }
         //Store new course
         $group = new Group();
-        $group->fill($request->all());
+        $group->fill($data);
         $group->admin_id = $admin->id;
         $group->save();
 
@@ -66,9 +73,16 @@ class GroupController extends Controller {
 
     public function update(GroupRequest $request, group $group) {
         $admin = Auth::user();
+        $data = $request->all();
+        if(!array_key_exists('user_invite', $data)){
+            $data['user_invite'] = 0;
+        }
+        if(!array_key_exists('is_open', $data)){
+            $data['is_open'] = 0;
+        }
 
         if ($this->isAdmin($group)) {
-            $group->update($request->all());
+            $group->update($data);
         }
 
         $this->storeUsers($request, $group, $admin);

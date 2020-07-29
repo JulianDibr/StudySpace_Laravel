@@ -6,6 +6,7 @@
     $location_id = $school->id;
     $location_type = 2;
     $postingArr = $postings::with('user')->where([['location_type', '=', $location_type], ['location_id', '=', $location_id]])->get()->sortByDesc('updated_at');
+    $canPost = $school->users->contains(Auth::id());
 @endphp
 
 @section('content')

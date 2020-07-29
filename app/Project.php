@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model {
-    protected $fillable = ['name', 'description', 'image', 'admin_id', 'user_invite', 'deadline'];
+    protected $fillable = ['name', 'description', 'image', 'admin_id', 'user_invite', 'deadline', 'is_open'];
 
     public function users() {
         return $this->belongsToMany('App\User');

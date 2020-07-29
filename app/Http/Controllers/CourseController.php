@@ -20,9 +20,15 @@ class CourseController extends Controller {
 
     public function store(CourseRequest $request) {
         $admin = Auth::user();
+
+        $data = $request->all();
+        if(!array_key_exists('user_invite', $data)){
+            $data['user_invite'] = 0;
+        }
+
         //Store new course
         $course = new Course();
-        $course->fill($request->all());
+        $course->fill($data);
         $course->school_id = $admin->school->id;
         $course->admin_id = $admin->id;
         $course->save();
@@ -67,8 +73,13 @@ class CourseController extends Controller {
     public function update(CourseRequest $request, course $course) {
         $admin = Auth::id();
 
+        $data = $request->all();
+        if(!array_key_exists('user_invite', $data)){
+            $data['user_invite'] = 0;
+        }
+
         if ($this->isAdmin($course)) {
-            $course->update($request->all());
+            $course->update($data);
         }
 
         $this->storeUsers($request, $course, $admin);

@@ -7,6 +7,7 @@
         $location_id = $group->id;
         $location_type = 4;
         $postingArr = $postings::with('user')->where([['location_type', '=', $location_type], ['location_id', '=', $location_id]])->get()->sortByDesc('updated_at');
+        $canPost = $group->users->contains(Auth::id()) || $group->is_open;
     @endphp
     {{--Get $profile from controller--}}
     {{--Profile data--}}
@@ -31,14 +32,16 @@
                 @if(Auth::id() === $group->admin_id)
                     <div class="row mt-2">
                         <div class="col-12">
-                            <a class="btn w-100 edit-group-btn green-standard-btn" type="button" href="{{route('group.edit', $group)}}">Gruppe editieren</a>
+                            <a class="btn w-100 edit-group-btn green-standard-btn" type="button"
+                               href="{{route('group.edit', $group)}}">Gruppe editieren</a>
                         </div>
                     </div>
                 @endif
                 @if($group->users->contains(Auth::id()) && Auth::id() !== $group->admin_id)
                     <div class="row mt-2">
                         <div class="col-12">
-                            <a class="w-100 edit-course-btn red-standard-btn" type="button" href="{{route('group.leave', $group->id)}}">Gruppe verlassen</a>
+                            <a class="w-100 edit-course-btn red-standard-btn" type="button"
+                               href="{{route('group.leave', $group->id)}}">Gruppe verlassen</a>
                         </div>
                     </div>
                 @endif
@@ -46,5 +49,7 @@
         </div>
     </div>
     {{--Postings--}}
-    @include('components.postings')
+    @if($group->is_open || $group->users->contains(Auth::id()))
+        @include('components.postings')
+    @endif
 @endsection

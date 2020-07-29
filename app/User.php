@@ -105,7 +105,7 @@ class User extends Authenticatable {
     }
 
     public function getRecommendedGroups() {
-        $allGroups = $this->school->groups;
+        $allGroups = Group::all();
         if ($allGroups !== null) {
             return $allGroups->diff($this->groups);
         } else {
