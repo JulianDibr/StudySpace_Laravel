@@ -22,7 +22,7 @@ class ProjectController extends Controller {
     public function store(ProjectRequest $request) {
         $admin = Auth::user();
 
-        $data = $this->parseForSave($request->all());
+        $data = $this->prepareForSave($request->all());
 
         //Store new project
         $project = new Project();
@@ -71,7 +71,7 @@ class ProjectController extends Controller {
     public function update(ProjectRequest $request, project $project) {
         $admin = Auth::user();
 
-        $data = $this->parseForSave($request->all());
+        $data = $this->prepareForSave($request->all());
 
 
         if ($this->isAdmin($project)) {
@@ -108,17 +108,31 @@ class ProjectController extends Controller {
         return redirect()->route('project.index');
     }
 
-    public function parseForSave($data){
-        if(!array_key_exists('user_invite', $data)){
+    public function prepareForSave($data) {
+        if (!array_key_exists('user_invite', $data)) {
             $data['user_invite'] = 0;
         }
-        if(!array_key_exists('is_open', $data)){
+        if (!array_key_exists('is_open', $data)) {
             $data['is_open'] = 0;
         }
-        if(array_key_exists('deadline', $data)){
+        if (array_key_exists('deadline', $data)) {
             $data['deadline'] = Carbon::parse($data['deadline'])->endOfDay();
         }
 
         return $data;
+    }
+
+    public function denyInvite($id) {
+        $project = Project::find($id);
+        $project->users()->detach(Auth::user());
+
+        return redirect()->route('project.show', $project);
+    }
+
+    public function acceptInvite($id) {
+        $project = Project::find($id);
+        $project->users()->updateExistingPivot(Auth::id(), ['status' => 1]);
+
+        return redirect()->route('project.show', $project);
     }
 }

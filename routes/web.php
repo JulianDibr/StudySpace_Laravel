@@ -51,11 +51,19 @@ Route::post('school/comments/{posting_id}/{comment_id}', 'CommentController@stor
 Route::get('groups', 'GroupController@index')->name('groups.index');
 Route::resource('group', 'GroupController');
 Route::get('group/leave/{id}', 'GroupController@leave')->name('group.leave');
+Route::get('group/denyInvite/{id}', 'GroupController@denyInvite')->name('group.denyInvite');
+Route::get('group/acceptInvite/{id}', 'GroupController@acceptInvite')->name('group.acceptInvite');
+
 
 //Projects
 Route::get('projects', 'ProjectController@index')->name('projects.index');
 Route::resource('project', 'ProjectController');
-Route::get('project/leave/{id}', 'ProjectController@leave')->name('project.leave');
+Route::prefix('project')->name('project.')->group(function () {
+    Route::get('leave/{id}', 'ProjectController@leave')->name('leave');
+    Route::get('denyInvite/{id}', 'ProjectController@denyInvite')->name('denyInvite');
+    Route::get('acceptInvite/{id}', 'ProjectController@acceptInvite')->name('acceptInvite');
+});
+
 
 //Friendshipsystem
 Route::prefix('friend')->name('friend.')->group(function () {
@@ -69,7 +77,11 @@ Route::prefix('friend')->name('friend.')->group(function () {
 //Courses
 Route::get('courses', 'CourseController@index')->name('courses.index');
 Route::resource('course', 'CourseController');
-Route::get('course/leave/{id}', 'CourseController@leave')->name('course.leave');
+Route::prefix('course')->name('course.')->group(function () {
+    Route::get('leave/{id}', 'CourseController@leave')->name('leave');
+    Route::get('denyInvite/{id}', 'CourseController@denyInvite')->name('denyInvite');
+    Route::get('acceptInvite/{id}', 'CourseController@acceptInvite')->name('acceptInvite');
+});
 
 //Messages
 Route::resource('messages', 'MessageController');

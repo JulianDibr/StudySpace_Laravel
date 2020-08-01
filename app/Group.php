@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\commonHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model {
@@ -26,4 +27,9 @@ class Group extends Model {
             return asset('storage/profile_pictures/groups/default.jpg');
         }
     }
+
+    public function checkUserStatus() {
+        return commonHelpers::checkInvitationStatus($this);
+    }
+
 }

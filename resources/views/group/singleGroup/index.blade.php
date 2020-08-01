@@ -37,11 +37,25 @@
                         </div>
                     </div>
                 @endif
-                @if($group->users->contains(Auth::id()) && Auth::id() !== $group->admin_id)
+                @if($group->checkUserStatus() === 1 && Auth::id() !== $group->admin_id)
                     <div class="row mt-2">
                         <div class="col-12">
-                            <a class="w-100 edit-course-btn red-standard-btn" type="button"
+                            <a class="w-100 edit-group-btn red-standard-btn" type="button"
                                href="{{route('group.leave', $group->id)}}">Gruppe verlassen</a>
+                        </div>
+                    </div>
+                @endif
+                @if($group->checkUserStatus() === 0)
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <a class="btn w-100 edit-group-btn green-standard-btn" type="button"
+                               href="{{route('group.acceptInvite', $group->id)}}">Einladung akzeptieren</a>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <a class="w-100 edit-group-btn red-standard-btn" type="button" href="{{route('group.denyInvite', $group->id)}}">Einladung
+                                ablehnen</a>
                         </div>
                     </div>
                 @endif

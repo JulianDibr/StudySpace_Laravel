@@ -2,15 +2,16 @@
 
 namespace App;
 
-use Carbon\Carbon;
+use App\Helpers\commonHelpers;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Project extends Model {
     protected $fillable = ['name', 'description', 'image', 'admin_id', 'user_invite', 'deadline', 'is_open'];
     protected $dates = ['deadline'];
 
     public function users() {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User')->withPivot('status');
     }
 
     public function admin() {
@@ -27,5 +28,9 @@ class Project extends Model {
         } else {
             return asset('storage/profile_pictures/projects/default.jpg');
         }
+    }
+
+    public function checkUserStatus() {
+        return commonHelpers::checkInvitationStatus($this);
     }
 }

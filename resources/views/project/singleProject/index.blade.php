@@ -42,11 +42,25 @@
                         </div>
                     </div>
                 @endif
-                @if($project->users->contains(Auth::id()) && Auth::id() !== $project->admin_id)
+                @if($project->checkUserStatus() === 1 && $project->admin_id !== Auth::id())
                     <div class="row mt-2">
                         <div class="col-12">
-                            <a class="w-100 edit-course-btn red-standard-btn" type="button" href="{{route('project.leave', $group->id)}}">Projekt
+                            <a class="w-100 edit-project-btn red-standard-btn" type="button" href="{{route('project.leave', $project->id)}}">Projekt
                                 verlassen</a>
+                        </div>
+                    </div>
+                @endif
+                @if($project->checkUserStatus() === 0 && $project->admin_id !== Auth::id())
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <a class="btn w-100 edit-project-btn green-standard-btn" type="button"
+                               href="{{route('project.acceptInvite', $project->id)}}">Einladung akzeptieren</a>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <a class="w-100 edit-project-btn red-standard-btn" type="button" href="{{route('project.denyInvite', $project->id)}}">Einladung
+                                ablehnen</a>
                         </div>
                     </div>
                 @endif

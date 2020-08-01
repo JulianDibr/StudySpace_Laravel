@@ -10,5 +10,3 @@ Weitere Felder je Typ
 Support mail
 Anlegen moderieren von Schulen
 Suche nach Beiträgen, Personen, Kursen, Gruppen, Schulen etc
-Einladungen als Anfragen
-Projekt: Deadline: Inputmaske => Validierung => save => Display format

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\commonHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model {
@@ -25,5 +26,9 @@ class Course extends Model {
         } else {
             return asset('storage/profile_pictures/courses/default.jpg');
         }
+    }
+
+    public function checkUserStatus() {
+        return commonHelpers::checkInvitationStatus($this);
     }
 }
