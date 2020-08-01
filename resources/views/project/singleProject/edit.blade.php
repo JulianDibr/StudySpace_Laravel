@@ -41,9 +41,9 @@
                             <div class="form-group">
                                 <label for="deadline" class="my-2">Abgabetermin</label>
                                 <input type="text" name="deadline"
-                                       class="form-control @error('deadline') validation-error-border @enderror"
+                                       class="form-control date-mask-start-today @error('deadline') validation-error-border @enderror"
                                        placeholder="Abgabetermin des Projekts eingeben"
-                                       value="{{old('deadline', $project->deadline ?? '')}}">
+                                       value="{{old('deadline', $project->deadline->format('d.m.Y') ?? '')}}">
                                 @error('deadline')
                                 <label for="deadline" class="validation-error-text">{{ $message }}</label>
                                 @enderror

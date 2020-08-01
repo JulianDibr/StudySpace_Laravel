@@ -22,7 +22,7 @@
                 </div>
                 @if($project->deadline !== null)
                     <div class="row">
-                        <span class="col-12">Abgabetermin: {{$project->deadline->format('d.m.Y H:i')}}</span>
+                        <span class="col-12">Abgabetermin: {{$project->deadline->format('d.m.Y')}}</span>
                     </div>
                 @endif
                 <div class="row">

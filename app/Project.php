@@ -2,10 +2,12 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model {
     protected $fillable = ['name', 'description', 'image', 'admin_id', 'user_invite', 'deadline', 'is_open'];
+    protected $dates = ['deadline'];
 
     public function users() {
         return $this->belongsToMany('App\User');

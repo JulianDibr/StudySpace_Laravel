@@ -6,6 +6,7 @@ use App\Helpers\commonHelpers;
 use App\Http\Requests\ProjectRequest;
 use App\Posting;
 use App\Project;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller {
@@ -21,13 +22,8 @@ class ProjectController extends Controller {
     public function store(ProjectRequest $request) {
         $admin = Auth::user();
 
-        $data = $request->all();
-        if(!array_key_exists('user_invite', $data)){
-            $data['user_invite'] = 0;
-        }
-        if(!array_key_exists('is_open', $data)){
-            $data['is_open'] = 0;
-        }
+        $data = $this->parseForSave($request->all());
+
         //Store new project
         $project = new Project();
         $project->fill($data);
@@ -75,13 +71,8 @@ class ProjectController extends Controller {
     public function update(ProjectRequest $request, project $project) {
         $admin = Auth::user();
 
-        $data = $request->all();
-        if(!array_key_exists('user_invite', $data)){
-            $data['user_invite'] = 0;
-        }
-        if(!array_key_exists('is_open', $data)){
-            $data['is_open'] = 0;
-        }
+        $data = $this->parseForSave($request->all());
+
 
         if ($this->isAdmin($project)) {
             $project->update($data);
@@ -115,5 +106,19 @@ class ProjectController extends Controller {
             $project->users()->detach(Auth::id());
         }
         return redirect()->route('project.index');
+    }
+
+    public function parseForSave($data){
+        if(!array_key_exists('user_invite', $data)){
+            $data['user_invite'] = 0;
+        }
+        if(!array_key_exists('is_open', $data)){
+            $data['is_open'] = 0;
+        }
+        if(array_key_exists('deadline', $data)){
+            $data['deadline'] = Carbon::parse($data['deadline'])->endOfDay();
+        }
+
+        return $data;
     }
 }

@@ -167,10 +167,10 @@ class User extends Authenticatable {
     }
 
     public function getJoinedCourses() {
-        return $this->belongsToMany('App\Group')->wherePivot('status', '1')->get();
+        return $this->belongsToMany('App\Course')->wherePivot('status', '1')->get();
     }
 
     public function getInvitedCourses() {
-        return $this->belongsToMany('App\Courses')->wherePivot('status', '0')->get();
+        return $this->belongsToMany('App\Course')->wherePivot('status', '0')->get();
     }
 }

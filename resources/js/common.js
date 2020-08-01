@@ -4,6 +4,7 @@ $(function () {
 
     //Inputmasks
     Inputmask("datetime", {inputFormat: "dd.mm.yyyy", min: "01/01/1900", max: currentDate}).mask('.date-mask'); //Date between 01.01.1900 and today
+    Inputmask("datetime", {inputFormat: "dd.mm.yyyy", min: currentDate, max: "31/12/2100"}).mask('.date-mask-start-today'); //Date between 01.01.1900 and today
 
     //Init tooltips
     $('[data-toggle="tooltip"]').tooltip();
