@@ -23,7 +23,6 @@
                         </div>
                     </div>
                 </a>
-                </img>
             </div>
         @endforeach
     </div>
@@ -43,7 +42,6 @@
                         </div>
                     </div>
                 </a>
-                </img>
             </div>
         @endforeach
     </div>

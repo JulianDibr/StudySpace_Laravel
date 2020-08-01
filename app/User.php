@@ -50,7 +50,7 @@ class User extends Authenticatable {
     }
 
     public function groups() {
-        return $this->belongsToMany('App\Group');
+        return $this->belongsToMany('App\Group')->withPivot('status');
     }
 
     public function projects() {
@@ -148,5 +148,29 @@ class User extends Authenticatable {
         }
 
         return $mutualCourses;
+    }
+
+    public function getJoinedGroups() {
+        return $this->belongsToMany('App\Group')->wherePivot('status', '1')->get();
+    }
+
+    public function getInvitedGroups() {
+        return $this->belongsToMany('App\Group')->wherePivot('status', '0')->get();
+    }
+
+    public function getJoinedProjects() {
+        return $this->belongsToMany('App\Project')->wherePivot('status', '1')->get();
+    }
+
+    public function getInvitedProjects() {
+        return $this->belongsToMany('App\Project')->wherePivot('status', '0')->get();
+    }
+
+    public function getJoinedCourses() {
+        return $this->belongsToMany('App\Group')->wherePivot('status', '1')->get();
+    }
+
+    public function getInvitedCourses() {
+        return $this->belongsToMany('App\Courses')->wherePivot('status', '0')->get();
     }
 }

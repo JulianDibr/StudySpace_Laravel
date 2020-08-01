@@ -20,7 +20,7 @@
                 <div>Gemeinsame Kurse: {{$user->getMutualCourses(Auth::user())}}</div>
             </div>
             @if($type === "accepted")
-                <div class="col-2 text-center ">
+                <div class="col-2 text-center">
                     <button class="btn" type="button" data-toggle="dropdown">
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
