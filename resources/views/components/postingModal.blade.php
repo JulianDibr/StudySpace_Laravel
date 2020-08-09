@@ -8,7 +8,7 @@
                         <div class="col-4">
                             <div style="width: 120px; overflow: hidden" class="profile-picture">
                                 <a href="{{ route('profile.show', $posting->user->id) }}">
-                                    <img src="{{$posting->user->getUserImage()}}" height="120px"
+                                    <img src="{{$posting->user->getUserImage()}}" class="user-image-100"
                                          alt="user profile picture"/>
                                 </a>
                             </div>
@@ -91,8 +91,7 @@
                                     <div class="row">
                                         <div class="profile-picture col-1 pr-0">
                                             <a href="{{ route('profile.show', $comment->user->id) }}">
-                                                <img src="{{$comment->user->getUserImage()}}" width="100%"
-                                                     alt="user profile picture"/>
+                                                <img src="{{$comment->user->getUserImage()}}" class="user-image-50" alt="user profile picture"/>
                                             </a>
                                         </div>
                                         <span class="col-11">
@@ -100,7 +99,7 @@
                                                 <div class="{{$comment->ownComment() ? 'col-10' : 'col-12'}}">
                                                     {{$comment->user->getFullName()." am ".$comment->updated_at}}
                                                 </div>
-                                                                                                    @if($comment->ownComment())
+                                                @if($comment->ownComment())
                                                     <div class="col-2 px-0 text-center">
                                                         <button class="btn" type="button" data-toggle="dropdown">
                                                             <i class="fas fa-ellipsis-v"></i>
@@ -151,8 +150,7 @@
                                         <div class="row ml-2">
                                             <div class="profile-picture col-1 pr-0">
                                                 <a href="{{ route('profile.show', $subcomment->user->id) }}">
-                                                    <img src="{{$subcomment->user->getUserImage()}}" width="100%"
-                                                         alt="user profile picture"/>
+                                                    <img src="{{$subcomment->user->getUserImage()}}" class="user-image-50" alt="user profile picture"/>
                                                 </a>
                                             </div>
                                             <span class="col-11">

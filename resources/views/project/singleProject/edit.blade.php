@@ -83,8 +83,7 @@
                         <input type="hidden" name="user_list" class="d-none">
                         @foreach(Auth::user()->getFriends()->sortBy('last_name') as $user)
                             <div class="project-user-row row mb-3" style="margin:0" data-user-id="{{$user->id}}">
-                                <img class="col-2 px-lg-0" src="{{$user->getUserImage()}}" width="100%"
-                                     alt="user profile picture"/>
+                                <img class="col-2 px-lg-0 user-image-50" src="{{$user->getUserImage()}}" alt="user profile picture"/>
                                 <div class="col-8 text-break my-auto">
                                     {{$user->getFullName()}}
                                 </div>

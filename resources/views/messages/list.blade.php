@@ -13,9 +13,8 @@
             <button class="btn mb-3 text-left p-0 pl-1 load-conversation" type="button"
                     data-conversation-id="{{$conversation->id}}">
                 <div class="row">
-                    <img class="col-2 px-lg-0"
+                    <img class="col-2 px-lg-0 user-image-50"
                          src="{{$conversation->participants->where('user_id', '!=',  Auth::id())->first()->user->getUserImage()}}"
-                         height="50px"
                          alt="user profile picture"/>
                     <div class="col-8 text-break my-auto">
                         <div class="row">
