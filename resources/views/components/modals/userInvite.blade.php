@@ -12,7 +12,7 @@
                 @forelse(Auth::user()->getFriends()->diff($users) as $user)
                     <div class="row mb-3" style="height: 50px">
                         <div class="col-3">
-                            <img src="{{$user->getUserImage()}}" alt="" height="50px">
+                            <img src="{{$user->getUserImage()}}" alt="" class="user-image-50">
                         </div>
                         <div class="col-6 my-auto">
                             {{$user->getFullName()}}

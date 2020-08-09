@@ -3,8 +3,8 @@
     empty($receiver) ? $receiver = false : ''; //For creating a new chat
 @endphp
 
-<div class="row h-100">
-    <div class="col-9 info-messages-container h-100">
+<div class="h-100">
+    <div class="info-messages-container h-100">
         <div class="row info-header">
             <div class="col-9">
                 @if($currentThread)
@@ -51,8 +51,8 @@
             </div>
         </div>
     </div>
-    <div class="col-3 contact-conversation-list-container">
-        <div style="padding: 7px 0" class="row text-center mb-4">
+    <div class="contact-conversation-list-container h-100">
+        <div style="padding: 7px 0" class="row text-center mb-4 mx-0">
             <div class="col-6">
                 <button class="btn px-1 conversations-btn active-tab">Konversationen</button>
             </div>
@@ -64,51 +64,42 @@
         <div class="conversation-list row">
             <div class="col-12">
                 @forelse(Auth::user()->getConversations() as $conversation)
-                    <button class="btn mb-3 text-left p-0 pl-1 load-conversation" type="button"
-                            data-conversation-id="{{$conversation->id}}">
-                        <div class="row">
-                            <img class="col-2 px-lg-0"
+                    <div>
+                        <button class="btn mb-0 text-left p-0 pl-1 load-conversation" type="button"
+                                data-conversation-id="{{$conversation->id}}">
+                            <img class="px-lg-0 user-image-35 mr-2" style="margin-top: -40px"
                                  src="{{$conversation->participants->where('user_id', '!=',  Auth::id())->first()->user->getUserImage()}}"
-                                 height="50px"
                                  alt="user profile picture"/>
-                            <div class="col-8 text-break my-auto">
-                                <div class="row">
-                                    <div class="col-12">
-                                        @foreach($conversation->participants->where('user_id', '!=',  Auth::id()) as $participant)
-                                            {{$loop->last ? $participant->user->getFullName() : $participant->user->getFullName() .", "}}
-                                        @endforeach
-                                    </div>
-                                    <div class="col-12 conversation-message-body">
-                                        {{$conversation->getLatestMessageAttribute()->body}}
-                                    </div>
+                            <div class="text-break my-auto d-inline-block">
+                                    @foreach($conversation->participants->where('user_id', '!=',  Auth::id()) as $participant)
+                                        {{$loop->last ? $participant->user->getFullName() : $participant->user->getFullName() .", "}}
+                                    @endforeach
+                                <div class="conversation-message-body">
+                                    {{$conversation->getLatestMessageAttribute()->body}}
                                 </div>
                             </div>
                             @if($conversation->userUnreadMessagesCount(Auth::id()))
-                                <div class="col-2 text-right px-2 my-auto">
+                                <div class="text-right px-2 my-auto">
                                     <div class="unread-counter">{{$conversation->userUnreadMessagesCount(Auth::id())}}</div>
                                 </div>
                             @endif
-                        </div>
-                    </button>
+                        </button>
+                    </div>
                 @empty
                 @endforelse
             </div>
         </div>
-        <div class="contacts-list row d-none">
-            <div class="col-12">
-                @foreach(Auth::user()->getFriends() as $contact)
-                    <button class="btn mb-3 text-left p-0 pl-1 start-conversation" type="button"
-                            data-user-id="{{$contact->id}}">
-                        <div class="row">
-                            <img class="col-2 px-lg-0" src="{{$contact->getUserImage()}}" width="100%"
-                                 alt="user profile picture"/>
-                            <div class="col-10 text-break my-auto">
-                                {{$contact->getFullName()}}
-                            </div>
+        <div class="contacts-list d-none">
+            @foreach(Auth::user()->getFriends() as $contact)
+                <div>
+                    <button class="btn mb-3 text-left p-0 pl-1 start-conversation" type="button" data-user-id="{{$contact->id}}">
+                        <img class="px-lg-0 user-image-35 mr-2" src="{{$contact->getUserImage()}}" alt="user profile picture"/>
+                        <div class="text-break my-auto d-inline-block">
+                            {{$contact->getFullName()}}
                         </div>
                     </button>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>

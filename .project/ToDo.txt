@@ -5,8 +5,11 @@ Gruppenchats? => Namensanzeige in Bubble bei mehreren Usern
 Chats aus einer Gruppe/Projekt/Kurs mitglieder liste generieren
 Settings Validierung
 Profile -> Liste seiner Freunde=?
-Projekte, Gruppen => Offen, Einladungs, Bewerbung Switch => Jeweilige Anzeige in overview
 Weitere Felder je Typ
+
+Projekte, Gruppen => Offen, Einladungs, Bewerbung Switch => Jeweilige Anzeige in overview
 Support mail
 Anlegen moderieren von Schulen
 Suche nach Beiträgen, Personen, Kursen, Gruppen, Schulen etc
+Navigation zwischen Kontakt und Konversation für mobile
+Imageupload save für school, project, course, group

@@ -1,6 +1,6 @@
 #message-container {
     height: calc(100vh - 260px);
-    min-width: 850px;
+    //min-width: 850px;
     overflow-x: auto;
 }
 
@@ -89,12 +89,16 @@
 
 .info-messages-container {
     overflow-y: auto;
+    width: calc(100% - 250px);
+    float: left;
 }
 
 .contact-conversation-list-container {
     border-left: $border;
     padding-left: 20px;
     overflow-y: auto;
+    width: 250px;
+    float: left;
 
     .active-tab {
         border-bottom: $border;

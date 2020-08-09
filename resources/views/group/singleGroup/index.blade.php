@@ -26,8 +26,7 @@
             </div>
             <div class="col-3">
                 <div class="row">
-                    <img src="{{$group->getGroupImage()}}" alt="profile picture" width="100%"
-                         class="rounded-circle col-12">
+                    <img src="{{$group->getGroupImage()}}" alt="profile picture" class="user-image-200 col-12">
                 </div>
                 @if(Auth::id() === $group->admin_id)
                     <div class="row mt-2">

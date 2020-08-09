@@ -31,8 +31,7 @@
             </div>
             <div class="col-3">
                 <div class="row">
-                    <img src="{{$project->getProjectImage()}}" alt="profile picture" width="100%"
-                         class="rounded-circle col-12">
+                    <img src="{{$project->getProjectImage()}}" alt="profile picture" class="user-image-200 col-12">
                 </div>
                 @if(Auth::id() === $project->admin_id)
                     <div class="row mt-2">

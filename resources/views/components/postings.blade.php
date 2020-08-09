@@ -7,7 +7,7 @@
                 <div class="row mt-3">
                     <div class="col-3 my-auto">
                         <div class="profile-picture">
-                            <img src="{{Auth::user()->getUserImage()}}" width="100%" alt="user profile picture"/>
+                            <img src="{{Auth::user()->getUserImage()}}" class="user-image-50" alt="user profile picture"/>
                         </div>
                     </div>
                     <div class="col-9 pl-0">
@@ -47,7 +47,7 @@
                 <div class="col-3 my-auto">
                     <div class="profile-picture">
                         <a href="{{ route('profile.show', $posting->user->id) }}">
-                            <img src="{{$posting->user->getUserImage()}}" width="100%" alt="user profile picture"/>
+                            <img src="{{$posting->user->getUserImage()}}" class="user-image-50" alt="user profile picture"/>
                         </a>
                     </div>
                 </div>

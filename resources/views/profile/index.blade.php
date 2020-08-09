@@ -41,8 +41,8 @@
                 </div>
             </div>
             <div class="col-3">
-                <div class="row">
-                    <img src="{{$profile->getUserImage()}}" alt="profile picture" width="100%" class="rounded-circle col-12">
+                <div class="row text-right">
+                    <img src="{{$profile->getUserImage()}}" alt="profile picture" class="user-image-200 col-12">
                 </div>
                 @if(Auth::id() !== $profile->id)
                     <div class="row mt-2">

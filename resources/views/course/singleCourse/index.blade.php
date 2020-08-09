@@ -32,8 +32,7 @@
             </div>
             <div class="col-3">
                 <div class="row">
-                    <img src="{{$course->getCourseImage()}}" alt="profile picture" width="100%"
-                         class="rounded-circle col-12">
+                    <img src="{{$course->getCourseImage()}}" alt="profile picture" class="user-image-200 col-12">
                 </div>
                 @if(Auth::id() === $course->admin_id)
                     <div class="row mt-2">

@@ -247,3 +247,22 @@
 .resize-none {
     resize: none;
 }
+
+.user-image-50 {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.user-image-35 {
+    object-fit: cover;
+    width: 35px;
+    height: 35px;
+}
+
+.user-image-200 {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}

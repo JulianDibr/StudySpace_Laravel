@@ -32,8 +32,8 @@
                     <span class="col-12">Registrierte Studenten: {{count($school->users)}}</span>
                 </div>
             </div>
-            <div class="col-3">
-                <img src="{{$school->getSchoolImage()}}" alt="profile picture" width="100%" class="rounded-circle">
+            <div class="col-3 text-right">
+                <img src="{{$school->getSchoolImage()}}" alt="profile picture" class="user-image-200">
             </div>
         </div>
     </div>

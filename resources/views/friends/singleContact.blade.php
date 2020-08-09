@@ -1,11 +1,9 @@
 <div class="col-12 col-md-6 col-lg-4 mb-4">
     <div class="card-background mb-2">
         <div class="row mb-2">
-            <div class="col-4">
-                <a href="{{ route('profile.show', $user->id) }}">
-                    <img src="{{$user->getUserImage()}}" width="100%" alt="user profile picture"/>
-                </a>
-            </div>
+            <a href="{{ route('profile.show', $user->id) }}" class="col-4">
+                <img src="{{$user->getUserImage()}}" class="user-image-50" alt="user profile picture"/>
+            </a>
             <div class="px-0 {{$type === "accepted" ? 'col-6' : 'col-8'}}">
                 <div>
                     <a href="{{ route('profile.show', $user->id) }}">
