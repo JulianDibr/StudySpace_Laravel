@@ -6,7 +6,7 @@
                 <div class="modal-body">
                     <div class="row w-100">
                         <div class="col-4">
-                            <div style="width: 120px; overflow: hidden" class="profile-picture">
+                            <div style="width: 100px; overflow: hidden" class="profile-picture mx-auto">
                                 <a href="{{ route('profile.show', $posting->user->id) }}">
                                     <img src="{{$posting->user->getUserImage()}}" class="user-image-100"
                                          alt="user profile picture"/>

@@ -53,16 +53,16 @@
     </div>
     <div class="contact-conversation-list-container h-100">
         <div style="padding: 7px 0" class="row text-center mb-4 mx-0">
-            <div class="col-6">
+            <div class="pl-0 col-6">
                 <button class="btn px-1 conversations-btn active-tab">Konversationen</button>
             </div>
-            <div class="col-6">
+            <div class="pr-0 col-6">
                 <button class="btn px-1 contacts-btn">Kontakte</button>
             </div>
         </div>
 
-        <div class="conversation-list row">
-            <div class="col-12">
+        <div class="conversation-list row mx-0">
+            <div class="col-12 px-0">
                 @forelse(Auth::user()->getConversations() as $conversation)
                     <div>
                         <button class="btn mb-0 text-left p-0 pl-1 load-conversation" type="button"

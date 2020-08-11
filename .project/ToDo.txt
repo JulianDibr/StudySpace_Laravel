@@ -1,13 +1,9 @@
+TODO:
 Icon in Illustrator evtl Farben anpassen
-Nachrichten um Files erweitern?
-Gruppenchats? => Namensanzeige in Bubble bei mehreren Usern
-Chats aus einer Gruppe/Projekt/Kurs mitglieder liste generieren
-Settings Validierung
-Profile -> Liste seiner Freunde=?
-Weitere Felder je Typ
-
-Projekte, Gruppen => Offen, Einladungs, Bewerbung Switch => Jeweilige Anzeige in overview
+New Posting: Anzeige von hinzugefügter Datei => Name oder preview
+Timestamps falsch new post/ edit post / comments
+Comment & Subcomment link to profile
 Support mail
 Anlegen moderieren von Schulen
-Suche nach Beiträgen, Personen, Kursen, Gruppen, Schulen etc
-Imageupload save für school, project, course, group
+Profilbild save für school, project, course, group
+Projekte, Gruppen => Offen, Einladungs, Bewerbung Switch => Jeweilige Anzeige in overview
