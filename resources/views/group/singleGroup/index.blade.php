@@ -6,7 +6,9 @@
     @php
         $location_id = $group->id;
         $location_type = 4;
-        $postingArr = $postings::with('user')->where([['location_type', '=', $location_type], ['location_id', '=', $location_id]])->get()->sortByDesc('updated_at');
+        $postingArr = $postings::with('user')->where([
+            ['location_type', '=', $location_type], ['location_id', '=', $location_id]
+            ])->get()->sortByDesc('updated_at');
         $canPost = $group->users->contains(Auth::id()) || $group->is_open;
     @endphp
     {{--Get $profile from controller--}}
