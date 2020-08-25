@@ -248,14 +248,20 @@
     resize: none;
 }
 
-.user-image-35 {
+%user-image-extend {
+    border-radius: $border-radius;
+    border: $border;
     object-fit: cover;
+}
+
+.user-image-35 {
+    @extend %user-image-extend;
     width: 35px;
     height: 35px;
 }
 
 .user-image-50 {
-    object-fit: cover;
+    @extend %user-image-extend;
     width: 50px;
     height: 50px;
 }
@@ -272,4 +278,11 @@
     width: 200px;
     height: 200px;
     overflow: hidden;
+}
+
+.contact-input {
+    padding: 5px 10px;
+    border: $border;
+    border-radius: $border-radius;
+    width: 75%;
 }

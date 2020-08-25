@@ -87,7 +87,7 @@ class PostingController extends Controller {
         ]);
 
         if ($posting->user_id === Auth::id()) {
-            $posting->content = $request->content_update;
+            $posting->content = $validatedData['content_update'];
             $posting->save();
         }
 

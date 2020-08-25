@@ -28,15 +28,6 @@ class CommentController extends Controller {
         return $this->generateNewModal($posting, true);
     }
 
-    private function generateNewModal($posting, $contentOnly) {
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'modal' => generateViewHelper::generatePostingModal($posting, $contentOnly),
-            ]
-        ]);
-    }
-
     public function update(Request $request, Comment $comment) {
         $validatedData = $request->validate([
             'content' => ['required', 'max:1000'],
@@ -95,5 +86,14 @@ class CommentController extends Controller {
         $posting = Comment::find($request->commentId)->posting;
 
         return $this->generateNewModal($posting, true);
+    }
+
+    private function generateNewModal($posting, $contentOnly) {
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'modal' => generateViewHelper::generatePostingModal($posting, $contentOnly),
+            ]
+        ]);
     }
 }

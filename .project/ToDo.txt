@@ -1,5 +1,4 @@
 TODO:
-Icon in Illustrator evtl Farben anpassen
 New Posting: Anzeige von hinzugefügter Datei => Name oder preview
 Timestamps falsch new post/ edit post / comments
 Comment & Subcomment link to profile

@@ -71,7 +71,7 @@
                 <!-- ToDo: Grafik ersetzen -->
                 <img src="{{asset('img/logo.png')}}" alt="StudySpace Logo" width="85%" style="max-width: 450px"
                      class="mx-auto"/>
-                <h2 class="mt-4">Willkommen bei StudySpace, <br>dem Netzwerk für Studierende</h2>
+                <h2 class="mt-4">Willkommen bei StudySpace, <br>dem Netzwerk für Studierende.</h2>
             </div>
             <div class="col-md-6 col-12 my-auto">
                 @yield('content')

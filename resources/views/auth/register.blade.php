@@ -85,7 +85,7 @@
         <div class="row mb-0">
             <div class="col">
                 <button type="submit" class="btn index-btn">
-                    {{ __('Register') }}
+                    Registrieren
                 </button>
             </div>
         </div>
