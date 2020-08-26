@@ -29,7 +29,7 @@
             @endif
         </div>
         @if($type === "pending")
-            <div class="row">
+            <div class="row mx-0">
                 @if($received)
                     <button class="btn col-5 accept-friend-request-btn" data-profile-id="{{$user->id}}">
                         Akzeptieren

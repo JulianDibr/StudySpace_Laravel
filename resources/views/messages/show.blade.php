@@ -71,18 +71,18 @@
                                  src="{{$conversation->participants->where('user_id', '!=',  Auth::id())->first()->user->getUserImage()}}"
                                  alt="user profile picture"/>
                             <div class="text-break my-auto d-inline-block">
-                                    @foreach($conversation->participants->where('user_id', '!=',  Auth::id()) as $participant)
-                                        {{$loop->last ? $participant->user->getFullName() : $participant->user->getFullName() .", "}}
-                                    @endforeach
+                                @foreach($conversation->participants->where('user_id', '!=',  Auth::id()) as $participant)
+                                    {{$loop->last ? $participant->user->getFullName() : $participant->user->getFullName() .", "}}
+                                @endforeach
                                 <div class="conversation-message-body">
                                     {{$conversation->getLatestMessageAttribute()->body}}
+                                    @if($conversation->userUnreadMessagesCount(Auth::id()))
+                                        <div class="px-2 d-inline-block">
+                                            <div class="unread-counter">{{$conversation->userUnreadMessagesCount(Auth::id())}}</div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
-                            @if($conversation->userUnreadMessagesCount(Auth::id()))
-                                <div class="text-right px-2 my-auto">
-                                    <div class="unread-counter">{{$conversation->userUnreadMessagesCount(Auth::id())}}</div>
-                                </div>
-                            @endif
                         </button>
                     </div>
                 @empty

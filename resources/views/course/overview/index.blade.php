@@ -38,7 +38,7 @@
             </a>
         </div>
 
-        @foreach(Auth::user()->courses as $course)
+        @foreach(Auth::user()->getJoinedCourses() as $course)
             <div class="col-12 col-md-6 col-lg-4 mb-3">
                 <a class="course-container card mb-2 mt-2 p-0"
                    href="{{route('course.show', $course->id)}}" style="background: url({{$course->getCourseImage()}}) no-repeat center center">
