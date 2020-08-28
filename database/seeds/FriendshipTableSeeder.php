@@ -18,7 +18,7 @@ class FriendshipTableSeeder extends Seeder {
                 'sender_id' => '1',
                 'recipient_type' => 'App\User',
                 'recipient_id' => '3',
-                'status' => '1',
+                'status' => '0',
             ],
             [
                 'sender_type' => 'App\User',
@@ -29,10 +29,10 @@ class FriendshipTableSeeder extends Seeder {
             ],
             [
                 'sender_type' => 'App\User',
-                'sender_id' => '1',
+                'sender_id' => '12',
                 'recipient_type' => 'App\User',
-                'recipient_id' => '12',
-                'status' => '1',
+                'recipient_id' => '1',
+                'status' => '0',
             ],
         ]);
     }
